@@ -80,6 +80,7 @@
         .hero h1, .hero-lines, .hero-rule { animation: none !important; }
         .work-visual .art { transition: none; }
         .card, .card-art { transition: none; }
+        .card-details, .card.open .card-details { transition: none; }
         .carousel-track { transition: none; }
       }
 
@@ -144,6 +145,28 @@
       .card-top h3 { font-family: "Fraunces", Georgia, serif; font-size: clamp(23px, 2.6vw, 29px); font-weight: 500; letter-spacing: -.01em; line-height: 1.2; margin: 0; }
       .card-top .idx { font-size: 13px; font-weight: 600; color: var(--accent); letter-spacing: .06em; flex: none; }
       .card-body p { color: var(--muted); margin: 0; font-size: 16.5px; max-width: 48ch; }
+
+      /* ---------- Work card details (accordion) ---------- */
+      .card { cursor: pointer; }
+      .card.open { border-color: var(--accent); }
+      .vh { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+      .card-toggle {
+        display: inline-flex; align-items: center; gap: 9px;
+        margin: 16px 0 0; padding: 4px 0;
+        background: none; border: 0; cursor: pointer;
+        font-family: inherit; font-size: 13.5px; font-weight: 600; letter-spacing: .05em;
+        color: var(--muted); transition: color .25s ease;
+      }
+      .card-toggle:hover { color: var(--accent); }
+      .card-toggle .toggle-mark { color: var(--accent); font-size: 18px; font-weight: 500; line-height: 1; }
+      .card-details { display: grid; grid-template-rows: 0fr; visibility: hidden; transition: grid-template-rows .5s var(--ease), visibility 0s linear .5s; }
+      .card.open .card-details { grid-template-rows: 1fr; visibility: visible; transition: grid-template-rows .5s var(--ease), visibility 0s linear 0s; }
+      .card-details-inner { overflow: hidden; min-height: 0; }
+      .detail-rows { margin: 20px 0 0; padding: 20px 0 2px; border-top: 1px solid var(--line); }
+      .drow { display: grid; grid-template-columns: 72px minmax(0, 1fr); gap: 6px 16px; padding: 9px 0; margin: 0; }
+      .drow + .drow { border-top: 1px solid var(--line); }
+      .drow dt { font-size: 12.5px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: var(--accent); padding-top: 3px; margin: 0; }
+      .drow dd { margin: 0; font-size: 16px; line-height: 1.55; color: var(--ink); }
 
       /* ---------- Experience ---------- */
       .exp-line { font-size: clamp(19px, 2.5vw, 23px); line-height: 1.5; margin: 0 0 10px; }
@@ -283,6 +306,20 @@
             <div class="card-body">
               <div class="card-top"><h3>Spec-driven development framework</h3><span class="idx">01</span></div>
               <p>A multi-agent workflow that takes software from requirements to tests, spec first.</p>
+              <button class="card-toggle" type="button" aria-expanded="false" aria-controls="work-detail-1">
+                <span class="vh">Spec-driven development framework:</span>
+                <span class="toggle-text">Details</span>
+                <span class="toggle-mark" aria-hidden="true">+</span>
+              </button>
+              <div class="card-details" id="work-detail-1">
+                <div class="card-details-inner">
+                  <dl class="detail-rows">
+                    <div class="drow"><dt>What</dt><dd>A multi-agent workflow that turns requirements into specs, test designs, and scripts — with human gates at each step.</dd></div>
+                    <div class="drow"><dt>Why</dt><dd>The requirements-to-tests handoff is where quality is silently lost.</dd></div>
+                    <div class="drow"><dt>Result</dt><dd>Now being built into an IDE-integrated demo.</dd></div>
+                  </dl>
+                </div>
+              </div>
             </div>
           </article>
 
@@ -337,6 +374,20 @@
             <div class="card-body">
               <div class="card-top"><h3>PeerAI</h3><span class="idx">02</span></div>
               <p>A Jira quality-audit app.</p>
+              <button class="card-toggle" type="button" aria-expanded="false" aria-controls="work-detail-2">
+                <span class="vh">PeerAI:</span>
+                <span class="toggle-text">Details</span>
+                <span class="toggle-mark" aria-hidden="true">+</span>
+              </button>
+              <div class="card-details" id="work-detail-2">
+                <div class="card-details-inner">
+                  <dl class="detail-rows">
+                    <div class="drow"><dt>What</dt><dd>A Jira app that audits ticket quality before work starts.</dd></div>
+                    <div class="drow"><dt>Why</dt><dd>Vague tickets are the silent killer of sprints — garbage in, garbage out.</dd></div>
+                    <div class="drow"><dt>Result</dt><dd>Catches ticket gaps before the sprint starts, not mid-sprint.</dd></div>
+                  </dl>
+                </div>
+              </div>
             </div>
           </article>
 
@@ -382,6 +433,20 @@
             <div class="card-body">
               <div class="card-top"><h3>FAST — Form Anomaly Search Tool</h3><span class="idx">03</span></div>
               <p>AI-assisted form and document validation.</p>
+              <button class="card-toggle" type="button" aria-expanded="false" aria-controls="work-detail-3">
+                <span class="vh">FAST:</span>
+                <span class="toggle-text">Details</span>
+                <span class="toggle-mark" aria-hidden="true">+</span>
+              </button>
+              <div class="card-details" id="work-detail-3">
+                <div class="card-details-inner">
+                  <dl class="detail-rows">
+                    <div class="drow"><dt>What</dt><dd>Automated validation across thousands of forms, catching anomalies humans miss.</dd></div>
+                    <div class="drow"><dt>Why</dt><dd>Manual form testing is slow, repetitive, and blind to edge cases.</dd></div>
+                    <div class="drow"><dt>Result</dt><dd>2,000 forms validated; effort cut from 1,000 hours to 200 — an 80% drop.</dd></div>
+                  </dl>
+                </div>
+              </div>
             </div>
           </article>
 
@@ -437,6 +502,20 @@
             <div class="card-body">
               <div class="card-top"><h3>Press-n-Go</h3><span class="idx">04</span></div>
               <p>Agentic browser automation from natural-language instructions.</p>
+              <button class="card-toggle" type="button" aria-expanded="false" aria-controls="work-detail-4">
+                <span class="vh">Press-n-Go:</span>
+                <span class="toggle-text">Details</span>
+                <span class="toggle-mark" aria-hidden="true">+</span>
+              </button>
+              <div class="card-details" id="work-detail-4">
+                <div class="card-details-inner">
+                  <dl class="detail-rows">
+                    <div class="drow"><dt>What</dt><dd>Agentic browser automation — AI drives the browser the way a user would.</dd></div>
+                    <div class="drow"><dt>Why</dt><dd>Brittle selectors make UI suites expensive to maintain; self-healing attacks that tax directly.</dd></div>
+                    <div class="drow"><dt>Result</dt><dd>A UI suite that heals itself instead of breaking every release.</dd></div>
+                  </dl>
+                </div>
+              </div>
             </div>
           </article>
 
@@ -478,6 +557,20 @@
             <div class="card-body">
               <div class="card-top"><h3>JITANA</h3><span class="idx">05</span></div>
               <p>A performance-testing framework — JMeter, containers, Elasticsearch, Grafana, Jenkins.</p>
+              <button class="card-toggle" type="button" aria-expanded="false" aria-controls="work-detail-5">
+                <span class="vh">JITANA:</span>
+                <span class="toggle-text">Details</span>
+                <span class="toggle-mark" aria-hidden="true">+</span>
+              </button>
+              <div class="card-details" id="work-detail-5">
+                <div class="card-details-inner">
+                  <dl class="detail-rows">
+                    <div class="drow"><dt>What</dt><dd>A performance testing framework for enterprise workloads.</dd></div>
+                    <div class="drow"><dt>Why</dt><dd>Performance failures found late are the most expensive kind.</dd></div>
+                    <div class="drow"><dt>Result</dt><dd>Performance issues surface before release, not after.</dd></div>
+                  </dl>
+                </div>
+              </div>
             </div>
           </article>
 
@@ -542,6 +635,20 @@
             <div class="card-body">
               <div class="card-top"><h3>ARI — Regression Intelligence</h3><span class="idx">06</span></div>
               <p>Regression intelligence drawn from production behaviour.</p>
+              <button class="card-toggle" type="button" aria-expanded="false" aria-controls="work-detail-6">
+                <span class="vh">ARI:</span>
+                <span class="toggle-text">Details</span>
+                <span class="toggle-mark" aria-hidden="true">+</span>
+              </button>
+              <div class="card-details" id="work-detail-6">
+                <div class="card-details-inner">
+                  <dl class="detail-rows">
+                    <div class="drow"><dt>What</dt><dd>Risk-based regression — runs the tests that matter for each change, skips the rest.</dd></div>
+                    <div class="drow"><dt>Why</dt><dd>Full suites can’t keep up with modern release cadence; teams must test smarter, not more.</dd></div>
+                    <div class="drow"><dt>Result</dt><dd>Smaller, smarter regression runs with no loss in defect detection.</dd></div>
+                  </dl>
+                </div>
+              </div>
             </div>
           </article>
 
@@ -696,6 +803,37 @@
         /* Cards stagger within the work grid */
         document.querySelectorAll('.cards .card').forEach(function (card, i) {
           card.style.transitionDelay = (i % 2) * 90 + 'ms';
+        });
+
+        /* ---------- Work card accordion ---------- */
+        var workCards = Array.prototype.slice.call(document.querySelectorAll('.cards .card'));
+        function setCardOpen(card, open) {
+          var btn = card.querySelector('.card-toggle');
+          if (!btn) return;
+          card.classList.toggle('open', open);
+          btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+          btn.querySelector('.toggle-mark').textContent = open ? '–' : '+';
+        }
+        function toggleCard(card) {
+          var willOpen = !card.classList.contains('open');
+          workCards.forEach(function (c) { if (c !== card) setCardOpen(c, false); });
+          setCardOpen(card, willOpen);
+        }
+        workCards.forEach(function (card) {
+          var btn = card.querySelector('.card-toggle');
+          if (btn) btn.addEventListener('click', function () { toggleCard(card); });
+          card.addEventListener('click', function (e) {
+            if (e.target.closest && e.target.closest('.card-toggle')) return;
+            toggleCard(card);
+          });
+        });
+        document.addEventListener('keydown', function (e) {
+          if (e.key !== 'Escape') return;
+          var open = document.querySelector('.cards .card.open');
+          if (!open) return;
+          var focusWasInside = open.contains(document.activeElement);
+          setCardOpen(open, false);
+          if (focusWasInside) open.querySelector('.card-toggle').focus();
         });
 
         /* ---------- Carousel ---------- */
