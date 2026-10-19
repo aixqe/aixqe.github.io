@@ -54,6 +54,7 @@
         font-size: 17px;
         line-height: 1.65;
         -webkit-font-smoothing: antialiased;
+        overflow-wrap: break-word;
         overflow-x: hidden;
       }
       .serif { font-family: "Fraunces", Georgia, "Times New Roman", serif; }
@@ -62,10 +63,11 @@
       a:hover { text-decoration: underline; text-underline-offset: 3px; }
       :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
       ::selection { background: var(--accent); color: var(--paper); }
+      h1, h2, h3, p, dt, dd, .chip { overflow-wrap: break-word; }
 
       /* ---------- Motion ---------- */
-      .reveal { opacity: 0; transform: translateY(24px); transition: opacity .9s var(--ease), transform .9s var(--ease); }
-      .reveal.in { opacity: 1; transform: none; }
+      /* Content is never hidden pending a script: sections render in full on
+         load; motion is limited to the hero entrance and hovers. */
       @keyframes rise {
         from { opacity: 0; transform: translateY(30px); }
         to { opacity: 1; transform: none; }
@@ -76,11 +78,9 @@
       }
       @media (prefers-reduced-motion: reduce) {
         html { scroll-behavior: auto; }
-        .reveal { opacity: 1; transform: none; transition: none; }
         .hero h1, .hero-lines, .hero-rule { animation: none !important; }
         .work-visual .art { transition: none; }
         .card, .card-art { transition: none; }
-        .card-details, .card.open .card-details { transition: none; }
         .carousel-track { transition: none; }
       }
 
@@ -93,6 +93,11 @@
       .nav-links a { color: var(--ink); transition: color .25s ease; }
       .nav-links a:hover { color: var(--accent); text-decoration: none; }
       .nav-links a.ext { color: var(--accent); }
+      @media (max-width: 640px) {
+        .wrap { padding-left: 20px; padding-right: 20px; }
+        .nav { gap: 10px 20px; }
+        .nav-links { gap: 12px 20px; font-size: 15px; }
+      }
 
       /* ---------- Hero ---------- */
       .hero { padding-top: 96px; padding-bottom: 88px; }
@@ -124,34 +129,47 @@
       }
       .sec-note { color: var(--muted); font-size: 16.5px; margin: -14px 0 34px; max-width: 58ch; }
 
-      /* ---------- Work cards ---------- */
+      /* ---------- Work cards (3D flip) ---------- */
       .cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px; }
       @media (max-width: 760px) { .cards { grid-template-columns: 1fr; } }
       .card {
+        background: transparent; border: 0; padding: 0;
+        display: block; cursor: pointer;
+        perspective: 1400px;
+        transition: transform .45s var(--ease);
+      }
+      .card:hover { transform: translateY(-6px); }
+      .card-flip {
+        position: relative; display: grid;
+        transform-style: preserve-3d;
+        transition: transform .75s var(--ease);
+        height: 100%;
+      }
+      .card.flipped .card-flip { transform: rotateY(180deg); }
+      .card-face {
+        grid-area: 1 / 1;
+        backface-visibility: hidden; -webkit-backface-visibility: hidden;
         border: 1px solid var(--line-strong); background: var(--paper-2);
-        display: flex; flex-direction: column;
-        transition: transform .45s var(--ease), box-shadow .45s var(--ease), border-color .45s var(--ease);
+        display: flex; flex-direction: column; height: 100%;
+        transition: border-color .45s var(--ease), box-shadow .45s var(--ease);
       }
-      .card:hover {
-        transform: translateY(-6px);
-        border-color: var(--accent);
-        box-shadow: 0 18px 36px -22px rgba(28, 26, 22, .45);
-      }
-      .card-art { overflow: hidden; border-bottom: 1px solid var(--line); background: var(--paper); }
+      .card:hover .card-face { border-color: var(--accent); box-shadow: 0 18px 36px -22px rgba(28, 26, 22, .45); }
+      .card.flipped .card-face { border-color: var(--accent); }
+      .card-back { transform: rotateY(180deg); }
+      .card:not(.flipped) .card-back { pointer-events: none; }
+      .card.flipped .card-front { pointer-events: none; }
+      .card-art { overflow: hidden; border-bottom: 1px solid var(--line); background: var(--paper); flex: none; }
       .card-art svg { display: block; width: 100%; height: auto; transition: transform .8s var(--ease); }
       .card:hover .card-art svg { transform: scale(1.045); }
-      .card-body { padding: 26px 28px 30px; }
+      .card-body { padding: 26px 28px 30px; display: flex; flex-direction: column; align-items: stretch; flex: 1; }
       .card-top { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin: 0 0 8px; }
       .card-top h3 { font-family: "Fraunces", Georgia, serif; font-size: clamp(23px, 2.6vw, 29px); font-weight: 500; letter-spacing: -.01em; line-height: 1.2; margin: 0; }
       .card-top .idx { font-size: 13px; font-weight: 600; color: var(--accent); letter-spacing: .06em; flex: none; }
       .card-body p { color: var(--muted); margin: 0; font-size: 16.5px; max-width: 48ch; }
-
-      /* ---------- Work card details (accordion) ---------- */
-      .card { cursor: pointer; }
-      .card.open { border-color: var(--accent); }
+      .card-body-back .card-top { margin-bottom: 2px; }
       .vh { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
       .card-toggle {
-        display: inline-flex; align-items: center; gap: 9px;
+        display: inline-flex; align-items: center; gap: 9px; align-self: flex-start;
         margin: 16px 0 0; padding: 4px 0;
         background: none; border: 0; cursor: pointer;
         font-family: inherit; font-size: 13.5px; font-weight: 600; letter-spacing: .05em;
@@ -159,22 +177,32 @@
       }
       .card-toggle:hover { color: var(--accent); }
       .card-toggle .toggle-mark { color: var(--accent); font-size: 18px; font-weight: 500; line-height: 1; }
-      .card-details { display: grid; grid-template-rows: 0fr; visibility: hidden; transition: grid-template-rows .5s var(--ease), visibility 0s linear .5s; }
-      .card.open .card-details { grid-template-rows: 1fr; visibility: visible; transition: grid-template-rows .5s var(--ease), visibility 0s linear 0s; }
-      .card-details-inner { overflow: hidden; min-height: 0; }
-      .detail-rows { margin: 20px 0 0; padding: 20px 0 2px; border-top: 1px solid var(--line); }
+      .card-body-back .card-toggle { margin-top: auto; padding-top: 20px; }
+      .detail-rows { margin: 14px 0 0; padding: 6px 0 2px; width: 100%; }
       .drow { display: grid; grid-template-columns: 72px minmax(0, 1fr); gap: 6px 16px; padding: 9px 0; margin: 0; }
       .drow + .drow { border-top: 1px solid var(--line); }
       .drow dt { font-size: 12.5px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: var(--accent); padding-top: 3px; margin: 0; }
       .drow dd { margin: 0; font-size: 16px; line-height: 1.55; color: var(--ink); }
+      @media (prefers-reduced-motion: reduce) {
+        .card-flip { transition: none; transform: none !important; transform-style: flat; }
+        .card.flipped .card-flip { transform: none !important; }
+        .card-face { transition: opacity .3s ease; backface-visibility: visible; -webkit-backface-visibility: visible; }
+        .card-back { transform: none; opacity: 0; }
+        .card-front { opacity: 1; }
+        .card.flipped .card-back { opacity: 1; }
+        .card.flipped .card-front { opacity: 0; }
+        .card:hover { transform: none; }
+        .card:hover .card-art svg { transform: none; }
+      }
 
       /* ---------- Experience ---------- */
-      .exp-line { font-size: clamp(19px, 2.5vw, 23px); line-height: 1.5; margin: 0 0 10px; }
+      .exp-line { font-size: clamp(19px, 2.5vw, 23px); line-height: 1.55; margin: 0 0 10px; max-width: 58ch; }
       .exp-line.prev { color: var(--muted); margin-bottom: 30px; }
       .chips { display: flex; flex-wrap: wrap; gap: 12px; margin: 0 0 34px; }
       .chip { border: 1px solid var(--line-strong); background: var(--paper-2); padding: 10px 18px; font-size: 15.5px; }
       .chip b { font-family: "Fraunces", Georgia, serif; font-size: 19px; font-weight: 600; color: var(--accent); margin-right: 7px; letter-spacing: -.01em; }
-      .fine { color: var(--muted); font-size: 15px; line-height: 1.7; margin: 0; max-width: 62ch; }
+      .fine { color: var(--muted); font-size: 15px; line-height: 1.7; margin: 0 0 8px; max-width: 62ch; }
+      .fine:last-child { margin-bottom: 0; }
       .fine b { color: var(--ink); font-weight: 600; }
 
       /* ---------- Writing rows ---------- */
@@ -184,13 +212,22 @@
       a.wrow:hover h3 { color: var(--accent); }
       .wrow h3 { font-family: "Fraunces", Georgia, serif; font-size: clamp(22px, 2.8vw, 28px); font-weight: 500; letter-spacing: -.01em; line-height: 1.2; margin: 0 0 5px; transition: color .25s ease; }
       .wrow p { color: var(--muted); margin: 0; font-size: 16.5px; max-width: 54ch; }
+      a.wrow > div { min-width: 0; }
+      .card-top h3 { min-width: 0; }
+      .slide figcaption > span:first-child { min-width: 0; }
       .wrow .arr { font-size: 26px; color: var(--accent); flex: none; line-height: 1; }
 
       /* ---------- About + carousel ---------- */
-      .about-grid { display: grid; grid-template-columns: minmax(0, 1fr); align-items: start; }
-      .about-copy { max-width: 72ch; }
-      .about-copy p { margin: 0 0 18px; font-size: 17.5px; }
-      .about-copy p:first-child { font-size: 20px; line-height: 1.55; }
+      .about-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px 60px; align-items: start; }
+      @media (min-width: 900px) { .about-grid { grid-template-columns: minmax(0, 1fr) 252px; } }
+      .about-copy { max-width: 66ch; }
+      .about-copy p { margin: 0 0 20px; font-size: 17.5px; line-height: 1.75; }
+      .about-copy p:first-child { font-size: 21px; line-height: 1.6; }
+      .about-meta { margin: 4px 0 0; border-top: 1px solid var(--ink); }
+      .about-meta .mrow { padding: 13px 0 15px; margin: 0; }
+      .about-meta .mrow + .mrow { border-top: 1px solid var(--line); }
+      .about-meta dt { font-size: 12.5px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: var(--accent); margin: 0 0 5px; }
+      .about-meta dd { margin: 0; font-size: 16px; line-height: 1.55; }
       .about-copy p:last-child { margin-bottom: 0; }
       .carousel { margin-top: 56px; }
       .carousel-frame { overflow: hidden; border: 1px solid var(--line-strong); background: var(--paper-2); }
@@ -256,8 +293,10 @@
         <p class="sec-note reveal">Tools and frameworks I've built — each one solving a problem that manual effort couldn't scale past. Drawn the way they're designed: on paper, in lines and nodes, before a line of code.</p>
         <div class="cards">
 
-          <article class="card reveal">
-            <div class="card-art">
+          <article class="card reveal" tabindex="0" aria-expanded="false">
+            <div class="card-flip">
+              <div class="card-face card-front">
+                <div class="card-art">
               <svg viewBox="0 0 480 240" role="img" aria-label="Blueprint drawing: a requirements document flowing through a multi-agent workflow into three test cases">
                 <rect width="480" height="240" fill="var(--paper)"/>
                 <g stroke="var(--line)" stroke-width="1">
@@ -306,25 +345,35 @@
             <div class="card-body">
               <div class="card-top"><h3>Spec-driven development framework</h3><span class="idx">01</span></div>
               <p>A multi-agent workflow that takes software from requirements to tests, spec first.</p>
-              <button class="card-toggle" type="button" aria-expanded="false" aria-controls="work-detail-1">
+                  <button class="card-toggle" type="button" aria-expanded="false" aria-controls="work-detail-1">
                 <span class="vh">Spec-driven development framework:</span>
                 <span class="toggle-text">Details</span>
                 <span class="toggle-mark" aria-hidden="true">+</span>
               </button>
-              <div class="card-details" id="work-detail-1">
-                <div class="card-details-inner">
+                </div>
+              </div>
+              <div class="card-face card-back" id="work-detail-1" aria-hidden="true">
+                <div class="card-body card-body-back">
+                  <div class="card-top"><h3>Spec-driven development framework</h3><span class="idx">01</span></div>
                   <dl class="detail-rows">
                     <div class="drow"><dt>What</dt><dd>A multi-agent workflow that turns requirements into specs, test designs, and scripts — with human gates at each step.</dd></div>
                     <div class="drow"><dt>Why</dt><dd>The requirements-to-tests handoff is where quality is silently lost.</dd></div>
                     <div class="drow"><dt>Result</dt><dd>Now being built into an IDE-integrated demo.</dd></div>
                   </dl>
+                  <button class="card-toggle card-toggle-back" type="button" aria-expanded="false" aria-controls="work-detail-1" tabindex="-1">
+                    <span class="vh">Spec-driven development framework:</span>
+                    <span class="toggle-text">Details</span>
+                    <span class="toggle-mark" aria-hidden="true">–</span>
+                  </button>
                 </div>
               </div>
             </div>
           </article>
 
-          <article class="card reveal">
-            <div class="card-art">
+          <article class="card reveal" tabindex="0" aria-expanded="false">
+            <div class="card-flip">
+              <div class="card-face card-front">
+                <div class="card-art">
               <svg viewBox="0 0 480 240" role="img" aria-label="Blueprint drawing: two reviewer nodes facing each other across a document panel, joined by an audit path with a verdict stamp">
                 <rect width="480" height="240" fill="var(--paper)"/>
                 <g stroke="var(--line)" stroke-width="1">
@@ -374,25 +423,35 @@
             <div class="card-body">
               <div class="card-top"><h3>PeerAI</h3><span class="idx">02</span></div>
               <p>A Jira quality-audit app.</p>
-              <button class="card-toggle" type="button" aria-expanded="false" aria-controls="work-detail-2">
+                  <button class="card-toggle" type="button" aria-expanded="false" aria-controls="work-detail-2">
                 <span class="vh">PeerAI:</span>
                 <span class="toggle-text">Details</span>
                 <span class="toggle-mark" aria-hidden="true">+</span>
               </button>
-              <div class="card-details" id="work-detail-2">
-                <div class="card-details-inner">
+                </div>
+              </div>
+              <div class="card-face card-back" id="work-detail-2" aria-hidden="true">
+                <div class="card-body card-body-back">
+                  <div class="card-top"><h3>PeerAI</h3><span class="idx">02</span></div>
                   <dl class="detail-rows">
                     <div class="drow"><dt>What</dt><dd>A Jira app that audits ticket quality before work starts.</dd></div>
                     <div class="drow"><dt>Why</dt><dd>Vague tickets are the silent killer of sprints — garbage in, garbage out.</dd></div>
                     <div class="drow"><dt>Result</dt><dd>Catches ticket gaps before the sprint starts, not mid-sprint.</dd></div>
                   </dl>
+                  <button class="card-toggle card-toggle-back" type="button" aria-expanded="false" aria-controls="work-detail-2" tabindex="-1">
+                    <span class="vh">PeerAI:</span>
+                    <span class="toggle-text">Details</span>
+                    <span class="toggle-mark" aria-hidden="true">–</span>
+                  </button>
                 </div>
               </div>
             </div>
           </article>
 
-          <article class="card reveal">
-            <div class="card-art">
+          <article class="card reveal" tabindex="0" aria-expanded="false">
+            <div class="card-flip">
+              <div class="card-face card-front">
+                <div class="card-art">
               <svg viewBox="0 0 480 240" role="img" aria-label="Blueprint drawing: a grid of form fields being scanned, with one anomalous field flagged in deep blue">
                 <rect width="480" height="240" fill="var(--paper)"/>
                 <g stroke="var(--line)" stroke-width="1">
@@ -433,25 +492,35 @@
             <div class="card-body">
               <div class="card-top"><h3>FAST — Form Anomaly Search Tool</h3><span class="idx">03</span></div>
               <p>AI-assisted form and document validation.</p>
-              <button class="card-toggle" type="button" aria-expanded="false" aria-controls="work-detail-3">
+                  <button class="card-toggle" type="button" aria-expanded="false" aria-controls="work-detail-3">
                 <span class="vh">FAST:</span>
                 <span class="toggle-text">Details</span>
                 <span class="toggle-mark" aria-hidden="true">+</span>
               </button>
-              <div class="card-details" id="work-detail-3">
-                <div class="card-details-inner">
+                </div>
+              </div>
+              <div class="card-face card-back" id="work-detail-3" aria-hidden="true">
+                <div class="card-body card-body-back">
+                  <div class="card-top"><h3>FAST — Form Anomaly Search Tool</h3><span class="idx">03</span></div>
                   <dl class="detail-rows">
                     <div class="drow"><dt>What</dt><dd>Automated validation across thousands of forms, catching anomalies humans miss.</dd></div>
                     <div class="drow"><dt>Why</dt><dd>Manual form testing is slow, repetitive, and blind to edge cases.</dd></div>
                     <div class="drow"><dt>Result</dt><dd>2,000 forms validated; effort cut from 1,000 hours to 200 — an 80% drop.</dd></div>
                   </dl>
+                  <button class="card-toggle card-toggle-back" type="button" aria-expanded="false" aria-controls="work-detail-3" tabindex="-1">
+                    <span class="vh">FAST:</span>
+                    <span class="toggle-text">Details</span>
+                    <span class="toggle-mark" aria-hidden="true">–</span>
+                  </button>
                 </div>
               </div>
             </div>
           </article>
 
-          <article class="card reveal">
-            <div class="card-art">
+          <article class="card reveal" tabindex="0" aria-expanded="false">
+            <div class="card-flip">
+              <div class="card-face card-front">
+                <div class="card-art">
               <svg viewBox="0 0 480 240" role="img" aria-label="Blueprint drawing: a browser window with an automation path threading through its elements to a play button">
                 <rect width="480" height="240" fill="var(--paper)"/>
                 <g stroke="var(--line)" stroke-width="1">
@@ -502,25 +571,35 @@
             <div class="card-body">
               <div class="card-top"><h3>Press-n-Go</h3><span class="idx">04</span></div>
               <p>Agentic browser automation from natural-language instructions.</p>
-              <button class="card-toggle" type="button" aria-expanded="false" aria-controls="work-detail-4">
+                  <button class="card-toggle" type="button" aria-expanded="false" aria-controls="work-detail-4">
                 <span class="vh">Press-n-Go:</span>
                 <span class="toggle-text">Details</span>
                 <span class="toggle-mark" aria-hidden="true">+</span>
               </button>
-              <div class="card-details" id="work-detail-4">
-                <div class="card-details-inner">
+                </div>
+              </div>
+              <div class="card-face card-back" id="work-detail-4" aria-hidden="true">
+                <div class="card-body card-body-back">
+                  <div class="card-top"><h3>Press-n-Go</h3><span class="idx">04</span></div>
                   <dl class="detail-rows">
                     <div class="drow"><dt>What</dt><dd>Agentic browser automation — AI drives the browser the way a user would.</dd></div>
                     <div class="drow"><dt>Why</dt><dd>Brittle selectors make UI suites expensive to maintain; self-healing attacks that tax directly.</dd></div>
                     <div class="drow"><dt>Result</dt><dd>A UI suite that heals itself instead of breaking every release.</dd></div>
                   </dl>
+                  <button class="card-toggle card-toggle-back" type="button" aria-expanded="false" aria-controls="work-detail-4" tabindex="-1">
+                    <span class="vh">Press-n-Go:</span>
+                    <span class="toggle-text">Details</span>
+                    <span class="toggle-mark" aria-hidden="true">–</span>
+                  </button>
                 </div>
               </div>
             </div>
           </article>
 
-          <article class="card reveal">
-            <div class="card-art">
+          <article class="card reveal" tabindex="0" aria-expanded="false">
+            <div class="card-flip">
+              <div class="card-face card-front">
+                <div class="card-art">
               <svg viewBox="0 0 480 240" role="img" aria-label="Blueprint drawing: performance waveforms rising across a baseline, with load markers and a threshold line">
                 <rect width="480" height="240" fill="var(--paper)"/>
                 <g stroke="var(--line)" stroke-width="1">
@@ -557,25 +636,35 @@
             <div class="card-body">
               <div class="card-top"><h3>JITANA</h3><span class="idx">05</span></div>
               <p>A performance-testing framework — JMeter, containers, Elasticsearch, Grafana, Jenkins.</p>
-              <button class="card-toggle" type="button" aria-expanded="false" aria-controls="work-detail-5">
+                  <button class="card-toggle" type="button" aria-expanded="false" aria-controls="work-detail-5">
                 <span class="vh">JITANA:</span>
                 <span class="toggle-text">Details</span>
                 <span class="toggle-mark" aria-hidden="true">+</span>
               </button>
-              <div class="card-details" id="work-detail-5">
-                <div class="card-details-inner">
+                </div>
+              </div>
+              <div class="card-face card-back" id="work-detail-5" aria-hidden="true">
+                <div class="card-body card-body-back">
+                  <div class="card-top"><h3>JITANA</h3><span class="idx">05</span></div>
                   <dl class="detail-rows">
                     <div class="drow"><dt>What</dt><dd>A performance testing framework for enterprise workloads.</dd></div>
                     <div class="drow"><dt>Why</dt><dd>Performance failures found late are the most expensive kind.</dd></div>
                     <div class="drow"><dt>Result</dt><dd>Performance issues surface before release, not after.</dd></div>
                   </dl>
+                  <button class="card-toggle card-toggle-back" type="button" aria-expanded="false" aria-controls="work-detail-5" tabindex="-1">
+                    <span class="vh">JITANA:</span>
+                    <span class="toggle-text">Details</span>
+                    <span class="toggle-mark" aria-hidden="true">–</span>
+                  </button>
                 </div>
               </div>
             </div>
           </article>
 
-          <article class="card reveal">
-            <div class="card-art">
+          <article class="card reveal" tabindex="0" aria-expanded="false">
+            <div class="card-flip">
+              <div class="card-face card-front">
+                <div class="card-art">
               <svg viewBox="0 0 480 240" role="img" aria-label="Blueprint drawing: concentric regression rings with cycle arrows and production behaviour signals feeding in">
                 <rect width="480" height="240" fill="var(--paper)"/>
                 <g stroke="var(--line)" stroke-width="1">
@@ -635,18 +724,26 @@
             <div class="card-body">
               <div class="card-top"><h3>ARI — Regression Intelligence</h3><span class="idx">06</span></div>
               <p>Regression intelligence drawn from production behaviour.</p>
-              <button class="card-toggle" type="button" aria-expanded="false" aria-controls="work-detail-6">
+                  <button class="card-toggle" type="button" aria-expanded="false" aria-controls="work-detail-6">
                 <span class="vh">ARI:</span>
                 <span class="toggle-text">Details</span>
                 <span class="toggle-mark" aria-hidden="true">+</span>
               </button>
-              <div class="card-details" id="work-detail-6">
-                <div class="card-details-inner">
+                </div>
+              </div>
+              <div class="card-face card-back" id="work-detail-6" aria-hidden="true">
+                <div class="card-body card-body-back">
+                  <div class="card-top"><h3>ARI — Regression Intelligence</h3><span class="idx">06</span></div>
                   <dl class="detail-rows">
                     <div class="drow"><dt>What</dt><dd>Risk-based regression — runs the tests that matter for each change, skips the rest.</dd></div>
                     <div class="drow"><dt>Why</dt><dd>Full suites can’t keep up with modern release cadence; teams must test smarter, not more.</dd></div>
                     <div class="drow"><dt>Result</dt><dd>Smaller, smarter regression runs with no loss in defect detection.</dd></div>
                   </dl>
+                  <button class="card-toggle card-toggle-back" type="button" aria-expanded="false" aria-controls="work-detail-6" tabindex="-1">
+                    <span class="vh">ARI:</span>
+                    <span class="toggle-text">Details</span>
+                    <span class="toggle-mark" aria-hidden="true">–</span>
+                  </button>
                 </div>
               </div>
             </div>
@@ -665,7 +762,11 @@
           <span class="chip"><b>$1.5M</b> licensing savings</span>
           <span class="chip"><b>0.02%</b> defect leakage</span>
         </div>
-        <p class="fine reveal"><b>Certified</b> — AWS Cloud Practitioner · Azure AZ-900 · ISTQB Foundation · Power Platform PL-900 · AppDynamics Sales Engineer · Splunk Power User. <b>Recognition</b> — CQTA Practitioner of the Year 2026. <b>Education</b> — metallurgical engineering, Punjab Engineering College, Chandigarh.</p>
+        <div class="reveal">
+          <p class="fine"><b>Certified</b> — AWS Cloud Practitioner · Azure AZ-900 · ISTQB Foundation · Power Platform PL-900 · AppDynamics Sales Engineer · Splunk Power User.</p>
+          <p class="fine"><b>Recognition</b> — CQTA Practitioner of the Year 2026.</p>
+          <p class="fine"><b>Education</b> — metallurgical engineering, Punjab Engineering College, Chandigarh.</p>
+        </div>
       </section>
 
       <!-- WRITING -->
@@ -703,6 +804,11 @@
             <p>Two decades across banking, payments, insurance, retail, and public-sector systems taught me one thing: quality holds when it's engineered in, not inspected in. These days that means applied AI — agents, spec-driven development, and evidence a planning meeting can rely on.</p>
             <p>Home is Burlington, Ontario, where I live with my wife and our two boys. The work is important; it isn't the whole story.</p>
           </div>
+          <dl class="about-meta reveal">
+            <div class="mrow"><dt>Role</dt><dd>Senior Manager, Accenture — Custom Application Engineering</dd></div>
+            <div class="mrow"><dt>Focus</dt><dd>AI in Quality Engineering — QE transformation, test automation, and performance engineering</dd></div>
+            <div class="mrow"><dt>Based in</dt><dd>Burlington, Ontario — home is my wife, our two boys, and the crew in the photos below</dd></div>
+          </dl>
         </div>
 
         <div class="carousel reveal">
@@ -785,55 +891,55 @@
 
     <script>
       (function () {
-        /* ---------- Scroll reveal ---------- */
-        var revealEls = document.querySelectorAll('.reveal');
-        if ('IntersectionObserver' in window) {
-          var io = new IntersectionObserver(function (entries) {
-            entries.forEach(function (e) {
-              if (e.isIntersecting) {
-                e.target.classList.add('in');
-                io.unobserve(e.target);
-              }
-            });
-          }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-          revealEls.forEach(function (el) { io.observe(el); });
-        } else {
-          revealEls.forEach(function (el) { el.classList.add('in'); });
-        }
-        /* Cards stagger within the work grid */
-        document.querySelectorAll('.cards .card').forEach(function (card, i) {
-          card.style.transitionDelay = (i % 2) * 90 + 'ms';
-        });
-
-        /* ---------- Work card accordion ---------- */
+        /* ---------- Work card flip ---------- */
         var workCards = Array.prototype.slice.call(document.querySelectorAll('.cards .card'));
-        function setCardOpen(card, open) {
-          var btn = card.querySelector('.card-toggle');
-          if (!btn) return;
-          card.classList.toggle('open', open);
-          btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-          btn.querySelector('.toggle-mark').textContent = open ? '–' : '+';
+        function setCardFlipped(card, flipped) {
+          card.classList.toggle('flipped', flipped);
+          card.setAttribute('aria-expanded', flipped ? 'true' : 'false');
+          var front = card.querySelector('.card-front');
+          var back = card.querySelector('.card-back');
+          if (front) front.setAttribute('aria-hidden', flipped ? 'true' : 'false');
+          if (back) back.setAttribute('aria-hidden', flipped ? 'false' : 'true');
+          card.querySelectorAll('.card-toggle').forEach(function (btn) {
+            btn.setAttribute('aria-expanded', flipped ? 'true' : 'false');
+            var mark = btn.querySelector('.toggle-mark');
+            if (mark) mark.textContent = flipped ? '–' : '+';
+            var isBack = btn.classList.contains('card-toggle-back');
+            btn.tabIndex = isBack ? (flipped ? 0 : -1) : (flipped ? -1 : 0);
+          });
         }
         function toggleCard(card) {
-          var willOpen = !card.classList.contains('open');
-          workCards.forEach(function (c) { if (c !== card) setCardOpen(c, false); });
-          setCardOpen(card, willOpen);
+          setCardFlipped(card, !card.classList.contains('flipped'));
         }
         workCards.forEach(function (card) {
-          var btn = card.querySelector('.card-toggle');
-          if (btn) btn.addEventListener('click', function () { toggleCard(card); });
+          card.querySelectorAll('.card-toggle').forEach(function (btn) {
+            btn.addEventListener('click', function () { toggleCard(card); });
+          });
           card.addEventListener('click', function (e) {
             if (e.target.closest && e.target.closest('.card-toggle')) return;
             toggleCard(card);
           });
+          card.addEventListener('keydown', function (e) {
+            if (e.target !== card) return;
+            if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+              e.preventDefault();
+              toggleCard(card);
+            }
+          });
+          setCardFlipped(card, false);
         });
         document.addEventListener('keydown', function (e) {
           if (e.key !== 'Escape') return;
-          var open = document.querySelector('.cards .card.open');
-          if (!open) return;
-          var focusWasInside = open.contains(document.activeElement);
-          setCardOpen(open, false);
-          if (focusWasInside) open.querySelector('.card-toggle').focus();
+          var flipped = Array.prototype.slice.call(document.querySelectorAll('.cards .card.flipped'));
+          if (!flipped.length) return;
+          var target = flipped.filter(function (c) { return c.contains(document.activeElement); })[0] || (flipped.length === 1 ? flipped[0] : null);
+          if (!target) return;
+          var focusWasInside = target.contains(document.activeElement);
+          setCardFlipped(target, false);
+          if (focusWasInside) {
+            var frontBtn = target.querySelector('.card-toggle:not(.card-toggle-back)');
+            if (frontBtn) frontBtn.focus();
+          }
         });
 
         /* ---------- Carousel ---------- */
