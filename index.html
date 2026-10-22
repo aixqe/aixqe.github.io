@@ -254,6 +254,114 @@
       .dot:hover { border-color: var(--accent); }
       .dot.on { background: var(--accent); border-color: var(--accent); }
 
+      /* ---------- Calculator page ---------- */
+      [hidden] { display: none !important; }
+      .calc-head { padding-top: 72px; }
+      @media (max-width: 640px) { .calc-head { padding-top: 48px; } }
+      .calc-back { display: inline-block; font-size: 15px; font-weight: 600; color: var(--accent); margin: 0 0 26px; }
+      .calc-title {
+        font-family: "Fraunces", Georgia, serif;
+        font-size: clamp(40px, 6.4vw, 68px);
+        line-height: 1.04; letter-spacing: -.015em; font-weight: 500;
+        margin: 0 0 22px; max-width: 16ch;
+      }
+      .calc-title em { font-style: italic; color: var(--clay); }
+      .calc-lede { font-size: clamp(18px, 2.2vw, 20.5px); line-height: 1.6; margin: 0; max-width: 62ch; }
+      .calc-lede .l2 { color: var(--muted); }
+      .calc-panel { border: 1px solid var(--line-strong); background: var(--paper-2); padding: 28px 28px 30px; }
+      .calc-panel h3 { font-family: "Fraunces", Georgia, serif; font-size: 23px; font-weight: 500; letter-spacing: -.01em; margin: 0 0 6px; }
+      .calc-panel .panel-note { color: var(--muted); font-size: 15px; margin: 0 0 22px; line-height: 1.55; max-width: 74ch; }
+      .field { margin: 0 0 20px; }
+      .field:last-child { margin-bottom: 0; }
+      .field label { display: block; font-size: 14px; font-weight: 600; letter-spacing: .02em; margin: 0 0 8px; color: var(--ink); }
+      .field .fhelp { color: var(--muted); font-size: 13.5px; font-weight: 400; margin: 6px 0 0; line-height: 1.5; }
+      .field input[type="number"] {
+        width: 100%; padding: 11px 13px; font: inherit; font-size: 16.5px;
+        color: var(--ink); background: var(--paper); border: 1px solid var(--line-strong);
+      }
+      .field input[type="number"]:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-color: var(--accent); }
+      .prog-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 26px; }
+      @media (max-width: 640px) { .prog-fields { grid-template-columns: 1fr; } }
+      .preset-row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 24px; border-top: 1px solid var(--line); padding-top: 20px; }
+      .preset-label { font-size: 13px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: var(--accent); margin-right: 4px; }
+      .preset-btn {
+        border: 1px solid var(--line-strong); background: var(--paper); color: var(--ink);
+        font: inherit; font-size: 14.5px; font-weight: 600; padding: 9px 15px; cursor: pointer;
+        transition: border-color .25s ease, background .25s ease, color .25s ease;
+      }
+      .preset-btn:hover { border-color: var(--accent); color: var(--accent); }
+      .preset-btn.on { background: var(--accent); border-color: var(--accent); color: var(--paper); }
+      .preset-note { color: var(--muted); font-size: 13.5px; margin: 12px 0 0; line-height: 1.55; max-width: 74ch; }
+      .calc-grid { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 26px; align-items: start; margin-top: 26px; }
+      @media (max-width: 960px) { .calc-grid { grid-template-columns: 1fr; } }
+      .blocks { display: flex; flex-direction: column; gap: 26px; min-width: 0; }
+      .block-head { display: flex; align-items: baseline; justify-content: space-between; gap: 14px; margin: 0 0 18px; }
+      .block-head h3 { margin: 0; }
+      .block-unit { color: var(--muted); font-size: 13.5px; font-weight: 600; letter-spacing: .03em; text-align: right; }
+      .block-fields { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+      @media (max-width: 1100px) { .block-fields { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+      .block-fields .field { margin: 0; }
+      .block-fields .field label { font-size: 13px; line-height: 1.4; min-height: 55px; }
+      .block-fields .field input[type="number"] { padding: 9px 11px; font-size: 15.5px; }
+      .block-out { border-top: 1px solid var(--line); margin: 18px 0 0; padding-top: 13px; font-size: 15px; line-height: 1.55; color: var(--muted); font-variant-numeric: tabular-nums; }
+      .block-out b { color: var(--ink); }
+      .lose-flag { color: var(--clay); font-size: 12.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; margin-left: 8px; white-space: nowrap; }
+      .rollup-col { min-width: 0; }
+      .result-card { border: 1px solid var(--line-strong); background: var(--paper-2); padding: 24px 24px 26px; }
+      .result-card.cal { border-color: var(--accent); background: var(--accent-soft); }
+      .result-card .rlabel { font-size: 12.5px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: var(--accent); margin: 0 0 10px; }
+      .result-card .rroi { font-family: "Fraunces", Georgia, serif; font-size: clamp(38px, 4.6vw, 50px); font-weight: 600; letter-spacing: -.02em; line-height: 1; margin: 0 0 4px; }
+      .result-card .rroi.neg { color: var(--clay); }
+      .result-card .rsub { color: var(--muted); font-size: 14.5px; margin: 0 0 16px; }
+      .result-card dl { margin: 0; }
+      .result-card .rrow { display: flex; justify-content: space-between; gap: 14px; padding: 8px 0; font-size: 15px; }
+      .result-card .rrow + .rrow { border-top: 1px solid var(--line); }
+      .result-card .rrow dt { color: var(--muted); margin: 0; }
+      .result-card .rrow dd { margin: 0; font-weight: 600; font-variant-numeric: tabular-nums; white-space: nowrap; }
+      .result-card .rrow.total dd { font-weight: 700; }
+      .fte-note { color: var(--muted); font-size: 13.5px; line-height: 1.55; margin: 14px 0 0; }
+      .verdict { border: 1px solid var(--ink); padding: 22px 24px; margin-top: 26px; font-size: 16.5px; line-height: 1.6; }
+      .verdict b { font-family: "Fraunces", Georgia, serif; font-size: 19px; font-weight: 600; }
+      .bars { margin-top: 24px; }
+      .bars h4 { font-size: 13px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: var(--accent); margin: 0 0 14px; }
+      .bar-row { display: grid; grid-template-columns: 104px minmax(0, 1fr) 76px; gap: 12px; align-items: center; margin: 0 0 10px; font-size: 13.5px; }
+      .bar-row .blabel { color: var(--muted); }
+      .bar-row .bval { font-weight: 600; font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
+      .bar-track { height: 14px; background: var(--paper); border: 1px solid var(--line); position: relative; }
+      .bar-fill { position: absolute; inset: 0 auto 0 0; width: 0; background: var(--line-strong); transition: width .5s var(--ease); }
+      .bar-fill.good { background: var(--accent); }
+      .bar-fill.cost { background: var(--clay); }
+      .calc-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px; }
+      .calc-btn {
+        border: 1px solid var(--accent); background: transparent; color: var(--accent);
+        font: inherit; font-weight: 600; font-size: 15px; padding: 11px 18px; cursor: pointer;
+        transition: background .25s ease, color .25s ease;
+      }
+      .calc-btn:hover { background: var(--accent); color: var(--paper); }
+      .copy-status { color: var(--muted); font-size: 14px; margin: 12px 0 0; min-height: 1.4em; }
+      .calc-how { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px; margin-top: 8px; }
+      @media (max-width: 760px) { .calc-how { grid-template-columns: 1fr; } }
+      .how-card { border-top: 1px solid var(--ink); padding-top: 20px; }
+      .how-card h3 { font-family: "Fraunces", Georgia, serif; font-size: 24px; font-weight: 500; margin: 0 0 12px; letter-spacing: -.01em; }
+      .how-card p, .how-card li { font-size: 16px; line-height: 1.65; color: var(--ink); }
+      .how-card p { margin: 0 0 12px; }
+      .how-card ol, .how-card ul { margin: 0 0 12px; padding-left: 22px; }
+      .how-card li { margin: 0 0 8px; }
+      .how-card .formula { font-variant-numeric: tabular-nums; background: var(--paper-2); border: 1px solid var(--line); padding: 12px 14px; font-size: 15px; line-height: 1.7; margin: 0 0 12px; }
+      .sources-card { margin-top: 34px; }
+      .calc-cta { margin-top: 40px; border: 1px solid var(--line-strong); background: var(--paper-2); padding: 28px; display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; }
+      .calc-cta p { margin: 0; font-size: 17px; max-width: 52ch; }
+      .calc-cta p b { font-family: "Fraunces", Georgia, serif; font-size: 20px; font-weight: 600; display: block; margin-bottom: 4px; }
+      .calc-cta a.btn {
+        flex: none; border: 1px solid var(--accent); color: var(--accent);
+        font-weight: 600; font-size: 16px; padding: 13px 22px; transition: background .25s ease, color .25s ease;
+      }
+      .calc-cta a.btn:hover { background: var(--accent); color: var(--paper); text-decoration: none; }
+      @media (prefers-reduced-motion: reduce) {
+        .bar-fill { transition: none; }
+        .preset-btn, .calc-btn { transition: none; }
+      }
+
       /* ---------- Footer ---------- */
       footer { margin-top: 100px; border-top: 1px solid var(--ink); padding: 52px 0 64px; }
       .foot-links { display: flex; flex-wrap: wrap; gap: 14px 34px; font-size: clamp(19px, 2.4vw, 23px); font-weight: 600; margin: 0 0 40px; }
@@ -262,6 +370,8 @@
       .foot-links .arr { color: var(--accent); font-size: .8em; }
       .made { font-family: "Fraunces", Georgia, serif; font-style: italic; font-size: 19px; margin: 0 0 8px; }
       .foot-fine { color: var(--muted); font-size: 14px; margin: 0; }
+      .visitor-count { color: var(--muted); font-size: 14px; margin: 14px 0 0; display: flex; align-items: baseline; gap: 8px; }
+      .visitor-count .vnum { font-family: "Fraunces", Georgia, serif; font-size: 21px; font-weight: 600; color: var(--accent); font-variant-numeric: tabular-nums; line-height: 1; }
     </style>
   </head>
   <body>
@@ -272,6 +382,7 @@
         <div class="nav-links">
           <a href="#work">Work</a>
           <a href="#writing">Writing</a>
+          <a class="ext" href="#/calculator">ROI Calculator</a>
           <a href="#about">About</a>
           <a href="#contact">Contact</a>
           <a class="ext" href="https://www.linkedin.com/in/djchanda/" target="_blank" rel="noopener">LinkedIn ↗</a>
@@ -784,6 +895,13 @@
           </div>
           <span class="arr" aria-hidden="true">↗</span>
         </a>
+        <a class="wrow reveal" href="#/calculator">
+          <div>
+            <h3>Tool — The AI × QE ROI Calculator</h3>
+            <p>The companion to Edition Nº 3, “The ROI of AI in Enterprise QE.” Every vendor pitch shows one ROI number; this calculator shows two — the pitch-deck figure, and the same figure calibrated by your evaluation-measured acceptance rate. Run your own team's numbers and see where the claim survives.</p>
+          </div>
+          <span class="arr" aria-hidden="true">→</span>
+        </a>
         <a class="wrow reveal" href="https://www.linkedin.com/pulse/30-ai-keywords-you-hear-meetings-explained-like-youre-chanda-7pkjc" target="_blank" rel="noopener">
           <div>
             <h3>Edition Nº 1 — “30 AI keywords you hear in meetings, explained like you're five”</h3>
@@ -864,6 +982,289 @@
 
     </main>
 
+    <!-- CALCULATOR PAGE (own view: #/calculator) -->
+    <main id="calcView" hidden>
+      <div class="wrap calc-head">
+        <a class="calc-back" href="#top">← Back to the site</a>
+        <div class="hero-rule" aria-hidden="true"></div>
+        <h2 class="calc-title">The AI-in-QE <em>ROI Calculator</em></h2>
+        <p class="calc-lede">
+          <span>No percentage lifts. This is a testing program, the way you actually run it.</span><br />
+          <span class="l2">So many test cases a quarter, so many hours to write them. For every activity in the testing lifecycle, enter the work you do and the hours it takes today — then the hours it takes with AI, split honestly into generation time and the calibration &amp; evaluation time that makes the output worth trusting. The roll-up is what an executive actually needs: hours, dollars, and capacity, with the evaluation effort on the bill instead of under it.</span>
+        </p>
+      </div>
+
+      <section class="wrap" style="padding-top:0">
+        <form class="calc-panel" id="calcForm" aria-label="Program inputs">
+          <h3>Your program</h3>
+          <p class="panel-note">Costs first, then the work itself, activity by activity. The starting numbers describe one example program — 1,500 test cases a quarter at half an hour each is 750 hours of test design, before AI enters the room. They are a worked example, not anyone's real figures: replace them with your own program's.</p>
+          <div class="prog-fields">
+            <div class="field">
+              <label for="inRate">Blended loaded cost of one QE hour ($)</label>
+              <input type="number" id="inRate" value="90" min="0" max="10000" step="5" inputmode="decimal" />
+              <p class="fhelp">Salary, benefits, and overhead, blended across the team — one hour of QE, fully loaded.</p>
+            </div>
+            <div class="field">
+              <label for="inTooling">AI tooling cost per quarter ($)</label>
+              <input type="number" id="inTooling" value="18000" min="0" max="100000000" step="100" inputmode="decimal" />
+              <p class="fhelp">Licences, platform, and usage charges for the whole program — usually the only cost in the pitch deck.</p>
+            </div>
+          </div>
+          <div class="preset-row" role="group" aria-label="Calculator presets">
+            <span class="preset-label">Presets</span>
+            <button type="button" class="preset-btn on" data-preset="typical">Typical program</button>
+            <button type="button" class="preset-btn" data-preset="conservative">Conservative calibration</button>
+            <button type="button" class="preset-btn" data-preset="pitch">Vendor pitch — no evaluation</button>
+          </div>
+          <p class="preset-note">Presets rewrite only the generation and evaluation columns below — your volumes and today's hours stay yours. The vendor pitch zeroes the evaluation column entirely. Watch what that does to the ROI: that gap is the whole argument of Edition Nº 3.</p>
+        </form>
+
+        <div class="calc-grid">
+          <div class="blocks">
+
+            <form class="calc-panel block-card" aria-label="Strategy and planning inputs">
+              <div class="block-head"><h3>Strategy &amp; planning</h3><span class="block-unit">unit: test plans &amp; strategies</span></div>
+              <div class="block-fields">
+                <div class="field">
+                  <label for="inVol1">Units per quarter</label>
+                  <input type="number" id="inVol1" value="8" min="0" max="10000000" step="1" inputmode="numeric" />
+                </div>
+                <div class="field">
+                  <label for="inToday1">Hours per unit — today</label>
+                  <input type="number" id="inToday1" value="12" min="0" max="10000" step="0.05" inputmode="decimal" />
+                </div>
+                <div class="field">
+                  <label for="inGen1">AI generation — hrs per unit</label>
+                  <input type="number" id="inGen1" value="2" min="0" max="10000" step="0.05" inputmode="decimal" />
+                </div>
+                <div class="field">
+                  <label for="inEval1">Calibration &amp; evaluation — hrs per unit</label>
+                  <input type="number" id="inEval1" value="2" min="0" max="10000" step="0.05" inputmode="decimal" />
+                </div>
+              </div>
+              <p class="block-out"><span id="blkOut1">—</span><span class="lose-flag" id="blkFlag1" hidden>Loses time at these numbers</span></p>
+            </form>
+
+            <form class="calc-panel block-card" aria-label="Test design inputs">
+              <div class="block-head"><h3>Test design</h3><span class="block-unit">unit: test cases</span></div>
+              <div class="block-fields">
+                <div class="field">
+                  <label for="inVol2">Units per quarter</label>
+                  <input type="number" id="inVol2" value="1500" min="0" max="10000000" step="10" inputmode="numeric" />
+                </div>
+                <div class="field">
+                  <label for="inToday2">Hours per unit — today</label>
+                  <input type="number" id="inToday2" value="0.5" min="0" max="10000" step="0.05" inputmode="decimal" />
+                </div>
+                <div class="field">
+                  <label for="inGen2">AI generation — hrs per unit</label>
+                  <input type="number" id="inGen2" value="0.1" min="0" max="10000" step="0.05" inputmode="decimal" />
+                </div>
+                <div class="field">
+                  <label for="inEval2">Calibration &amp; evaluation — hrs per unit</label>
+                  <input type="number" id="inEval2" value="0.15" min="0" max="10000" step="0.05" inputmode="decimal" />
+                </div>
+              </div>
+              <p class="block-out"><span id="blkOut2">—</span><span class="lose-flag" id="blkFlag2" hidden>Loses time at these numbers</span></p>
+            </form>
+
+            <form class="calc-panel block-card" aria-label="Automation scripting inputs">
+              <div class="block-head"><h3>Automation scripting</h3><span class="block-unit">unit: automated scripts</span></div>
+              <div class="block-fields">
+                <div class="field">
+                  <label for="inVol3">Units per quarter</label>
+                  <input type="number" id="inVol3" value="300" min="0" max="10000000" step="10" inputmode="numeric" />
+                </div>
+                <div class="field">
+                  <label for="inToday3">Hours per unit — today</label>
+                  <input type="number" id="inToday3" value="3" min="0" max="10000" step="0.05" inputmode="decimal" />
+                </div>
+                <div class="field">
+                  <label for="inGen3">AI generation — hrs per unit</label>
+                  <input type="number" id="inGen3" value="0.75" min="0" max="10000" step="0.05" inputmode="decimal" />
+                </div>
+                <div class="field">
+                  <label for="inEval3">Calibration &amp; evaluation — hrs per unit</label>
+                  <input type="number" id="inEval3" value="0.75" min="0" max="10000" step="0.05" inputmode="decimal" />
+                </div>
+              </div>
+              <p class="block-out"><span id="blkOut3">—</span><span class="lose-flag" id="blkFlag3" hidden>Loses time at these numbers</span></p>
+            </form>
+
+            <form class="calc-panel block-card" aria-label="Test data and environments inputs">
+              <div class="block-head"><h3>Test data &amp; environments</h3><span class="block-unit">unit: data sets / env builds</span></div>
+              <div class="block-fields">
+                <div class="field">
+                  <label for="inVol4">Units per quarter</label>
+                  <input type="number" id="inVol4" value="40" min="0" max="10000000" step="1" inputmode="numeric" />
+                </div>
+                <div class="field">
+                  <label for="inToday4">Hours per unit — today</label>
+                  <input type="number" id="inToday4" value="6" min="0" max="10000" step="0.05" inputmode="decimal" />
+                </div>
+                <div class="field">
+                  <label for="inGen4">AI generation — hrs per unit</label>
+                  <input type="number" id="inGen4" value="1.5" min="0" max="10000" step="0.05" inputmode="decimal" />
+                </div>
+                <div class="field">
+                  <label for="inEval4">Calibration &amp; evaluation — hrs per unit</label>
+                  <input type="number" id="inEval4" value="1.5" min="0" max="10000" step="0.05" inputmode="decimal" />
+                </div>
+              </div>
+              <p class="block-out"><span id="blkOut4">—</span><span class="lose-flag" id="blkFlag4" hidden>Loses time at these numbers</span></p>
+            </form>
+
+            <form class="calc-panel block-card" aria-label="Execution inputs">
+              <div class="block-head"><h3>Execution</h3><span class="block-unit">unit: test runs &amp; cycles</span></div>
+              <div class="block-fields">
+                <div class="field">
+                  <label for="inVol5">Units per quarter</label>
+                  <input type="number" id="inVol5" value="60" min="0" max="10000000" step="1" inputmode="numeric" />
+                </div>
+                <div class="field">
+                  <label for="inToday5">Hours per unit — today</label>
+                  <input type="number" id="inToday5" value="16" min="0" max="10000" step="0.05" inputmode="decimal" />
+                </div>
+                <div class="field">
+                  <label for="inGen5">AI generation — hrs per unit</label>
+                  <input type="number" id="inGen5" value="8" min="0" max="10000" step="0.05" inputmode="decimal" />
+                </div>
+                <div class="field">
+                  <label for="inEval5">Calibration &amp; evaluation — hrs per unit</label>
+                  <input type="number" id="inEval5" value="4" min="0" max="10000" step="0.05" inputmode="decimal" />
+                </div>
+              </div>
+              <p class="block-out"><span id="blkOut5">—</span><span class="lose-flag" id="blkFlag5" hidden>Loses time at these numbers</span></p>
+            </form>
+
+            <form class="calc-panel block-card" aria-label="Defect analysis and reporting inputs">
+              <div class="block-head"><h3>Defect analysis &amp; reporting</h3><span class="block-unit">unit: defects triaged &amp; reported</span></div>
+              <div class="block-fields">
+                <div class="field">
+                  <label for="inVol6">Units per quarter</label>
+                  <input type="number" id="inVol6" value="400" min="0" max="10000000" step="10" inputmode="numeric" />
+                </div>
+                <div class="field">
+                  <label for="inToday6">Hours per unit — today</label>
+                  <input type="number" id="inToday6" value="0.5" min="0" max="10000" step="0.05" inputmode="decimal" />
+                </div>
+                <div class="field">
+                  <label for="inGen6">AI generation — hrs per unit</label>
+                  <input type="number" id="inGen6" value="0.15" min="0" max="10000" step="0.05" inputmode="decimal" />
+                </div>
+                <div class="field">
+                  <label for="inEval6">Calibration &amp; evaluation — hrs per unit</label>
+                  <input type="number" id="inEval6" value="0.1" min="0" max="10000" step="0.05" inputmode="decimal" />
+                </div>
+              </div>
+              <p class="block-out"><span id="blkOut6">—</span><span class="lose-flag" id="blkFlag6" hidden>Loses time at these numbers</span></p>
+            </form>
+
+            <form class="calc-panel block-card" aria-label="Regression maintenance inputs">
+              <div class="block-head"><h3>Regression maintenance</h3><span class="block-unit">unit: regression tests maintained</span></div>
+              <div class="block-fields">
+                <div class="field">
+                  <label for="inVol7">Units per quarter</label>
+                  <input type="number" id="inVol7" value="800" min="0" max="10000000" step="10" inputmode="numeric" />
+                </div>
+                <div class="field">
+                  <label for="inToday7">Hours per unit — today</label>
+                  <input type="number" id="inToday7" value="0.75" min="0" max="10000" step="0.05" inputmode="decimal" />
+                </div>
+                <div class="field">
+                  <label for="inGen7">AI generation — hrs per unit</label>
+                  <input type="number" id="inGen7" value="0.25" min="0" max="10000" step="0.05" inputmode="decimal" />
+                </div>
+                <div class="field">
+                  <label for="inEval7">Calibration &amp; evaluation — hrs per unit</label>
+                  <input type="number" id="inEval7" value="0.25" min="0" max="10000" step="0.05" inputmode="decimal" />
+                </div>
+              </div>
+              <p class="block-out"><span id="blkOut7">—</span><span class="lose-flag" id="blkFlag7" hidden>Loses time at these numbers</span></p>
+            </form>
+
+          </div>
+
+          <div class="rollup-col">
+            <div class="result-card cal rollup" aria-label="Program roll-up">
+              <p class="rlabel">The roll-up — what the executive sees</p>
+              <p class="rroi" id="rRoi">—</p>
+              <p class="rsub">ROI on the tooling spend, with evaluation hours counted as a real cost — the number you can defend in the budget meeting</p>
+              <dl>
+                <div class="rrow"><dt>Hours today / quarter</dt><dd id="rToday">—</dd></div>
+                <div class="rrow"><dt>Hours with AI / quarter</dt><dd id="rWithAI">—</dd></div>
+                <div class="rrow"><dt>of which evaluation</dt><dd id="rEval">—</dd></div>
+                <div class="rrow"><dt>Hours saved / quarter</dt><dd id="rSaved">—</dd></div>
+                <div class="rrow"><dt>Effort change</dt><dd id="rEffort">—</dd></div>
+                <div class="rrow"><dt>Value of saved hours / qtr</dt><dd id="rValue">—</dd></div>
+                <div class="rrow"><dt>AI tooling cost / qtr</dt><dd id="rTooling">—</dd></div>
+                <div class="rrow total"><dt>Net / year</dt><dd id="rNetYear">—</dd></div>
+                <div class="rrow"><dt>Capacity freed</dt><dd id="rFte">—</dd></div>
+              </dl>
+              <p class="fte-note">Capacity freed is hours your team gets back — for coverage, exploratory testing, and the backlog. It is not a headcount line, and it is not presented as one.</p>
+              <div class="bars" aria-hidden="true">
+                <h4>Hours per quarter</h4>
+                <div class="bar-row"><span class="blabel">Today</span><div class="bar-track"><div class="bar-fill" id="barToday"></div></div><span class="bval" id="barTodayV">—</span></div>
+                <div class="bar-row"><span class="blabel">AI generation</span><div class="bar-track"><div class="bar-fill good" id="barGen"></div></div><span class="bval" id="barGenV">—</span></div>
+                <div class="bar-row"><span class="blabel">Evaluation</span><div class="bar-track"><div class="bar-fill cost" id="barEval"></div></div><span class="bval" id="barEvalV">—</span></div>
+              </div>
+              <div class="calc-actions">
+                <button type="button" class="calc-btn" id="btnCopy">Copy result</button>
+                <button type="button" class="calc-btn" id="btnDownload">Download result (.txt)</button>
+              </div>
+              <p class="copy-status" id="copyStatus" aria-live="polite"></p>
+            </div>
+
+            <div class="verdict" aria-live="polite">
+              <b id="verdictHead">—</b><br />
+              <span id="verdictBody">—</span>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <section class="wrap">
+        <div class="sec-head"><h2>Method &amp; sources</h2></div>
+        <div class="calc-how">
+          <div class="how-card">
+            <h3>The method, in plain words</h3>
+            <p>For each activity, the maths is the maths of a program plan — volumes and hours, nothing more exotic:</p>
+            <p class="formula">Hours today = units per quarter × hours per unit<br />Hours with AI = units × (generation hours + evaluation hours)<br />Value = hours saved × loaded hourly rate<br />Net per year = (value − tooling cost) × 4 quarters<br />ROI = net per year ÷ (tooling cost × 4)</p>
+            <p>The scope is deliberately narrow: effort only. Escaped-defect savings, licence consolidation, and attrition are not counted — in either direction. If the effort case does not stand on its own, softer numbers should not be asked to carry it.</p>
+          </div>
+          <div class="how-card">
+            <h3>How to get your evaluation number</h3>
+            <ol>
+              <li><b>Pick one activity</b> — test design is a good start — and take 20 recent units of real work: actual test cases, actual scripts.</li>
+              <li><b>Run the AI on them,</b> and hand the output to the person who would have to sign it off in production.</li>
+              <li><b>Time the sign-off end to end</b> — reading, checking against the requirement, correcting, finishing what the AI got wrong. The average is your calibration &amp; evaluation hours per unit.</li>
+              <li><b>Re-measure when anything changes</b> — model, prompts, or workflow. Evaluation time is a property of a setup, not of AI in general.</li>
+            </ol>
+            <p>If nobody in the program can state the evaluation time, the program does not have an ROI number yet. It has a hope with a licence attached.</p>
+          </div>
+        </div>
+
+        <div class="how-card sources-card">
+          <h3>What the independent evidence says</h3>
+          <ul>
+            <li><b>METR, 2025 — a randomized controlled trial.</b> Experienced open-source developers using AI tools took about 19% longer on real tasks, while believing they had been about 20% faster. Perception is not measurement — that gap is exactly why the evaluation column exists.</li>
+            <li><b>Cui, Demirer, Jaffe, Musolff, Peng &amp; Salz, 2025 — field experiments with 4,867 developers across three firms.</b> AI assistance raised completed tasks by roughly 26% on average, with the largest gains among the least experienced developers. Real value — measured in output, not in headcount removed.</li>
+            <li><b>Stanford AI Index, 2025.</b> 78% of organizations reported using AI in 2024, up from 55% in 2023. Adoption is broad; program-level ROI, measured activity by activity, is still rarely published.</li>
+            <li><b>US Bureau of Labor Statistics — Employer Costs for Employee Compensation.</b> Benefits add a substantial loading on top of wages, which is why this calculator prices a loaded hour rather than a salary hour.</li>
+            <li><b>Boehm; NIST, 2002.</b> The later a defect is found, the more it costs — and inadequate testing infrastructure was estimated to cost the US economy tens of billions of dollars a year. QE hours are not overhead to be minimized; priced honestly, they are the product.</li>
+          </ul>
+          <p>Vendor and consulting-firm ROI claims are treated as claims, not evidence — including, in the preset above, the shape of a typical vendor pitch.</p>
+        </div>
+
+        <div class="calc-cta">
+          <p><b>Where this comes from</b>
+          This calculator is the working companion to AI × QE Edition Nº 3, “The ROI of AI in Enterprise QE” — the data-backed edition on what AI adoption is actually returning in enterprise testing: capacity and avoided failure cost, measured honestly — not the headcount story. It lands in the newsletter after Edition Nº 2.</p>
+          <a class="btn" href="https://www.linkedin.com/newsletters/7517165851129610240/" target="_blank" rel="noopener">Subscribe to AI × QE ↗</a>
+        </div>
+      </section>
+    </main>
+
     <!-- CONTACT / FOOTER -->
     <footer id="contact">
       <div class="wrap">
@@ -874,6 +1275,7 @@
         </div>
         <p class="made reveal">Made with chai, curiosity, and an unreasonable number of test cases.</p>
         <p class="foot-fine reveal">© 2026 DJ Chanda · Burlington, Ontario</p>
+        <p class="visitor-count reveal"><span class="vnum" id="visitorCount">…</span><span>visits so far — counted live as they happen</span></p>
       </div>
     </footer>
 
@@ -973,6 +1375,269 @@
           startX = null;
         }, { passive: true });
         go(0);
+      })();
+    </script>
+
+    <script>
+      (function () {
+        /* ---------- Page routing: home <-> calculator (#/calculator) ---------- */
+        var homeView = document.getElementById('top');
+        var calcView = document.getElementById('calcView');
+        var HOME_TITLE = document.title;
+        var CALC_TITLE = 'ROI Calculator — AI × QE | DJ Chanda';
+        function isCalc() { return location.hash.indexOf('#/calculator') === 0; }
+        function route() {
+          var calc = isCalc();
+          if (calcView) calcView.hidden = !calc;
+          if (homeView) homeView.hidden = calc;
+          document.title = calc ? CALC_TITLE : HOME_TITLE;
+          if (calc) {
+            window.scrollTo(0, 0);
+          } else if (location.hash && location.hash.charAt(1) !== '/') {
+            var target = document.querySelector(location.hash);
+            if (target) target.scrollIntoView();
+          }
+        }
+        window.addEventListener('hashchange', route);
+
+        /* ---------- ROI calculator: lifecycle blocks, ground-level units ---------- */
+        function num(id) {
+          var el = document.getElementById(id);
+          var v = el ? parseFloat(el.value) : 0;
+          return isNaN(v) ? 0 : v;
+        }
+        function setText(id, text) { var el = document.getElementById(id); if (el) el.textContent = text; }
+        var moneyFull = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
+        function fmtMoney(v) { if (!isFinite(v)) return '—'; return (v < 0 ? '−' : '') + moneyFull.format(Math.abs(v)); }
+        function fmtSignedMoney(v) { if (!isFinite(v)) return '—'; return (v < 0 ? '−' : '+') + moneyFull.format(Math.abs(v)); }
+        function fmtHrs(v) {
+          var r = Math.round(v * 10) / 10;
+          return r.toLocaleString('en-US', { minimumFractionDigits: (r % 1 === 0 ? 0 : 1), maximumFractionDigits: 1 });
+        }
+        function fmtRoi(v) { if (!isFinite(v)) return '—'; return (v < 0 ? '−' : '+') + Math.abs(Math.round(v)).toLocaleString('en-US') + '%'; }
+
+        var BLOCK_NAMES = ['Strategy & planning', 'Test design', 'Automation scripting', 'Test data & environments', 'Execution', 'Defect analysis & reporting', 'Regression maintenance'];
+
+        function blockCalc(n) {
+          var vol = Math.max(0, num('inVol' + n));
+          var today = Math.max(0, num('inToday' + n));
+          var gen = Math.max(0, num('inGen' + n));
+          var ev = Math.max(0, num('inEval' + n));
+          var todayHrs = vol * today, genHrs = vol * gen, evalHrs = vol * ev;
+          var withHrs = genHrs + evalHrs;
+          return {
+            vol: vol, todayHrs: todayHrs, genHrs: genHrs, evalHrs: evalHrs, withHrs: withHrs,
+            saved: todayHrs - withHrs,
+            loses: vol > 0 && withHrs > 0 && withHrs >= todayHrs
+          };
+        }
+
+        function setBars(today, gen, ev) {
+          var max = Math.max(today, gen + ev, 1);
+          function bar(id, valId, v) {
+            var b = document.getElementById(id);
+            if (b) b.style.width = Math.max(0, Math.min(100, (v / max) * 100)) + '%';
+            setText(valId, fmtHrs(v));
+          }
+          bar('barToday', 'barTodayV', today);
+          bar('barGen', 'barGenV', gen);
+          bar('barEval', 'barEvalV', ev);
+        }
+
+        var lastSummary = '';
+
+        function compute() {
+          var rate = Math.max(0, num('inRate'));
+          var tooling = Math.max(0, num('inTooling'));
+          var T = { today: 0, withAI: 0, gen: 0, ev: 0, saved: 0 };
+          var losers = [], lines = [];
+          for (var n = 1; n <= 7; n++) {
+            var b = blockCalc(n);
+            T.today += b.todayHrs; T.withAI += b.withHrs; T.gen += b.genHrs; T.ev += b.evalHrs; T.saved += b.saved;
+            if (b.loses) losers.push(BLOCK_NAMES[n - 1]);
+            var out = '<b>' + fmtHrs(b.todayHrs) + ' hrs</b> today → <b>' + fmtHrs(b.withHrs) + ' hrs</b> with AI';
+            if (b.evalHrs > 0) out += ' · ' + fmtHrs(b.evalHrs) + ' of them evaluation';
+            out += b.saved >= 0
+              ? ' · saves <b>' + fmtHrs(b.saved) + ' hrs</b> a quarter'
+              : ' · costs <b>' + fmtHrs(-b.saved) + ' extra hrs</b> a quarter';
+            var outEl = document.getElementById('blkOut' + n);
+            if (outEl) outEl.innerHTML = out;
+            var flag = document.getElementById('blkFlag' + n);
+            if (flag) flag.hidden = !b.loses;
+            lines.push('- ' + BLOCK_NAMES[n - 1] + ': ' + fmtHrs(b.todayHrs) + ' hrs today → ' + fmtHrs(b.withHrs) + ' hrs with AI (' + fmtHrs(b.evalHrs) + ' hrs evaluation) — ' + (b.saved >= 0 ? 'saves ' + fmtHrs(b.saved) + ' hrs' : 'costs ' + fmtHrs(-b.saved) + ' extra hrs') + (b.loses ? ' [loses time]' : ''));
+          }
+
+          var value = T.saved * rate;
+          var netYear = (value - tooling) * 4;
+          var roi = tooling > 0 ? (netYear / (tooling * 4)) * 100 : NaN;
+          var effort = T.today > 0 ? (T.saved / T.today) * 100 : NaN;
+          var fte = T.saved > 0 ? (T.saved * 4) / 1880 : NaN;
+          var effortTxt = isFinite(effort) ? ((effort >= 0 ? '−' : '+') + Math.abs(Math.round(effort)) + '%') : '—';
+          var roiPhrase = isFinite(roi) ? ', an ROI of ' + fmtRoi(roi) : '';
+
+          if (T.today <= 0) {
+            ['rRoi', 'rToday', 'rWithAI', 'rEval', 'rSaved', 'rEffort', 'rValue', 'rTooling', 'rNetYear', 'rFte'].forEach(function (id) { setText(id, '—'); });
+            var roiEl0 = document.getElementById('rRoi');
+            if (roiEl0) roiEl0.classList.remove('neg');
+            setText('verdictHead', 'Start with the work itself.');
+            setText('verdictBody', 'Enter the volumes for at least one activity — how many units a quarter, and the hours each one takes today. The roll-up builds from there, activity by activity, the way a program plan does.');
+            setBars(0, 0, 0);
+            lastSummary = '';
+            return;
+          }
+
+          setText('rToday', fmtHrs(T.today) + ' hrs');
+          setText('rWithAI', fmtHrs(T.withAI) + ' hrs');
+          setText('rEval', fmtHrs(T.ev) + ' hrs');
+          setText('rSaved', (T.saved < 0 ? '−' : '') + fmtHrs(Math.abs(T.saved)) + ' hrs');
+          setText('rEffort', effortTxt);
+          setText('rValue', fmtMoney(value));
+          setText('rTooling', fmtMoney(tooling));
+          setText('rNetYear', fmtSignedMoney(netYear));
+          setText('rFte', isFinite(fte) ? fte.toFixed(1) + ' FTE / year' : '—');
+          setText('rRoi', fmtRoi(roi));
+          var roiEl = document.getElementById('rRoi');
+          if (roiEl) roiEl.classList.toggle('neg', isFinite(roi) && roi < 0);
+
+          var head, body;
+          if (T.ev <= 0) {
+            head = 'Zero evaluation is doing the heavy lifting.';
+            body = 'With the evaluation column at zero, this program "saves" ' + fmtHrs(T.saved) + ' hours a quarter and returns ' + fmtRoi(roi) + '. That is the shape of a vendor pitch — and it holds only until someone has to read, check, and stand behind the AI output, which in a real program is always. Time the review on twenty real units, put the number in the evaluation column, and watch this verdict change.';
+          } else if (netYear < 0) {
+            head = 'Counted honestly, this does not pay — yet.';
+            body = 'The program ' + (T.saved >= 0 ? 'saves ' + fmtHrs(T.saved) + ' hours a quarter' : 'loses ' + fmtHrs(-T.saved) + ' hours a quarter overall') + ', and ' + fmtHrs(T.ev) + ' hours a quarter go straight into calibration and evaluation. The saved hours are worth ' + fmtMoney(value) + ' a quarter against ' + fmtMoney(tooling) + ' of tooling — a net of ' + fmtSignedMoney(netYear) + ' a year.' + (losers.length ? ' ' + losers.join(' and ') + (losers.length > 1 ? ' lose' : ' loses') + ' time outright at these numbers: there, evaluation costs more than generation saves.' : '') + ' The fix is not a bigger rollout. It is a cheaper evaluation loop, a better workflow on the weak activities, or the discipline to keep them manual.';
+          } else {
+            head = 'It pays — with evaluation on the bill.';
+            body = 'Your program spends ' + fmtHrs(T.today) + ' hours a quarter today and ' + fmtHrs(T.withAI) + ' with AI — ' + fmtHrs(T.ev) + ' of those hours are calibration and evaluation, counted, not wished away. The saving is ' + fmtHrs(T.saved) + ' hours a quarter: worth ' + fmtMoney(value) + ', or ' + fmtSignedMoney(netYear) + ' a year after tooling' + roiPhrase + '. The ' + (isFinite(fte) ? fte.toFixed(1) : '—') + ' FTE of capacity that frees up belongs on coverage, exploratory testing, and the backlog — that framing is what makes the number survivable in the room.' + (losers.length ? ' One caution: ' + losers.join(' and ') + (losers.length > 1 ? ' lose' : ' loses') + ' time at these numbers — fix the workflow there, or keep that work manual.' : '');
+          }
+          setText('verdictHead', head);
+          setText('verdictBody', body);
+          setBars(T.today, T.gen, T.ev);
+
+          lastSummary = [
+            'AI × QE — ROI Calculator: my program, in ground-level units',
+            'Per quarter unless noted · https://aixqe.com/#/calculator',
+            '',
+            'Program',
+            '- Blended loaded cost of one QE hour: ' + fmtMoney(rate),
+            '- AI tooling cost: ' + fmtMoney(tooling) + ' per quarter',
+            '',
+            'Activity by activity (hours per quarter)'
+          ].concat(lines).concat([
+            '',
+            'Roll-up',
+            '- Today: ' + fmtHrs(T.today) + ' hrs per quarter',
+            '- With AI: ' + fmtHrs(T.withAI) + ' hrs per quarter — of which evaluation ' + fmtHrs(T.ev) + ' hrs',
+            '- Saved: ' + (T.saved < 0 ? '−' : '') + fmtHrs(Math.abs(T.saved)) + ' hrs per quarter (effort ' + effortTxt + ')',
+            '- Value of saved hours: ' + fmtMoney(value) + ' per quarter',
+            '- Net after tooling: ' + fmtSignedMoney(netYear) + ' per year',
+            '- ROI: ' + fmtRoi(roi),
+            '- Capacity freed: ' + (isFinite(fte) ? fte.toFixed(1) + ' FTE per year' : '—') + ' — capacity for coverage, exploratory testing, and the backlog; not a headcount cut',
+            '',
+            'Method: for each activity, hours with AI = units × (generation hours + calibration & evaluation hours). Effort only — escaped-defect and licensing savings are not counted, in either direction.'
+          ]).join('\n');
+        }
+
+        /* ---------- Presets: rewrite the generation & evaluation columns only ---------- */
+        var PRESETS = {
+          typical: [[2, 2], [0.1, 0.15], [0.75, 0.75], [1.5, 1.5], [8, 4], [0.15, 0.1], [0.25, 0.25]],
+          conservative: [[5, 6], [0.2, 0.25], [1.25, 1.5], [2.5, 3], [9, 8], [0.2, 0.25], [0.3, 0.375]],
+          pitch: [[1, 0], [0.05, 0], [0.375, 0], [0.75, 0], [4, 0], [0.075, 0], [0.125, 0]]
+        };
+        var presetBtns = Array.prototype.slice.call(document.querySelectorAll('.preset-btn'));
+        function markPreset(name) {
+          presetBtns.forEach(function (b) { b.classList.toggle('on', b.getAttribute('data-preset') === name); });
+        }
+        presetBtns.forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            var p = PRESETS[btn.getAttribute('data-preset')];
+            if (!p) return;
+            p.forEach(function (pair, i) {
+              var g = document.getElementById('inGen' + (i + 1));
+              var e = document.getElementById('inEval' + (i + 1));
+              if (g) g.value = pair[0];
+              if (e) e.value = pair[1];
+            });
+            markPreset(btn.getAttribute('data-preset'));
+            compute();
+          });
+        });
+
+        var inputIds = ['inRate', 'inTooling'];
+        for (var k = 1; k <= 7; k++) { inputIds.push('inVol' + k, 'inToday' + k, 'inGen' + k, 'inEval' + k); }
+        inputIds.forEach(function (id) {
+          var el = document.getElementById(id);
+          if (el) el.addEventListener('input', function () {
+            if (id.indexOf('inGen') === 0 || id.indexOf('inEval') === 0) markPreset('');
+            compute();
+          });
+        });
+        Array.prototype.slice.call(document.querySelectorAll('#calcView form')).forEach(function (f) {
+          f.addEventListener('submit', function (e) { e.preventDefault(); });
+        });
+
+        /* ---------- Copy / download the result ---------- */
+        var copyStatus = document.getElementById('copyStatus');
+        function setStatus(t) { if (copyStatus) copyStatus.textContent = t; }
+        var btnCopy = document.getElementById('btnCopy');
+        if (btnCopy) btnCopy.addEventListener('click', function () {
+          if (!lastSummary) { setStatus('Add your program’s volumes first — there is nothing to copy yet.'); return; }
+          function done() { setStatus('Copied — paste it into the budget deck.'); }
+          function fallback() {
+            var ta = document.createElement('textarea');
+            ta.value = lastSummary;
+            ta.style.position = 'fixed'; ta.style.opacity = '0';
+            document.body.appendChild(ta); ta.select();
+            try { document.execCommand('copy'); done(); }
+            catch (e) { setStatus('Copy did not work in this browser — use Download instead.'); }
+            document.body.removeChild(ta);
+          }
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(lastSummary).then(done, fallback);
+          } else { fallback(); }
+        });
+        var btnDownload = document.getElementById('btnDownload');
+        if (btnDownload) btnDownload.addEventListener('click', function () {
+          if (!lastSummary) { setStatus('Add your program’s volumes first — there is nothing to download yet.'); return; }
+          var blob = new Blob([lastSummary], { type: 'text/plain;charset=utf-8' });
+          var url = URL.createObjectURL(blob);
+          var a = document.createElement('a');
+          a.href = url; a.download = 'ai-qe-roi-result.txt';
+          document.body.appendChild(a); a.click(); document.body.removeChild(a);
+          setTimeout(function () { URL.revokeObjectURL(url); }, 2000);
+          setStatus('Downloaded as ai-qe-roi-result.txt.');
+        });
+
+        compute();
+        route();
+
+        /* ---------- Visitor counter (live global count) ----------
+           Static page, so the count is kept by a public hit-counter service:
+           one hit per browser session, read-and-increment. If the service is
+           unreachable we say so instead of inventing a number. */
+        var countEl = document.getElementById('visitorCount');
+        function showCount(v) {
+          if (countEl && typeof v === 'number' && isFinite(v)) {
+            countEl.textContent = Math.round(v).toLocaleString('en-US');
+          }
+        }
+        function counterFailed() {
+          if (countEl && countEl.textContent === '…') countEl.textContent = '—';
+        }
+        var counted = false;
+        try { counted = sessionStorage.getItem('aixqe-counted') === '1'; } catch (e) { counted = false; }
+        var hitUrl = counted
+          ? 'https://abacus.jasoncameron.dev/get/aixqe.com/visitors'
+          : 'https://abacus.jasoncameron.dev/hit/aixqe.com/visitors';
+        fetch(hitUrl, { mode: 'cors' })
+          .then(function (r) { return r.json(); })
+          .then(function (d) {
+            if (d && typeof d.value === 'number') {
+              showCount(d.value);
+              try { sessionStorage.setItem('aixqe-counted', '1'); } catch (e) {}
+            } else { throw new Error('no value'); }
+          })
+          .catch(counterFailed);
       })();
     </script>
 
