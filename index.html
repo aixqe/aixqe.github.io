@@ -895,13 +895,6 @@
           </div>
           <span class="arr" aria-hidden="true">↗</span>
         </a>
-        <a class="wrow reveal" href="#/calculator">
-          <div>
-            <h3>Tool — The AI × QE ROI Calculator</h3>
-            <p>The companion to Edition Nº 3, “The ROI of AI in Enterprise QE.” Every vendor pitch shows one ROI number; this calculator shows two — the pitch-deck figure, and the same figure calibrated by your evaluation-measured acceptance rate. Run your own team's numbers and see where the claim survives.</p>
-          </div>
-          <span class="arr" aria-hidden="true">→</span>
-        </a>
         <a class="wrow reveal" href="https://www.linkedin.com/pulse/30-ai-keywords-you-hear-meetings-explained-like-youre-chanda-7pkjc" target="_blank" rel="noopener">
           <div>
             <h3>Edition Nº 1 — “30 AI keywords you hear in meetings, explained like you're five”</h3>
@@ -923,6 +916,26 @@
           </div>
           <span class="arr" aria-hidden="true">↗</span>
         </a>
+      </section>
+
+      <!-- ROI CALCULATOR -->
+      <section id="roi" class="wrap">
+        <div class="sec-head reveal"><h2>ROI Calculator</h2></div>
+        <p class="sec-note reveal">The question every executive is asking about AI in testing — <strong>is it actually paying?</strong> — answered the way a program is actually run: in volumes and hours, not percentage claims.</p>
+        <div class="chips reveal">
+          <span class="chip"><b>750 → 375 hrs</b> test design, per quarter</span>
+          <span class="chip"><b>1,006 hrs</b> of evaluation, counted openly</span>
+          <span class="chip"><b>+675%</b> ROI at the worked example</span>
+        </div>
+        <div class="about-copy reveal">
+          <p>Every vendor pitch for AI in testing arrives with a percentage: 40% faster, 60% cheaper. A percentage hides the only questions that matter — faster at what, in which activity, and who checks the output before it ships? This calculator starts where a testing program actually lives: how many test cases, scripts, and regression packs your team produces each quarter, and how many hours each one takes.</p>
+          <p>For each of the seven activities in the testing lifecycle — strategy &amp; planning, test design, automation scripting, test data &amp; environments, execution, defect analysis &amp; reporting, and regression maintenance — you enter today's hours, then the hours with AI, split into generation time and the calibration &amp; evaluation time that makes the output worth trusting. The roll-up is the executive answer: hours saved per quarter, dollars net of tooling, and capacity freed for the work that was never getting done — stated as capacity, not headcount cuts. Three presets show the honest range, including the vendor-pitch version with evaluation set to zero, so you can see exactly what that omission is worth.</p>
+        </div>
+        <div class="calc-cta reveal">
+          <p><b>Run your own program</b>
+          Replace the worked example with your volumes and hours. It takes about five minutes, and the numbers hold up in a steering committee.</p>
+          <a class="btn" href="#/calculator">Open the calculator →</a>
+        </div>
       </section>
 
       <!-- ABOUT -->
@@ -990,7 +1003,7 @@
         <h2 class="calc-title">The AI-in-QE <em>ROI Calculator</em></h2>
         <p class="calc-lede">
           <span>No percentage lifts. This is a testing program, the way you actually run it.</span><br />
-          <span class="l2">So many test cases a quarter, so many hours to write them. For every activity in the testing lifecycle, enter the work you do and the hours it takes today — then the hours it takes with AI, split honestly into generation time and the calibration &amp; evaluation time that makes the output worth trusting. The roll-up is what an executive actually needs: hours, dollars, and capacity, with the evaluation effort on the bill instead of under it.</span>
+          <span class="l2">So many test cases a quarter, so many hours to write them. For every activity in the testing lifecycle, enter the work you do and the hours it takes today — then the hours it takes with AI, split honestly into generation time and the calibration &amp; evaluation time that makes the output worth trusting. The roll-up is what an executive actually needs: hours, dollars, and capacity, with the evaluation effort on the bill instead of under it. It answers the question leadership actually asks — what should we expect from AI adoption — and it is allowed to answer “not yet.”</span>
         </p>
       </div>
 
@@ -1016,7 +1029,7 @@
             <button type="button" class="preset-btn" data-preset="conservative">Conservative calibration</button>
             <button type="button" class="preset-btn" data-preset="pitch">Vendor pitch — no evaluation</button>
           </div>
-          <p class="preset-note">Presets rewrite only the generation and evaluation columns below — your volumes and today's hours stay yours. The vendor pitch zeroes the evaluation column entirely. Watch what that does to the ROI: that gap is the whole argument of Edition Nº 3.</p>
+          <p class="preset-note">Presets rewrite only the generation and evaluation columns below — your volumes and today's hours stay yours. The vendor pitch zeroes the evaluation column entirely. Watch what that does to the ROI.</p>
         </form>
 
         <div class="calc-grid">
@@ -1225,7 +1238,36 @@
       </section>
 
       <section class="wrap">
-        <div class="sec-head"><h2>Method &amp; sources</h2></div>
+        <div class="sec-head"><h2>About this tool</h2></div>
+        <div class="calc-how">
+          <div class="how-card">
+            <h3>Why this tool exists</h3>
+            <p>Every quarter, someone senior asks the same question: we bought the AI licences — what are we getting for them? The honest answer is rarely a single number, because testing is not one activity. AI that drafts test cases in minutes can still lose money in execution, where every run needs a human rescue. A single program-wide percentage averages those two stories into a fiction.</p>
+            <p>So this tool answers the question activity by activity, in the units a program already reports — test cases written, scripts maintained, cycles executed, hours spent. If the answer survives being broken down that far, it is worth taking into a budget conversation. If it does not, better to learn that here than in front of a steering committee.</p>
+          </div>
+          <div class="how-card">
+            <h3>Who it is for</h3>
+            <ul>
+              <li><b>Test and program managers</b> costing an AI adoption case before it goes to a steering committee — with the evaluation effort already on the page, where a reviewer will look for it.</li>
+              <li><b>Executives and budget owners</b> deciding whether to renew, expand, or cut a tooling line, who need the answer in hours, dollars, and capacity rather than in model benchmarks.</li>
+              <li><b>Anyone handed a vendor ROI claim</b> — re-run the claim here with the evaluation column filled in, and see how much of it was the omission.</li>
+            </ul>
+          </div>
+          <div class="how-card">
+            <h3>What it deliberately leaves out</h3>
+            <p>Effort is the only currency in this model. It does not count escaped-defect savings, faster release cycles, licence consolidation, or attrition — in either direction. Those effects are real, but they are also where ROI decks go to be generous, because nobody can check them.</p>
+            <p>And capacity freed is reported as capacity. What a team does with released hours — more coverage, deeper exploratory testing, the backlog that never got touched — is a leadership decision, not an arithmetic one. The tool will not dress that decision up as headcount reduction.</p>
+          </div>
+          <div class="how-card">
+            <h3>How to read the result</h3>
+            <p>The verdict is allowed to be no. At honest evaluation numbers, some activities lose time — the tool flags them on their own cards instead of averaging them away, because a losing activity is a finding, not an embarrassment: it is where adoption needs fixing first, whether that means better prompts, better test data, or a narrower job for the AI.</p>
+            <p>If your program comes out negative, you have not failed the exercise. You have found next quarter's improvement backlog, priced in hours — which is more useful than a positive number nobody believes.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="wrap">
+        <div class="sec-head"><h2>Method</h2></div>
         <div class="calc-how">
           <div class="how-card">
             <h3>The method, in plain words</h3>
@@ -1245,23 +1287,6 @@
           </div>
         </div>
 
-        <div class="how-card sources-card">
-          <h3>What the independent evidence says</h3>
-          <ul>
-            <li><b>METR, 2025 — a randomized controlled trial.</b> Experienced open-source developers using AI tools took about 19% longer on real tasks, while believing they had been about 20% faster. Perception is not measurement — that gap is exactly why the evaluation column exists.</li>
-            <li><b>Cui, Demirer, Jaffe, Musolff, Peng &amp; Salz, 2025 — field experiments with 4,867 developers across three firms.</b> AI assistance raised completed tasks by roughly 26% on average, with the largest gains among the least experienced developers. Real value — measured in output, not in headcount removed.</li>
-            <li><b>Stanford AI Index, 2025.</b> 78% of organizations reported using AI in 2024, up from 55% in 2023. Adoption is broad; program-level ROI, measured activity by activity, is still rarely published.</li>
-            <li><b>US Bureau of Labor Statistics — Employer Costs for Employee Compensation.</b> Benefits add a substantial loading on top of wages, which is why this calculator prices a loaded hour rather than a salary hour.</li>
-            <li><b>Boehm; NIST, 2002.</b> The later a defect is found, the more it costs — and inadequate testing infrastructure was estimated to cost the US economy tens of billions of dollars a year. QE hours are not overhead to be minimized; priced honestly, they are the product.</li>
-          </ul>
-          <p>Vendor and consulting-firm ROI claims are treated as claims, not evidence — including, in the preset above, the shape of a typical vendor pitch.</p>
-        </div>
-
-        <div class="calc-cta">
-          <p><b>Where this comes from</b>
-          This calculator is the working companion to AI × QE Edition Nº 3, “The ROI of AI in Enterprise QE” — the data-backed edition on what AI adoption is actually returning in enterprise testing: capacity and avoided failure cost, measured honestly — not the headcount story. It lands in the newsletter after Edition Nº 2.</p>
-          <a class="btn" href="https://www.linkedin.com/newsletters/7517165851129610240/" target="_blank" rel="noopener">Subscribe to AI × QE ↗</a>
-        </div>
       </section>
     </main>
 
