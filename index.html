@@ -233,6 +233,9 @@
       .about-meta dt { font-size: 12.5px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: var(--accent); margin: 0 0 5px; }
       .about-meta dd { margin: 0; font-size: 16px; line-height: 1.55; }
       .about-copy p:last-child { margin-bottom: 0; }
+      .tight-list { margin: 0; padding-left: 22px; font-size: 17.5px; line-height: 1.7; }
+      .tight-list li { margin-bottom: 12px; }
+      .tight-list li:last-child { margin-bottom: 0; }
       .carousel { margin-top: 56px; }
       .carousel-frame { overflow: hidden; border: 1px solid var(--line-strong); background: var(--paper-2); }
       .carousel-track { display: flex; transition: transform .7s var(--ease); }
@@ -362,6 +365,56 @@
         .preset-btn, .calc-btn { transition: none; }
       }
 
+      /* ---------- Savings analysis tool ---------- */
+      .step-note { color: var(--muted); font-size: 16px; line-height: 1.6; margin: -12px 0 26px; max-width: 72ch; }
+      .field select {
+        width: 100%; padding: 11px 13px; font: inherit; font-size: 16.5px;
+        color: var(--ink); background: var(--paper); border: 1px solid var(--line-strong);
+      }
+      .field select:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-color: var(--accent); }
+      .opt-label { font-size: 14px; font-weight: 600; letter-spacing: .02em; margin: 24px 0 10px; color: var(--ink); }
+      .opt-label .fhelp { color: var(--muted); font-size: 13.5px; font-weight: 400; margin: 4px 0 0; line-height: 1.5; }
+      .opt-row { display: flex; flex-wrap: wrap; gap: 8px; }
+      .opt-btn {
+        border: 1px solid var(--line-strong); background: var(--paper); color: var(--ink);
+        font: inherit; font-size: 14px; font-weight: 600; padding: 8px 14px; cursor: pointer;
+        transition: border-color .25s ease, background .25s ease, color .25s ease;
+      }
+      .opt-btn:hover { border-color: var(--accent); color: var(--accent); }
+      .opt-btn.on { background: var(--accent); border-color: var(--accent); color: var(--paper); }
+      .opt-btn.on:hover { color: var(--paper); }
+      .sum-line { font-size: clamp(18px, 2.2vw, 21px); line-height: 1.6; margin: 0 0 28px; max-width: 70ch; }
+      .sum-line b { color: var(--accent); }
+      .layers { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 26px; align-items: stretch; }
+      @media (max-width: 860px) { .layers { grid-template-columns: 1fr; } }
+      .layer-card { border: 1px solid var(--line-strong); background: var(--paper-2); padding: 26px 26px 28px; display: flex; flex-direction: column; }
+      .layer-card.top { border-color: var(--accent); background: var(--accent-soft); }
+      .layer-card .llabel { font-size: 12.5px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: var(--accent); margin: 0 0 10px; }
+      .layer-card .lbig { font-family: "Fraunces", Georgia, serif; font-size: clamp(40px, 5vw, 54px); font-weight: 600; letter-spacing: -.02em; line-height: 1; margin: 0 0 6px; }
+      .layer-card .lsub { color: var(--muted); font-size: 14.5px; line-height: 1.55; margin: 0 0 16px; }
+      .layer-card dl { margin: 0; }
+      .layer-card .lrow { display: flex; justify-content: space-between; gap: 14px; padding: 8px 0; font-size: 15px; }
+      .layer-card .lrow + .lrow { border-top: 1px solid var(--line); }
+      .layer-card .lrow dt { color: var(--muted); margin: 0; }
+      .layer-card .lrow dd { margin: 0; font-weight: 600; font-variant-numeric: tabular-nums; white-space: nowrap; }
+      .layer-card .lnote { color: var(--muted); font-size: 14px; line-height: 1.6; margin: 16px 0 0; }
+      .cascade { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 26px; margin-top: 38px; }
+      @media (max-width: 860px) { .cascade { grid-template-columns: 1fr; } }
+      .cas-card { border-top: 1px solid var(--ink); padding-top: 16px; }
+      .cas-card h3 { font-family: "Fraunces", Georgia, serif; font-size: 20px; font-weight: 500; letter-spacing: -.01em; margin: 0 0 8px; }
+      .cas-card p { font-size: 15px; line-height: 1.6; margin: 0; }
+      .cas-card p b { color: var(--accent); }
+      .steps-panel { margin-top: 34px; }
+      .steps-panel ol { margin: 0 0 14px; padding-left: 22px; }
+      .steps-panel li { font-size: 16px; line-height: 1.65; margin: 0 0 10px; }
+      .steps-panel .honest { color: var(--muted); font-size: 15px; line-height: 1.65; margin: 0; max-width: 76ch; }
+      .steps-panel .honest b { color: var(--ink); }
+      .rec-list { margin: 0; padding-left: 20px; max-width: 78ch; }
+      .rec-list li { font-size: 16px; line-height: 1.65; margin: 0 0 10px; }
+      @media (prefers-reduced-motion: reduce) {
+        .opt-btn { transition: none; }
+      }
+
       /* ---------- Footer ---------- */
       footer { margin-top: 100px; border-top: 1px solid var(--ink); padding: 52px 0 64px; }
       .foot-links { display: flex; flex-wrap: wrap; gap: 14px 34px; font-size: clamp(19px, 2.4vw, 23px); font-weight: 600; margin: 0 0 40px; }
@@ -382,7 +435,7 @@
         <div class="nav-links">
           <a href="#work">Work</a>
           <a href="#writing">Writing</a>
-          <a class="ext" href="#/calculator">ROI Calculator</a>
+          <a class="ext" href="#/calculator">Savings Analysis</a>
           <a href="#about">About</a>
           <a href="#contact">Contact</a>
           <a class="ext" href="https://www.linkedin.com/in/djchanda/" target="_blank" rel="noopener">LinkedIn ↗</a>
@@ -920,21 +973,25 @@
 
       <!-- ROI CALCULATOR -->
       <section id="roi" class="wrap">
-        <div class="sec-head reveal"><h2>ROI Calculator</h2></div>
-        <p class="sec-note reveal">The question every executive is asking about AI in testing — <strong>is it actually paying?</strong> — answered the way a program is actually run: in volumes and hours, not percentage claims.</p>
+        <div class="sec-head reveal"><h2>The AI in QE Savings Analysis</h2></div>
+        <p class="sec-note reveal">What can AI actually save a testing program? It depends on how far you take it — <strong>one use case at a time, or the whole lifecycle run from the spec.</strong> A few plain questions, and the analysis shows both layers, side by side.</p>
         <div class="chips reveal">
-          <span class="chip"><b>750 → 375 hrs</b> test design, per quarter</span>
-          <span class="chip"><b>1,006 hrs</b> of evaluation, counted openly</span>
-          <span class="chip"><b>+675%</b> ROI at the worked example</span>
+          <span class="chip"><b>−26%</b> of QE effort — Layer 1, cherry-picked use cases</span>
+          <span class="chip"><b>−42%</b> of QE effort — Layer 2, Spec-Driven QE</span>
+          <span class="chip"><b>58% → 76%</b> coverage across the two layers</span>
         </div>
         <div class="about-copy reveal">
-          <p>Every vendor pitch for AI in testing arrives with a percentage: 40% faster, 60% cheaper. A percentage hides the only questions that matter — faster at what, in which activity, and who checks the output before it ships? This calculator starts where a testing program actually lives: how many test cases, scripts, and regression packs your team produces each quarter, and how many hours each one takes.</p>
-          <p>For each of the seven activities in the testing lifecycle — strategy &amp; planning, test design, automation scripting, test data &amp; environments, execution, defect analysis &amp; reporting, and regression maintenance — you enter today's hours, then the hours with AI, split into generation time and the calibration &amp; evaluation time that makes the output worth trusting. The roll-up is the executive answer: hours saved per quarter, dollars net of tooling, and capacity freed for the work that was never getting done — stated as capacity, not headcount cuts. Three presets show the honest range, including the vendor-pitch version with evaluation set to zero, so you can see exactly what that omission is worth.</p>
+          <ul class="tight-list">
+            <li><b>Layer 1 — cherry-picking.</b> AI for test design, automation scripting, smarter regression. Each saving is bounded by published evidence; vendor claims are flagged as vendor claims.</li>
+            <li><b>Layer 1 on the starting answers</b> (15-person team, monthly releases, mixed program): ~26% of QE effort saved, regression ~40% faster, coverage 58% → 66%.</li>
+            <li><b>Layer 2 — Spec-Driven QE.</b> Spec as a versioned contract, tests generated from it, eval gates in CI. Nothing cherry-picked, so savings compound across phases: ~42% of effort, coverage to 76%.</li>
+            <li><b>Stated plainly:</b> the Layer 2 figure is my implementation experience, not a published study — no peer-reviewed outcome study of spec-driven adoption exists yet.</li>
+          </ul>
         </div>
         <div class="calc-cta reveal">
-          <p><b>Run your own program</b>
-          Replace the worked example with your volumes and hours. It takes about five minutes, and the numbers hold up in a steering committee.</p>
-          <a class="btn" href="#/calculator">Open the calculator →</a>
+          <p><b>See what AI can save you</b>
+          A few questions about your releases, team, tools, and pyramid. Two minutes — both layers, evidence attached.</p>
+          <a class="btn" href="#/calculator">See what AI can save you →</a>
         </div>
       </section>
 
@@ -995,273 +1052,218 @@
 
     </main>
 
-    <!-- CALCULATOR PAGE (own view: #/calculator) -->
+    <!-- SAVINGS ANALYSIS PAGE (own view: #/calculator) -->
     <main id="calcView" hidden>
       <div class="wrap calc-head">
         <a class="calc-back" href="#top">← Back to the site</a>
         <div class="hero-rule" aria-hidden="true"></div>
-        <h2 class="calc-title">The AI-in-QE <em>ROI Calculator</em></h2>
+        <h2 class="calc-title">The AI in QE <em>Savings Analysis</em></h2>
         <p class="calc-lede">
-          <span>No percentage lifts. This is a testing program, the way you actually run it.</span><br />
-          <span class="l2">So many test cases a quarter, so many hours to write them. For every activity in the testing lifecycle, enter the work you do and the hours it takes today — then the hours it takes with AI, split honestly into generation time and the calibration &amp; evaluation time that makes the output worth trusting. The roll-up is what an executive actually needs: hours, dollars, and capacity, with the evaluation effort on the bill instead of under it. It answers the question leadership actually asks — what should we expect from AI adoption — and it is allowed to answer “not yet.”</span>
+          <span>Tell me how your testing runs today. I'll show you what AI can save — in two layers.</span><br />
+          <span class="l2">Layer 1: cherry-picked AI use cases, one at a time. Layer 2: Spec-Driven QE — spec as contract, tests generated from it, eval gates in CI. You answer plain questions; the model does the rest. Every number names its evidence.</span>
         </p>
       </div>
 
       <section class="wrap" style="padding-top:0">
-        <form class="calc-panel" id="calcForm" aria-label="Program inputs">
+        <div class="sec-head"><h2>How your testing runs today</h2></div>
+        <p class="step-note">Six questions, two checklists. Change any answer — both layers recompute instantly.</p>
+        <form class="calc-panel" id="qForm" aria-label="Your testing program today">
           <h3>Your program</h3>
-          <p class="panel-note">Costs first, then the work itself, activity by activity. The starting numbers describe one example program — 1,500 test cases a quarter at half an hour each is 750 hours of test design, before AI enters the room. They are a worked example, not anyone's real figures: replace them with your own program's.</p>
+          <p class="panel-note">Starting answers: a mid-size enterprise team — 15 QE engineers, monthly releases, mixed manual/automated, Playwright and Jira.</p>
           <div class="prog-fields">
+            <div class="field">
+              <label for="qReleases">Releases per year</label>
+              <select id="qReleases">
+                <option value="4">4 or fewer — quarterly or slower</option>
+                <option value="10" selected>5–12 — roughly monthly</option>
+                <option value="24">13–50 — every one to four weeks</option>
+                <option value="52">51–104 — weekly or faster</option>
+                <option value="120">100+ — continuous delivery</option>
+              </select>
+              <p class="fhelp">Cadence turns per-release savings into annual ones.</p>
+            </div>
+            <div class="field">
+              <label for="qTeam">QE team size</label>
+              <select id="qTeam">
+                <option value="5">5 or fewer engineers</option>
+                <option value="15" selected>6–20 engineers</option>
+                <option value="40">21–50 engineers</option>
+                <option value="100">50+ engineers</option>
+              </select>
+              <p class="fhelp">The effort pool savings come from — 1,880 hours per engineer-year.</p>
+            </div>
+            <div class="field">
+              <label for="qMix">Manual vs automated testing today</label>
+              <select id="qMix">
+                <option value="15">Mostly manual — under 25% automated</option>
+                <option value="37" selected>Mixed — 25–50% automated</option>
+                <option value="62">Automation-led — 50–75% automated</option>
+                <option value="85">Automation-first — 75%+ automated</option>
+              </select>
+              <p class="fhelp">Traditional automation plateaued at 23–25% (Forrester, 2025). Your position sets the headroom and the baseline coverage.</p>
+            </div>
+            <div class="field">
+              <label for="qAutoTool">Automation tool</label>
+              <select id="qAutoTool">
+                <option value="0.85" data-k="none">None yet / ad-hoc scripts</option>
+                <option value="1" data-k="playwright" selected>Playwright</option>
+                <option value="0.9" data-k="selenium">Selenium</option>
+                <option value="0.95" data-k="cypress">Cypress</option>
+                <option value="1.05" data-k="accelq">ACCELQ or a similar codeless platform</option>
+                <option value="0.9" data-k="other">Other / not sure</option>
+              </select>
+              <p class="fhelp">AI-ready frameworks get more from the same use cases than legacy stacks.</p>
+            </div>
+            <div class="field">
+              <label for="qTmTool">Test management tool</label>
+              <select id="qTmTool">
+                <option value="0.9" data-k="none">None / spreadsheets</option>
+                <option value="1" data-k="jira" selected>Jira, with Zephyr or Xray</option>
+                <option value="1.05" data-k="platform">qTest, TestRail, or Azure Test Plans</option>
+                <option value="0.95" data-k="other">Other / not sure</option>
+              </select>
+              <p class="fhelp">Regression selection learns from run history. No history, smaller gain.</p>
+            </div>
+            <div class="field">
+              <label for="qPyramid">Testing pyramid shape</label>
+              <select id="qPyramid">
+                <option value="0.8" data-cov="-8">Inverted — most testing happens at the UI</option>
+                <option value="1" data-cov="0" selected>Cylinder — UI and API roughly equal</option>
+                <option value="1.1" data-cov="8">Healthy pyramid — unit &amp; API heavy, thin UI layer</option>
+              </select>
+              <p class="fhelp">Inverted pyramids make AI gains slower and pricier. Healthy pyramids compound them.</p>
+            </div>
             <div class="field">
               <label for="inRate">Blended loaded cost of one QE hour ($)</label>
               <input type="number" id="inRate" value="90" min="0" max="10000" step="5" inputmode="decimal" />
-              <p class="fhelp">Salary, benefits, and overhead, blended across the team — one hour of QE, fully loaded.</p>
-            </div>
-            <div class="field">
-              <label for="inTooling">AI tooling cost per quarter ($)</label>
-              <input type="number" id="inTooling" value="18000" min="0" max="100000000" step="100" inputmode="decimal" />
-              <p class="fhelp">Licences, platform, and usage charges for the whole program — usually the only cost in the pitch deck.</p>
+              <p class="fhelp">Used only to price the hours. The hours are the real answer.</p>
             </div>
           </div>
-          <div class="preset-row" role="group" aria-label="Calculator presets">
-            <span class="preset-label">Presets</span>
-            <button type="button" class="preset-btn on" data-preset="typical">Typical program</button>
-            <button type="button" class="preset-btn" data-preset="conservative">Conservative calibration</button>
-            <button type="button" class="preset-btn" data-preset="pitch">Vendor pitch — no evaluation</button>
+
+          <p class="opt-label" id="typesLabel">Types of testing you run
+            <span class="fhelp" style="display:block">Tap to toggle. Each type switches on the AI use cases that apply.</span>
+          </p>
+          <div class="opt-row" role="group" aria-labelledby="typesLabel">
+            <button type="button" class="opt-btn on" data-t="functional" aria-pressed="true">Functional &amp; system</button>
+            <button type="button" class="opt-btn on" data-t="regression" aria-pressed="true">Regression</button>
+            <button type="button" class="opt-btn on" data-t="api" aria-pressed="true">API</button>
+            <button type="button" class="opt-btn" data-t="performance" aria-pressed="false">Performance</button>
+            <button type="button" class="opt-btn" data-t="accessibility" aria-pressed="false">Accessibility</button>
+            <button type="button" class="opt-btn" data-t="security" aria-pressed="false">Security</button>
+            <button type="button" class="opt-btn on" data-t="exploratory" aria-pressed="true">Exploratory</button>
+            <button type="button" class="opt-btn" data-t="uat" aria-pressed="false">UAT support</button>
           </div>
-          <p class="preset-note">Presets rewrite only the generation and evaluation columns below — your volumes and today's hours stay yours. The vendor pitch zeroes the evaluation column entirely. Watch what that does to the ROI.</p>
+
+          <p class="opt-label" id="phasesLabel">Phases of the lifecycle you run in-house
+            <span class="fhelp" style="display:block">AI only saves effort in work your program actually does.</span>
+          </p>
+          <div class="opt-row" role="group" aria-labelledby="phasesLabel">
+            <button type="button" class="opt-btn" data-p="requirements" aria-pressed="false">Requirements &amp; design</button>
+            <button type="button" class="opt-btn" data-p="planning" aria-pressed="false">Test planning</button>
+            <button type="button" class="opt-btn on" data-p="design" aria-pressed="true">Test design</button>
+            <button type="button" class="opt-btn on" data-p="automation" aria-pressed="true">Automation development</button>
+            <button type="button" class="opt-btn on" data-p="execution" aria-pressed="true">Execution &amp; regression</button>
+            <button type="button" class="opt-btn on" data-p="defects" aria-pressed="true">Defect management</button>
+            <button type="button" class="opt-btn" data-p="reporting" aria-pressed="false">Reporting &amp; release sign-off</button>
+            <button type="button" class="opt-btn" data-p="data" aria-pressed="false">Test data &amp; environments</button>
+          </div>
         </form>
-
-        <div class="calc-grid">
-          <div class="blocks">
-
-            <form class="calc-panel block-card" aria-label="Strategy and planning inputs">
-              <div class="block-head"><h3>Strategy &amp; planning</h3><span class="block-unit">unit: test plans &amp; strategies</span></div>
-              <div class="block-fields">
-                <div class="field">
-                  <label for="inVol1">Units per quarter</label>
-                  <input type="number" id="inVol1" value="8" min="0" max="10000000" step="1" inputmode="numeric" />
-                </div>
-                <div class="field">
-                  <label for="inToday1">Hours per unit — today</label>
-                  <input type="number" id="inToday1" value="12" min="0" max="10000" step="0.05" inputmode="decimal" />
-                </div>
-                <div class="field">
-                  <label for="inGen1">AI generation — hrs per unit</label>
-                  <input type="number" id="inGen1" value="2" min="0" max="10000" step="0.05" inputmode="decimal" />
-                </div>
-                <div class="field">
-                  <label for="inEval1">Calibration &amp; evaluation — hrs per unit</label>
-                  <input type="number" id="inEval1" value="2" min="0" max="10000" step="0.05" inputmode="decimal" />
-                </div>
-              </div>
-              <p class="block-out"><span id="blkOut1">—</span><span class="lose-flag" id="blkFlag1" hidden>Loses time at these numbers</span></p>
-            </form>
-
-            <form class="calc-panel block-card" aria-label="Test design inputs">
-              <div class="block-head"><h3>Test design</h3><span class="block-unit">unit: test cases</span></div>
-              <div class="block-fields">
-                <div class="field">
-                  <label for="inVol2">Units per quarter</label>
-                  <input type="number" id="inVol2" value="1500" min="0" max="10000000" step="10" inputmode="numeric" />
-                </div>
-                <div class="field">
-                  <label for="inToday2">Hours per unit — today</label>
-                  <input type="number" id="inToday2" value="0.5" min="0" max="10000" step="0.05" inputmode="decimal" />
-                </div>
-                <div class="field">
-                  <label for="inGen2">AI generation — hrs per unit</label>
-                  <input type="number" id="inGen2" value="0.1" min="0" max="10000" step="0.05" inputmode="decimal" />
-                </div>
-                <div class="field">
-                  <label for="inEval2">Calibration &amp; evaluation — hrs per unit</label>
-                  <input type="number" id="inEval2" value="0.15" min="0" max="10000" step="0.05" inputmode="decimal" />
-                </div>
-              </div>
-              <p class="block-out"><span id="blkOut2">—</span><span class="lose-flag" id="blkFlag2" hidden>Loses time at these numbers</span></p>
-            </form>
-
-            <form class="calc-panel block-card" aria-label="Automation scripting inputs">
-              <div class="block-head"><h3>Automation scripting</h3><span class="block-unit">unit: automated scripts</span></div>
-              <div class="block-fields">
-                <div class="field">
-                  <label for="inVol3">Units per quarter</label>
-                  <input type="number" id="inVol3" value="300" min="0" max="10000000" step="10" inputmode="numeric" />
-                </div>
-                <div class="field">
-                  <label for="inToday3">Hours per unit — today</label>
-                  <input type="number" id="inToday3" value="3" min="0" max="10000" step="0.05" inputmode="decimal" />
-                </div>
-                <div class="field">
-                  <label for="inGen3">AI generation — hrs per unit</label>
-                  <input type="number" id="inGen3" value="0.75" min="0" max="10000" step="0.05" inputmode="decimal" />
-                </div>
-                <div class="field">
-                  <label for="inEval3">Calibration &amp; evaluation — hrs per unit</label>
-                  <input type="number" id="inEval3" value="0.75" min="0" max="10000" step="0.05" inputmode="decimal" />
-                </div>
-              </div>
-              <p class="block-out"><span id="blkOut3">—</span><span class="lose-flag" id="blkFlag3" hidden>Loses time at these numbers</span></p>
-            </form>
-
-            <form class="calc-panel block-card" aria-label="Test data and environments inputs">
-              <div class="block-head"><h3>Test data &amp; environments</h3><span class="block-unit">unit: data sets / env builds</span></div>
-              <div class="block-fields">
-                <div class="field">
-                  <label for="inVol4">Units per quarter</label>
-                  <input type="number" id="inVol4" value="40" min="0" max="10000000" step="1" inputmode="numeric" />
-                </div>
-                <div class="field">
-                  <label for="inToday4">Hours per unit — today</label>
-                  <input type="number" id="inToday4" value="6" min="0" max="10000" step="0.05" inputmode="decimal" />
-                </div>
-                <div class="field">
-                  <label for="inGen4">AI generation — hrs per unit</label>
-                  <input type="number" id="inGen4" value="1.5" min="0" max="10000" step="0.05" inputmode="decimal" />
-                </div>
-                <div class="field">
-                  <label for="inEval4">Calibration &amp; evaluation — hrs per unit</label>
-                  <input type="number" id="inEval4" value="1.5" min="0" max="10000" step="0.05" inputmode="decimal" />
-                </div>
-              </div>
-              <p class="block-out"><span id="blkOut4">—</span><span class="lose-flag" id="blkFlag4" hidden>Loses time at these numbers</span></p>
-            </form>
-
-            <form class="calc-panel block-card" aria-label="Execution inputs">
-              <div class="block-head"><h3>Execution</h3><span class="block-unit">unit: test runs &amp; cycles</span></div>
-              <div class="block-fields">
-                <div class="field">
-                  <label for="inVol5">Units per quarter</label>
-                  <input type="number" id="inVol5" value="60" min="0" max="10000000" step="1" inputmode="numeric" />
-                </div>
-                <div class="field">
-                  <label for="inToday5">Hours per unit — today</label>
-                  <input type="number" id="inToday5" value="16" min="0" max="10000" step="0.05" inputmode="decimal" />
-                </div>
-                <div class="field">
-                  <label for="inGen5">AI generation — hrs per unit</label>
-                  <input type="number" id="inGen5" value="8" min="0" max="10000" step="0.05" inputmode="decimal" />
-                </div>
-                <div class="field">
-                  <label for="inEval5">Calibration &amp; evaluation — hrs per unit</label>
-                  <input type="number" id="inEval5" value="4" min="0" max="10000" step="0.05" inputmode="decimal" />
-                </div>
-              </div>
-              <p class="block-out"><span id="blkOut5">—</span><span class="lose-flag" id="blkFlag5" hidden>Loses time at these numbers</span></p>
-            </form>
-
-            <form class="calc-panel block-card" aria-label="Defect analysis and reporting inputs">
-              <div class="block-head"><h3>Defect analysis &amp; reporting</h3><span class="block-unit">unit: defects triaged &amp; reported</span></div>
-              <div class="block-fields">
-                <div class="field">
-                  <label for="inVol6">Units per quarter</label>
-                  <input type="number" id="inVol6" value="400" min="0" max="10000000" step="10" inputmode="numeric" />
-                </div>
-                <div class="field">
-                  <label for="inToday6">Hours per unit — today</label>
-                  <input type="number" id="inToday6" value="0.5" min="0" max="10000" step="0.05" inputmode="decimal" />
-                </div>
-                <div class="field">
-                  <label for="inGen6">AI generation — hrs per unit</label>
-                  <input type="number" id="inGen6" value="0.15" min="0" max="10000" step="0.05" inputmode="decimal" />
-                </div>
-                <div class="field">
-                  <label for="inEval6">Calibration &amp; evaluation — hrs per unit</label>
-                  <input type="number" id="inEval6" value="0.1" min="0" max="10000" step="0.05" inputmode="decimal" />
-                </div>
-              </div>
-              <p class="block-out"><span id="blkOut6">—</span><span class="lose-flag" id="blkFlag6" hidden>Loses time at these numbers</span></p>
-            </form>
-
-            <form class="calc-panel block-card" aria-label="Regression maintenance inputs">
-              <div class="block-head"><h3>Regression maintenance</h3><span class="block-unit">unit: regression tests maintained</span></div>
-              <div class="block-fields">
-                <div class="field">
-                  <label for="inVol7">Units per quarter</label>
-                  <input type="number" id="inVol7" value="800" min="0" max="10000000" step="10" inputmode="numeric" />
-                </div>
-                <div class="field">
-                  <label for="inToday7">Hours per unit — today</label>
-                  <input type="number" id="inToday7" value="0.75" min="0" max="10000" step="0.05" inputmode="decimal" />
-                </div>
-                <div class="field">
-                  <label for="inGen7">AI generation — hrs per unit</label>
-                  <input type="number" id="inGen7" value="0.25" min="0" max="10000" step="0.05" inputmode="decimal" />
-                </div>
-                <div class="field">
-                  <label for="inEval7">Calibration &amp; evaluation — hrs per unit</label>
-                  <input type="number" id="inEval7" value="0.25" min="0" max="10000" step="0.05" inputmode="decimal" />
-                </div>
-              </div>
-              <p class="block-out"><span id="blkOut7">—</span><span class="lose-flag" id="blkFlag7" hidden>Loses time at these numbers</span></p>
-            </form>
-
-          </div>
-
-          <div class="rollup-col">
-            <div class="result-card cal rollup" aria-label="Program roll-up">
-              <p class="rlabel">The roll-up — what the executive sees</p>
-              <p class="rroi" id="rRoi">—</p>
-              <p class="rsub">ROI on the tooling spend, with evaluation hours counted as a real cost — the number you can defend in the budget meeting</p>
-              <dl>
-                <div class="rrow"><dt>Hours today / quarter</dt><dd id="rToday">—</dd></div>
-                <div class="rrow"><dt>Hours with AI / quarter</dt><dd id="rWithAI">—</dd></div>
-                <div class="rrow"><dt>of which evaluation</dt><dd id="rEval">—</dd></div>
-                <div class="rrow"><dt>Hours saved / quarter</dt><dd id="rSaved">—</dd></div>
-                <div class="rrow"><dt>Effort change</dt><dd id="rEffort">—</dd></div>
-                <div class="rrow"><dt>Value of saved hours / qtr</dt><dd id="rValue">—</dd></div>
-                <div class="rrow"><dt>AI tooling cost / qtr</dt><dd id="rTooling">—</dd></div>
-                <div class="rrow total"><dt>Net / year</dt><dd id="rNetYear">—</dd></div>
-                <div class="rrow"><dt>Capacity freed</dt><dd id="rFte">—</dd></div>
-              </dl>
-              <p class="fte-note">Capacity freed is hours your team gets back — for coverage, exploratory testing, and the backlog. It is not a headcount line, and it is not presented as one.</p>
-              <div class="bars" aria-hidden="true">
-                <h4>Hours per quarter</h4>
-                <div class="bar-row"><span class="blabel">Today</span><div class="bar-track"><div class="bar-fill" id="barToday"></div></div><span class="bval" id="barTodayV">—</span></div>
-                <div class="bar-row"><span class="blabel">AI generation</span><div class="bar-track"><div class="bar-fill good" id="barGen"></div></div><span class="bval" id="barGenV">—</span></div>
-                <div class="bar-row"><span class="blabel">Evaluation</span><div class="bar-track"><div class="bar-fill cost" id="barEval"></div></div><span class="bval" id="barEvalV">—</span></div>
-              </div>
-              <div class="calc-actions">
-                <button type="button" class="calc-btn" id="btnCopy">Copy result</button>
-                <button type="button" class="calc-btn" id="btnDownload">Download result (.txt)</button>
-              </div>
-              <p class="copy-status" id="copyStatus" aria-live="polite"></p>
-            </div>
-
-            <div class="verdict" aria-live="polite">
-              <b id="verdictHead">—</b><br />
-              <span id="verdictBody">—</span>
-            </div>
-          </div>
-
-        </div>
       </section>
 
       <section class="wrap">
-        <div class="sec-head"><h2>About this tool</h2></div>
+        <div class="sec-head"><h2>Two layers, two different answers</h2></div>
+        <p class="sum-line" id="sumLine">—</p>
+        <div class="layers">
+          <div class="layer-card">
+            <p class="llabel">Layer 1 — Cherry-picked AI use cases</p>
+            <p class="lbig" id="aPct">—</p>
+            <p class="lsub">of total QE effort saved per year, use case by use case</p>
+            <dl>
+              <div class="lrow"><dt>Effort saved / year</dt><dd id="aHrs">—</dd></div>
+              <div class="lrow"><dt>Value of that effort / year</dt><dd id="aMoney">—</dd></div>
+              <div class="lrow"><dt>Execution speed</dt><dd id="aSpeed">—</dd></div>
+              <div class="lrow"><dt>Coverage</dt><dd id="aCov">—</dd></div>
+              <div class="lrow"><dt>Regression cycle</dt><dd id="aReg">—</dd></div>
+            </dl>
+            <p class="lnote">AI adopted activity by activity. Gains come from the published ranges below, adjusted for your tooling and pyramid — and capped where the evidence caps. Cherry-picking plateaus: each use case only touches its own activity.</p>
+          </div>
+          <div class="layer-card top">
+            <p class="llabel">Layer 2 — Spec-Driven QE</p>
+            <p class="lbig" id="bPct">—</p>
+            <p class="lsub">of total QE effort saved per year, end to end from the spec</p>
+            <dl>
+              <div class="lrow"><dt>Effort saved / year</dt><dd id="bHrs">—</dd></div>
+              <div class="lrow"><dt>Value of that effort / year</dt><dd id="bMoney">—</dd></div>
+              <div class="lrow"><dt>Execution speed</dt><dd id="bSpeed">—</dd></div>
+              <div class="lrow"><dt>Coverage</dt><dd id="bCov">—</dd></div>
+              <div class="lrow"><dt>Regression cycle</dt><dd id="bReg">—</dd></div>
+            </dl>
+            <p class="lnote">Everything in Layer 1, plus the connective layer: tests generated from the spec and checked by gates, so phases stop handing effort to each other. This figure is my implementation experience — 38–48% across enterprise programs — not a study result.</p>
+          </div>
+        </div>
+
+        <div class="cascade">
+          <div class="cas-card">
+            <h3>Write cases faster → testing starts sooner</h3>
+            <p id="casDesign">—</p>
+          </div>
+          <div class="cas-card">
+            <h3>Automate faster → execution finishes sooner</h3>
+            <p id="casExec">—</p>
+          </div>
+          <div class="cas-card">
+            <h3>Find defects sooner → remediation costs less</h3>
+            <p id="casDefect">—</p>
+          </div>
+        </div>
+
+        <div class="calc-panel steps-panel">
+          <h3>What the client should do — the Spec-Driven QE path</h3>
+          <p class="panel-note">Layer 2 is an operating model, not a bigger licence. It pays only if the client changes how work flows. Five moves, in order:</p>
+          <ol>
+            <li><b>Write specs as contracts.</b> Versioned spec — intent, scope, acceptance criteria — approved before any code or test is generated. The spec, not the prompt, is the source of truth.</li>
+            <li><b>Make acceptance criteria executable.</b> Tests are generated from the criteria; every test traces to a requirement. A criterion that can't be made executable gets flagged while it's cheap to fix.</li>
+            <li><b>Gate every AI-generated asset.</b> Build, flakiness, and coverage checks in CI. Nothing generated merges unchecked — the verification loop, not the model, turns AI output into quality.</li>
+            <li><b>Keep humans on irreversible steps.</b> Approval boundaries on merges, releases, and production. People stop typing tests and start judging them.</li>
+            <li><b>Baseline first, then track outcomes.</b> Coverage, escape rate, and flake rate measured before adoption, reviewed after. Half the industry doesn't measure escaped-defect cost at all (PractiTest, 2024).</li>
+          </ol>
+          <p class="honest"><b>The honest limit:</b> no peer-reviewed outcome study of spec-driven adoption exists yet, and blog-scale SDD speed claims have no identifiable study behind them. Layer 2 numbers are my experience, labelled as such. The evidence does support the mechanism: with a verification loop, generated tests stopped rejecting correct behaviour (canonical pass 30% → 100%, ReqTestAgent ablation); without one, they rejected it up to 68% of the time.</p>
+        </div>
+
+        <div class="calc-actions">
+          <button type="button" class="calc-btn" id="btnCopy">Copy analysis</button>
+          <button type="button" class="calc-btn" id="btnDownload">Download analysis (.txt)</button>
+        </div>
+        <p class="copy-status" id="copyStatus" aria-live="polite"></p>
+      </section>
+
+      <section class="wrap">
+        <div class="sec-head"><h2>Tools that fit your answers</h2></div>
+        <p class="step-note">Independent platforms, matched to your answers. None of them are mine — I sell judgement, not tools, and take nothing from any vendor listed.</p>
+        <ul class="rec-list" id="recList"></ul>
+      </section>
+
+      <section class="wrap">
+        <div class="sec-head"><h2>The data behind these numbers</h2></div>
         <div class="calc-how">
           <div class="how-card">
-            <h3>Why this tool exists</h3>
-            <p>Every quarter, someone senior asks the same question: we bought the AI licences — what are we getting for them? The honest answer is rarely a single number, because testing is not one activity. AI that drafts test cases in minutes can still lose money in execution, where every run needs a human rescue. A single program-wide percentage averages those two stories into a fiction.</p>
-            <p>So this tool answers the question activity by activity, in the units a program already reports — test cases written, scripts maintained, cycles executed, hours spent. If the answer survives being broken down that far, it is worth taking into a budget conversation. If it does not, better to learn that here than in front of a steering committee.</p>
-          </div>
-          <div class="how-card">
-            <h3>Who it is for</h3>
+            <h3>Layer 1 — measured, with the hedges on</h3>
             <ul>
-              <li><b>Test and program managers</b> costing an AI adoption case before it goes to a steering committee — with the evaluation effort already on the page, where a reviewer will look for it.</li>
-              <li><b>Executives and budget owners</b> deciding whether to renew, expand, or cut a tooling line, who need the answer in hours, dollars, and capacity rather than in model benchmarks.</li>
-              <li><b>Anyone handed a vendor ROI claim</b> — re-run the claim here with the evaluation column filled in, and see how much of it was the omission.</li>
+              <li><b>Regression selection — the strongest evidence in testing.</b> Meta's predictive test selection cut test-infrastructure cost ~2× while surfacing &gt;95% of test failures and &gt;99.9% of faulty changes (ICSE-SEIP 2019). An independent 2025 study ran ~15% of tests, cut execution 5.9×, detected &gt;95% of failures. The saving is a decision to miss a small share of failures, backstopped by full-suite runs.</li>
+              <li><b>Test generation — only behind a filter.</b> Meta's TestGen-LLM (FSE 2024), behind build, flakiness, and coverage filters: 57% of generated tests passed reliably; engineers accepted 73% of recommendations. Unfiltered, the best model reached 35.2% coverage and an 18.8% mutation score (TestGenEval, ICLR 2025). The filter is the product — generation gains count only where a checking step exists.</li>
+              <li><b>Script generation — the honest range is wide.</b> Trials span 55.8% faster on a small greenfield task (Copilot RCT, 2023), ~26% more tasks across 4,867 developers (Cui et al.), and 19% <i>slower</i> for expert maintainers on their own codebases (METR, 2025). This model uses the middle, adjusted for your stack.</li>
+              <li><b>Self-healing — vendor numbers, counted small.</b> Every quantified claim (70–90% of UI-change failures auto-resolved) is vendor marketing, no published method. The mechanism is real for locator drift only, and a heal can mask a real defect — credited here as one small maintenance category.</li>
+              <li><b>Performance and exploratory AI — assistive only.</b> No quantified enterprise effect size exists for AI in performance testing; exploratory agents have no controlled study. Both counted at token weight — drafting help, not savings engines.</li>
             </ul>
           </div>
           <div class="how-card">
-            <h3>What it deliberately leaves out</h3>
-            <p>Effort is the only currency in this model. It does not count escaped-defect savings, faster release cycles, licence consolidation, or attrition — in either direction. Those effects are real, but they are also where ROI decks go to be generous, because nobody can check them.</p>
-            <p>And capacity freed is reported as capacity. What a team does with released hours — more coverage, deeper exploratory testing, the backlog that never got touched — is a leadership decision, not an arithmetic one. The tool will not dress that decision up as headcount reduction.</p>
-          </div>
-          <div class="how-card">
-            <h3>How to read the result</h3>
-            <p>The verdict is allowed to be no. At honest evaluation numbers, some activities lose time — the tool flags them on their own cards instead of averaging them away, because a losing activity is a finding, not an embarrassment: it is where adoption needs fixing first, whether that means better prompts, better test data, or a narrower job for the AI.</p>
-            <p>If your program comes out negative, you have not failed the exercise. You have found next quarter's improvement backlog, priced in hours — which is more useful than a positive number nobody believes.</p>
+            <h3>Layer 2 — experience, and the two warnings</h3>
+            <ul>
+              <li><b>The figure is experience, not a study.</b> 42% (range 38–48%) is what I've seen implementing spec-driven QE in enterprise programs. No peer-reviewed outcome study of spec-driven adoption exists — this page won't dress it up as one.</li>
+              <li><b>Why it works when it works: the verification loop.</b> ReqTestAgent ablation — adding execution-and-verification to generation took canonical pass rates from 30% to 100% and mutation scores from 0.216 to 0.678. MutGen (2025) shows the same lever. Specs as contracts plus eval gates is that loop, run as an operating model.</li>
+              <li><b>Warning one — the base rate.</b> 46% of enterprise AI PoCs were scrapped before production in 2025; 42% of companies abandoned most AI initiatives (S&amp;P Global). Layer 2 assumes the operating model is actually adopted — gates, baselines, and all. Half-adopted, it performs like an expensive Layer 1.</li>
+              <li><b>Warning two — perception lies.</b> In METR's 2025 trial, developers using AI were measured 19% slower while believing they were ~20% faster. Baseline first; judge on coverage, escapes, and flake — never on how fast the team <i>feels</i>.</li>
+            </ul>
           </div>
         </div>
       </section>
@@ -1270,23 +1272,27 @@
         <div class="sec-head"><h2>Method</h2></div>
         <div class="calc-how">
           <div class="how-card">
-            <h3>The method, in plain words</h3>
-            <p>For each activity, the maths is the maths of a program plan — volumes and hours, nothing more exotic:</p>
-            <p class="formula">Hours today = units per quarter × hours per unit<br />Hours with AI = units × (generation hours + evaluation hours)<br />Value = hours saved × loaded hourly rate<br />Net per year = (value − tooling cost) × 4 quarters<br />ROI = net per year ÷ (tooling cost × 4)</p>
-            <p>The scope is deliberately narrow: effort only. Escaped-defect savings, licence consolidation, and attrition are not counted — in either direction. If the effort case does not stand on its own, softer numbers should not be asked to carry it.</p>
+            <h3>How the estimate works</h3>
+            <p>Your answers set the size of the program: QE effort per year = team size × 1,880 hours. Layer 1 then adds up the use cases your answers switch on — test design, script generation, regression selection, self-healing, triage, test data, reporting, and the rest — each contributing the share of effort its published evidence supports, adjusted by your automation tool's aptitude, your test-management history (selection needs it), and your pyramid shape. The Layer 1 total is capped at 30% of effort, because that is where cherry-picking plateaus in practice.</p>
+            <p>Coverage starts from a baseline derived from your automation share and pyramid (an automation-first, healthy-pyramid program starts high; a manual, inverted one starts low), and each layer adds the points its use cases can defend — capped, because coverage bought by generation alone is coverage without verification. Execution speed is the reduction in regression-cycle time: per release, execution is modelled at 35% of QE effort and test design at 25% — stated assumptions, the same for every visitor, so two programs answering alike get alike answers.</p>
+            <p>Layer 2 replaces the sum with the operating-model figure: 42% of effort (range 38–48%), execution speed carried a further step beyond Layer 1, and coverage lifted end to end — because in a spec-driven program the gains are not confined to the activities you remembered to cherry-pick.</p>
           </div>
           <div class="how-card">
-            <h3>How to get your evaluation number</h3>
-            <ol>
-              <li><b>Pick one activity</b> — test design is a good start — and take 20 recent units of real work: actual test cases, actual scripts.</li>
-              <li><b>Run the AI on them,</b> and hand the output to the person who would have to sign it off in production.</li>
-              <li><b>Time the sign-off end to end</b> — reading, checking against the requirement, correcting, finishing what the AI got wrong. The average is your calibration &amp; evaluation hours per unit.</li>
-              <li><b>Re-measure when anything changes</b> — model, prompts, or workflow. Evaluation time is a property of a setup, not of AI in general.</li>
-            </ol>
-            <p>If nobody in the program can state the evaluation time, the program does not have an ROI number yet. It has a hope with a licence attached.</p>
+            <h3>How to read the result</h3>
+            <ul>
+              <li><b>Hours first, dollars second.</b> The dollar figure is your hours at your rate — it moves when your rate moves. The hours, the speed, and the coverage are the substance.</li>
+              <li><b>Capacity, not headcount.</b> Saved effort is hours your team gets back — for the coverage you never had time for, the exploratory testing that keeps getting cut, the backlog. What leadership does with released capacity is a leadership decision; this analysis will not dress it up as a reduction plan.</li>
+              <li><b>Ranges, not promises.</b> Every figure here is an estimate from evidence and experience, to be replaced by your own pilot readout. If a vendor shows you a bigger number with no evaluation step and no source attached, you now know which questions to ask.</li>
+              <li><b>The gap between the layers is the argument.</b> If Layer 1 already looks good, Layer 2 is what the same investment returns when it stops being a collection of tools and becomes how the program runs.</li>
+            </ul>
           </div>
         </div>
 
+        <div class="calc-cta">
+          <p><b>Want this run on your program?</b>
+          The analysis gives you the shape. Baselining, eval gates, sequencing on your stack, knowing which vendor numbers to ignore — that's the work I do with enterprise QE teams.</p>
+          <a class="btn" href="https://www.linkedin.com/in/djchanda/" target="_blank" rel="noopener">Talk to DJ on LinkedIn ↗</a>
+        </div>
       </section>
     </main>
 
@@ -1409,7 +1415,7 @@
         var homeView = document.getElementById('top');
         var calcView = document.getElementById('calcView');
         var HOME_TITLE = document.title;
-        var CALC_TITLE = 'ROI Calculator — AI × QE | DJ Chanda';
+        var CALC_TITLE = 'The AI in QE Savings Analysis — AI × QE | DJ Chanda';
         function isCalc() { return location.hash.indexOf('#/calculator') === 0; }
         function route() {
           var calc = isCalc();
@@ -1425,189 +1431,262 @@
         }
         window.addEventListener('hashchange', route);
 
-        /* ---------- ROI calculator: lifecycle blocks, ground-level units ---------- */
+        /* ---------- Savings analysis: questions in, two layers out ----------
+           No per-unit AI hours anywhere. The visitor describes their program;
+           the model applies DJ's experience factors, anchored to published
+           evidence (see "The data behind these numbers" on the page). */
         function num(id) {
           var el = document.getElementById(id);
           var v = el ? parseFloat(el.value) : 0;
           return isNaN(v) ? 0 : v;
         }
         function setText(id, text) { var el = document.getElementById(id); if (el) el.textContent = text; }
+        function setHTML(id, html) { var el = document.getElementById(id); if (el) el.innerHTML = html; }
         var moneyFull = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
         function fmtMoney(v) { if (!isFinite(v)) return '—'; return (v < 0 ? '−' : '') + moneyFull.format(Math.abs(v)); }
-        function fmtSignedMoney(v) { if (!isFinite(v)) return '—'; return (v < 0 ? '−' : '+') + moneyFull.format(Math.abs(v)); }
         function fmtHrs(v) {
           var r = Math.round(v * 10) / 10;
           return r.toLocaleString('en-US', { minimumFractionDigits: (r % 1 === 0 ? 0 : 1), maximumFractionDigits: 1 });
         }
-        function fmtRoi(v) { if (!isFinite(v)) return '—'; return (v < 0 ? '−' : '+') + Math.abs(Math.round(v)).toLocaleString('en-US') + '%'; }
-
-        var BLOCK_NAMES = ['Strategy & planning', 'Test design', 'Automation scripting', 'Test data & environments', 'Execution', 'Defect analysis & reporting', 'Regression maintenance'];
-
-        function blockCalc(n) {
-          var vol = Math.max(0, num('inVol' + n));
-          var today = Math.max(0, num('inToday' + n));
-          var gen = Math.max(0, num('inGen' + n));
-          var ev = Math.max(0, num('inEval' + n));
-          var todayHrs = vol * today, genHrs = vol * gen, evalHrs = vol * ev;
-          var withHrs = genHrs + evalHrs;
-          return {
-            vol: vol, todayHrs: todayHrs, genHrs: genHrs, evalHrs: evalHrs, withHrs: withHrs,
-            saved: todayHrs - withHrs,
-            loses: vol > 0 && withHrs > 0 && withHrs >= todayHrs
-          };
+        function fmtDays(v) { return fmtHrs(v); }
+        function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
+        function selKey(id) {
+          var el = document.getElementById(id);
+          if (!el || el.selectedIndex < 0) return '';
+          return el.options[el.selectedIndex].getAttribute('data-k') || '';
+        }
+        function selCov(id) {
+          var el = document.getElementById(id);
+          if (!el || el.selectedIndex < 0) return 0;
+          var v = parseFloat(el.options[el.selectedIndex].getAttribute('data-cov'));
+          return isNaN(v) ? 0 : v;
+        }
+        function selText(id) {
+          var el = document.getElementById(id);
+          if (!el || el.selectedIndex < 0) return '';
+          return el.options[el.selectedIndex].text;
+        }
+        function onSet(attr) {
+          var set = {};
+          Array.prototype.slice.call(document.querySelectorAll('.opt-btn.on[' + attr + ']')).forEach(function (b) {
+            set[b.getAttribute(attr)] = true;
+          });
+          return set;
         }
 
-        function setBars(today, gen, ev) {
-          var max = Math.max(today, gen + ev, 1);
-          function bar(id, valId, v) {
-            var b = document.getElementById(id);
-            if (b) b.style.width = Math.max(0, Math.min(100, (v / max) * 100)) + '%';
-            setText(valId, fmtHrs(v));
-          }
-          bar('barToday', 'barTodayV', today);
-          bar('barGen', 'barGenV', gen);
-          bar('barEval', 'barEvalV', ev);
-        }
+        var FTE_HOURS = 1880;      /* hours per engineer-year */
+        var EXEC_SHARE = 0.35;     /* execution share of QE effort per release */
+        var DESIGN_SHARE = 0.25;   /* test-design share of QE effort per release */
+        var LAYER_A_CAP = 30;      /* cherry-picking plateaus here, % of effort */
+        var LAYER_B_PCT = 42;      /* spec-driven QE, DJ's experience (range 38–48) */
+        var LAYER_B_COV = 18;      /* coverage points, end to end */
 
         var lastSummary = '';
+        var lastRecsText = [];
 
         function compute() {
+          var releases = Math.max(1, num('qReleases'));
+          var team = Math.max(1, num('qTeam'));
+          var autoShare = clamp(num('qMix'), 0, 100);
+          var apt = num('qAutoTool'); if (!(apt > 0)) apt = 1;
+          var autoKey = selKey('qAutoTool');
+          var tm = num('qTmTool'); if (!(tm > 0)) tm = 1;
+          var tmKey = selKey('qTmTool');
+          var pyr = num('qPyramid'); if (!(pyr > 0)) pyr = 1;
+          var pyrCov = selCov('qPyramid');
           var rate = Math.max(0, num('inRate'));
-          var tooling = Math.max(0, num('inTooling'));
-          var T = { today: 0, withAI: 0, gen: 0, ev: 0, saved: 0 };
-          var losers = [], lines = [];
-          for (var n = 1; n <= 7; n++) {
-            var b = blockCalc(n);
-            T.today += b.todayHrs; T.withAI += b.withHrs; T.gen += b.genHrs; T.ev += b.evalHrs; T.saved += b.saved;
-            if (b.loses) losers.push(BLOCK_NAMES[n - 1]);
-            var out = '<b>' + fmtHrs(b.todayHrs) + ' hrs</b> today → <b>' + fmtHrs(b.withHrs) + ' hrs</b> with AI';
-            if (b.evalHrs > 0) out += ' · ' + fmtHrs(b.evalHrs) + ' of them evaluation';
-            out += b.saved >= 0
-              ? ' · saves <b>' + fmtHrs(b.saved) + ' hrs</b> a quarter'
-              : ' · costs <b>' + fmtHrs(-b.saved) + ' extra hrs</b> a quarter';
-            var outEl = document.getElementById('blkOut' + n);
-            if (outEl) outEl.innerHTML = out;
-            var flag = document.getElementById('blkFlag' + n);
-            if (flag) flag.hidden = !b.loses;
-            lines.push('- ' + BLOCK_NAMES[n - 1] + ': ' + fmtHrs(b.todayHrs) + ' hrs today → ' + fmtHrs(b.withHrs) + ' hrs with AI (' + fmtHrs(b.evalHrs) + ' hrs evaluation) — ' + (b.saved >= 0 ? 'saves ' + fmtHrs(b.saved) + ' hrs' : 'costs ' + fmtHrs(-b.saved) + ' extra hrs') + (b.loses ? ' [loses time]' : ''));
-          }
+          var types = onSet('data-t');
+          var phases = onSet('data-p');
 
-          var value = T.saved * rate;
-          var netYear = (value - tooling) * 4;
-          var roi = tooling > 0 ? (netYear / (tooling * 4)) * 100 : NaN;
-          var effort = T.today > 0 ? (T.saved / T.today) * 100 : NaN;
-          var fte = T.saved > 0 ? (T.saved * 4) / 1880 : NaN;
-          var effortTxt = isFinite(effort) ? ((effort >= 0 ? '−' : '+') + Math.abs(Math.round(effort)) + '%') : '—';
-          var roiPhrase = isFinite(roi) ? ', an ROI of ' + fmtRoi(roi) : '';
+          /* ----- Layer 1: use cases switched on by the answers -----
+             effort/speed in % of total QE effort / regression time;
+             cov in coverage points. Sources named on the page. */
+          var ucs = [];
+          if (phases.design || types.functional) ucs.push({ name: 'AI test design & case generation', effort: 7, speed: 0, cov: 4 });
+          if (phases.requirements) ucs.push({ name: 'AI requirements & spec analysis', effort: 3, speed: 0, cov: 1 });
+          if (phases.planning) ucs.push({ name: 'AI-assisted test planning', effort: 1, speed: 0, cov: 0 });
+          if (phases.automation || autoShare >= 25) ucs.push({ name: 'AI automation script generation', effort: 6 * apt * pyr, speed: 5, cov: 0 });
+          if (types.regression || phases.execution) ucs.push({ name: 'AI regression test selection', effort: 4, speed: 30 * tm, cov: 0 });
+          if (autoShare >= 25 && autoKey !== 'none') ucs.push({ name: 'Self-healing test maintenance', effort: 3 * apt * pyr, speed: 0, cov: 0 });
+          if (phases.defects) ucs.push({ name: 'AI defect triage & root-cause analysis', effort: 3, speed: 0, cov: 0 });
+          if (phases.data) ucs.push({ name: 'AI test data generation', effort: 2, speed: 0, cov: 1 });
+          if (phases.reporting) ucs.push({ name: 'AI reporting & release analytics', effort: 2, speed: 0, cov: 0 });
+          if (types.api) ucs.push({ name: 'AI API test generation', effort: 2, speed: 5, cov: 2 });
+          if (types.accessibility) ucs.push({ name: 'Accessibility automation + AI triage', effort: 1, speed: 0, cov: 3 });
+          if (types.performance) ucs.push({ name: 'AI performance analysis (assistive only)', effort: 1, speed: 0, cov: 0 });
+          if (types.security) ucs.push({ name: 'AI-assisted security testing', effort: 1, speed: 0, cov: 1 });
+          if (types.exploratory) ucs.push({ name: 'AI exploratory testing support', effort: 1, speed: 0, cov: 2 });
+          if (types.uat) ucs.push({ name: 'AI support for UAT & form-heavy validation', effort: 1, speed: 0, cov: 0 });
 
-          if (T.today <= 0) {
-            ['rRoi', 'rToday', 'rWithAI', 'rEval', 'rSaved', 'rEffort', 'rValue', 'rTooling', 'rNetYear', 'rFte'].forEach(function (id) { setText(id, '—'); });
-            var roiEl0 = document.getElementById('rRoi');
-            if (roiEl0) roiEl0.classList.remove('neg');
-            setText('verdictHead', 'Start with the work itself.');
-            setText('verdictBody', 'Enter the volumes for at least one activity — how many units a quarter, and the hours each one takes today. The roll-up builds from there, activity by activity, the way a program plan does.');
-            setBars(0, 0, 0);
-            lastSummary = '';
-            return;
-          }
+          var sumEffort = 0, sumSpeed = 0, sumCov = 0;
+          ucs.forEach(function (u) { sumEffort += u.effort; sumSpeed += u.speed; sumCov += u.cov; });
+          var pctA = clamp(Math.round(sumEffort * 10) / 10, 0, LAYER_A_CAP);
+          var speedA = clamp(Math.round(sumSpeed), 0, 45);
+          var covGainA = clamp(sumCov, 0, 15);
+          var covBase = clamp(Math.round(45 + autoShare * 0.35 + pyrCov), 20, 90);
+          var covA = Math.min(95, covBase + covGainA);
 
-          setText('rToday', fmtHrs(T.today) + ' hrs');
-          setText('rWithAI', fmtHrs(T.withAI) + ' hrs');
-          setText('rEval', fmtHrs(T.ev) + ' hrs');
-          setText('rSaved', (T.saved < 0 ? '−' : '') + fmtHrs(Math.abs(T.saved)) + ' hrs');
-          setText('rEffort', effortTxt);
-          setText('rValue', fmtMoney(value));
-          setText('rTooling', fmtMoney(tooling));
-          setText('rNetYear', fmtSignedMoney(netYear));
-          setText('rFte', isFinite(fte) ? fte.toFixed(1) + ' FTE / year' : '—');
-          setText('rRoi', fmtRoi(roi));
-          var roiEl = document.getElementById('rRoi');
-          if (roiEl) roiEl.classList.toggle('neg', isFinite(roi) && roi < 0);
+          /* ----- Layer 2: the operating model ----- */
+          var pctB = LAYER_B_PCT;
+          var speedB = clamp(speedA + 25, 0, 70);
+          var covB = Math.min(95, covBase + LAYER_B_COV);
 
-          var head, body;
-          if (T.ev <= 0) {
-            head = 'Zero evaluation is doing the heavy lifting.';
-            body = 'With the evaluation column at zero, this program "saves" ' + fmtHrs(T.saved) + ' hours a quarter and returns ' + fmtRoi(roi) + '. That is the shape of a vendor pitch — and it holds only until someone has to read, check, and stand behind the AI output, which in a real program is always. Time the review on twenty real units, put the number in the evaluation column, and watch this verdict change.';
-          } else if (netYear < 0) {
-            head = 'Counted honestly, this does not pay — yet.';
-            body = 'The program ' + (T.saved >= 0 ? 'saves ' + fmtHrs(T.saved) + ' hours a quarter' : 'loses ' + fmtHrs(-T.saved) + ' hours a quarter overall') + ', and ' + fmtHrs(T.ev) + ' hours a quarter go straight into calibration and evaluation. The saved hours are worth ' + fmtMoney(value) + ' a quarter against ' + fmtMoney(tooling) + ' of tooling — a net of ' + fmtSignedMoney(netYear) + ' a year.' + (losers.length ? ' ' + losers.join(' and ') + (losers.length > 1 ? ' lose' : ' loses') + ' time outright at these numbers: there, evaluation costs more than generation saves.' : '') + ' The fix is not a bigger rollout. It is a cheaper evaluation loop, a better workflow on the weak activities, or the discipline to keep them manual.';
-          } else {
-            head = 'It pays — with evaluation on the bill.';
-            body = 'Your program spends ' + fmtHrs(T.today) + ' hours a quarter today and ' + fmtHrs(T.withAI) + ' with AI — ' + fmtHrs(T.ev) + ' of those hours are calibration and evaluation, counted, not wished away. The saving is ' + fmtHrs(T.saved) + ' hours a quarter: worth ' + fmtMoney(value) + ', or ' + fmtSignedMoney(netYear) + ' a year after tooling' + roiPhrase + '. The ' + (isFinite(fte) ? fte.toFixed(1) : '—') + ' FTE of capacity that frees up belongs on coverage, exploratory testing, and the backlog — that framing is what makes the number survivable in the room.' + (losers.length ? ' One caution: ' + losers.join(' and ') + (losers.length > 1 ? ' lose' : ' loses') + ' time at these numbers — fix the workflow there, or keep that work manual.' : '');
-          }
-          setText('verdictHead', head);
-          setText('verdictBody', body);
-          setBars(T.today, T.gen, T.ev);
+          /* ----- Translate into hours, dollars, days ----- */
+          var baseHrs = team * FTE_HOURS;
+          var hrsA = baseHrs * pctA / 100, hrsB = baseHrs * pctB / 100;
+          var moneyA = hrsA * rate, moneyB = hrsB * rate;
+          var perRelease = baseHrs / releases;
+          var teamDay = team * 8;
+          var execDays = perRelease * EXEC_SHARE / teamDay;
+          var execDaysA = execDays * (1 - speedA / 100);
+          var execDaysB = execDays * (1 - speedB / 100);
+          var designDays = perRelease * DESIGN_SHARE / teamDay;
+          var startA = (phases.design || types.functional || phases.requirements) ? designDays * 0.35 : 0;
+          var startB = designDays * 0.5;
 
+          setText('aPct', '−' + fmtHrs(pctA) + '%');
+          setText('aHrs', fmtHrs(hrsA) + ' hrs');
+          setText('aMoney', fmtMoney(moneyA) + ' / yr');
+          setText('aSpeed', 'cycles ~' + speedA + '% faster');
+          setText('aCov', covBase + '% → ' + covA + '%');
+          setText('aReg', fmtDays(execDays) + ' → ' + fmtDays(execDaysA) + ' days');
+          setText('bPct', '−' + pctB + '%');
+          setText('bHrs', fmtHrs(hrsB) + ' hrs');
+          setText('bMoney', fmtMoney(moneyB) + ' / yr');
+          setText('bSpeed', 'cycles ~' + speedB + '% faster');
+          setText('bCov', covBase + '% → ' + covB + '%');
+          setText('bReg', fmtDays(execDays) + ' → ' + fmtDays(execDaysB) + ' days');
+
+          setHTML('sumLine',
+            'For a <b>' + team + '-engineer</b> QE team releasing <b>' + releases + ' times a year</b> — about <b>' +
+            fmtHrs(baseHrs) + ' hours</b> of QE effort annually — cherry-picked AI saves roughly <b>' + fmtHrs(pctA) +
+            '% of effort</b>. Spec-driven, end to end, the saving rises to <b>' + pctB +
+            '%</b>, with coverage moving from ' + covBase + '% to ' + covB + '% instead of ' + covA +
+            '%. The difference between the layers is not more AI. It is where the AI sits.');
+
+          /* ----- The cascade: why speed compounds ----- */
+          setHTML('casDesign',
+            'Test design is about a quarter of QE effort per release — roughly <b>' + fmtDays(designDays) + ' team-days</b> before testing starts.' +
+            (startA > 0
+              ? ' Layer 1 starts testing about <b>' + fmtDays(startA) + ' days earlier</b> per release; Layer 2, generating from the spec, about <b>' + fmtDays(startB) + ' days earlier</b> — every release, all year.'
+              : ' Your answers switch design assistance off, so Layer 1 gains nothing here; Layer 2, generating from the spec, still starts about <b>' + fmtDays(startB) + ' days earlier</b> per release.'));
+          setHTML('casExec',
+            'A regression cycle of about <b>' + fmtDays(execDays) + ' team-days</b> today finishes in about <b>' + fmtDays(execDaysA) +
+            ' days</b> at Layer 1 — selection runs only the tests the change needs — and about <b>' + fmtDays(execDaysB) +
+            ' days</b> at Layer 2, where the suite is generated, selected, and healed as one system.');
+          setHTML('casDefect',
+            'Defects surface <b>in the same cycle that wrote them</b> — while the change is small and the author remembers it — not in a regression pass weeks later, or in production. A defect costs a fraction to fix at the desk where it was born. No independent study prices this for AI testing, so the analysis puts no dollar figure on it — but it is the main reason Layer 2 outruns the sum of Layer 1.');
+
+          /* ----- Tool recommendations, following from the answers -----
+             Independent platforms only. The author's own tools never appear
+             here — an analysis that recommends its author's products is an ad. */
+          var recs = [];
+          if (tmKey === 'jira') recs.push({
+            html: '<b>Your Jira run history is an asset — use it.</b> Zephyr and Xray already hold the pass/fail history regression selection learns from. Before buying anything, export it and check it is complete enough to select on.',
+            text: 'Jira + Zephyr/Xray: your run history is the asset regression selection learns from — check it is complete before buying anything.'
+          });
+          if (types.regression || phases.execution) recs.push({
+            html: '<b>Launchable</b> (now part of CloudBees) — predictive test selection: ranks tests by likelihood of failure for each change and runs the subset that matters. The strongest-evidenced use case in this analysis, as a product.',
+            text: 'Launchable (CloudBees) — predictive test selection; runs the subset of tests a change actually needs.'
+          });
+          if (types.uat) recs.push({
+            html: '<b>Tricentis Tosca</b> — model-based automation built for form-heavy enterprise applications — the packaged-app validation UAT runs on, without hand-writing a script per form.',
+            text: 'Tricentis Tosca — model-based automation for form-heavy enterprise applications and UAT validation.'
+          });
+          if (autoShare >= 25 && autoKey !== 'none') recs.push({
+            html: '<b>mabl</b> — AI-native testing platform with self-healing locators. UI suites absorb routine interface changes instead of breaking every release.',
+            text: 'mabl — AI-native testing with self-healing locators; UI suites absorb routine changes instead of breaking.'
+          });
+          if (autoKey === 'none') recs.push({
+            html: '<b>ACCELQ</b> — codeless, AI-native automation platform. The fastest route from no automation estate to one AI can build on.',
+            text: 'ACCELQ — codeless AI-native automation platform; fastest route from no automation estate to one AI can build on.'
+          });
+          if (autoKey === 'selenium' || autoKey === 'none') recs.push({
+            html: '<b>TestMu AI</b> (formerly LambdaTest) — cloud execution grid with AI-assisted orchestration. The pragmatic upgrade when a Selenium estate needs scale and speed more than a rewrite.',
+            text: 'TestMu AI (formerly LambdaTest) — cloud execution grid + AI orchestration; pragmatic upgrade path for a Selenium estate.'
+          });
+          if (autoKey === 'accelq') recs.push({
+            html: '<b>TestMu AI</b> (formerly LambdaTest) — cloud execution at scale to pair with your codeless authoring, so generated tests have somewhere fast to run.',
+            text: 'TestMu AI (formerly LambdaTest) — cloud execution at scale to pair with codeless authoring.'
+          });
+          var recListEl = document.getElementById('recList');
+          if (recListEl) recListEl.innerHTML = recs.map(function (r) { return '<li>' + r.html + '</li>'; }).join('');
+          lastRecsText = recs.map(function (r) { return '- ' + r.text; });
+
+          /* ----- Copy / download payload ----- */
+          var ucLines = ucs.map(function (u) {
+            return '- ' + u.name + ': −' + fmtHrs(u.effort) + '% effort' + (u.speed ? ', execution ~' + Math.round(u.speed) + '% faster' : '') + (u.cov ? ', +' + u.cov + ' coverage pts' : '');
+          });
           lastSummary = [
-            'AI × QE — ROI Calculator: my program, in ground-level units',
-            'Per quarter unless noted · https://aixqe.com/#/calculator',
+            'AI × QE — Savings Analysis: two layers of AI in testing',
+            'https://aixqe.com/#/calculator',
             '',
-            'Program',
+            'The program (as answered)',
+            '- Releases per year: ' + selText('qReleases'),
+            '- QE team size: ' + selText('qTeam'),
+            '- Manual vs automated: ' + selText('qMix'),
+            '- Automation tool: ' + selText('qAutoTool'),
+            '- Test management tool: ' + selText('qTmTool'),
+            '- Testing pyramid: ' + selText('qPyramid'),
             '- Blended loaded cost of one QE hour: ' + fmtMoney(rate),
-            '- AI tooling cost: ' + fmtMoney(tooling) + ' per quarter',
+            '- Estimated QE effort: ' + fmtHrs(baseHrs) + ' hrs per year (team \u00d7 1,880 hrs)',
+            '- Baseline coverage implied by the answers: ' + covBase + '%',
             '',
-            'Activity by activity (hours per quarter)'
-          ].concat(lines).concat([
+            'Layer 1 — Cherry-picked AI use cases: −' + fmtHrs(pctA) + '% of effort',
+            '- Effort saved: ' + fmtHrs(hrsA) + ' hrs per year = ' + fmtMoney(moneyA),
+            '- Execution speed: regression cycles ~' + speedA + '% faster (' + fmtDays(execDays) + ' -> ' + fmtDays(execDaysA) + ' team-days)',
+            '- Coverage: ' + covBase + '% -> ' + covA + '%',
+            'Use cases switched on by the answers:'
+          ].concat(ucLines.length ? ucLines : ['- (none — the answers switch no Layer 1 use case on)']).concat([
             '',
-            'Roll-up',
-            '- Today: ' + fmtHrs(T.today) + ' hrs per quarter',
-            '- With AI: ' + fmtHrs(T.withAI) + ' hrs per quarter — of which evaluation ' + fmtHrs(T.ev) + ' hrs',
-            '- Saved: ' + (T.saved < 0 ? '−' : '') + fmtHrs(Math.abs(T.saved)) + ' hrs per quarter (effort ' + effortTxt + ')',
-            '- Value of saved hours: ' + fmtMoney(value) + ' per quarter',
-            '- Net after tooling: ' + fmtSignedMoney(netYear) + ' per year',
-            '- ROI: ' + fmtRoi(roi),
-            '- Capacity freed: ' + (isFinite(fte) ? fte.toFixed(1) + ' FTE per year' : '—') + ' — capacity for coverage, exploratory testing, and the backlog; not a headcount cut',
+            'Layer 2 — Spec-Driven QE: −' + pctB + '% of effort (experience range 38–48%)',
+            '- Effort saved: ' + fmtHrs(hrsB) + ' hrs per year = ' + fmtMoney(moneyB),
+            '- Execution speed: regression cycles ~' + speedB + '% faster (' + fmtDays(execDays) + ' -> ' + fmtDays(execDaysB) + ' team-days)',
+            '- Coverage: ' + covBase + '% -> ' + covB + '%',
+            '- Testing starts ~' + fmtDays(startB) + ' team-days earlier per release (design generated from the spec)',
             '',
-            'Method: for each activity, hours with AI = units × (generation hours + calibration & evaluation hours). Effort only — escaped-defect and licensing savings are not counted, in either direction.'
+            'What the client should do (the Spec-Driven QE path)',
+            '1. Write specs as contracts — versioned, reviewed, approved before generation.',
+            '2. Make acceptance criteria executable — tests generated from them, traceable to requirements.',
+            '3. Put an evaluation gate on every AI-generated asset — build, flakiness, coverage checks in CI.',
+            '4. Keep humans on the irreversible steps — merges, releases, production-adjacent changes.',
+            '5. Baseline first, then track outcomes — coverage, escape rate, flake rate, before and after.',
+            '',
+            'Tools that fit these answers'
+          ]).concat(lastRecsText).concat([
+            '',
+            'Evidence & honesty notes',
+            '- Layer 1 gains are anchored to published research: Meta predictive test selection (~2x infra-cost cut at >95% failure recall, ICSE-SEIP 2019); Meta TestGen-LLM behind filters (57% pass reliably, 73% accepted, FSE 2024); AI coding-assistance RCTs spanning +55.8% to -19% by task (Peng 2023; Cui et al.; METR 2025). Self-healing figures are vendor-only and counted small. Performance/exploratory AI: no quantified enterprise effect found — counted as assistive only.',
+            '- Layer 2 (42%, range 38-48%) is DJ\u2019s implementation experience, not a published study: no peer-reviewed enterprise outcome study of spec-driven adoption exists. The evidenced mechanism is the verification loop (ReqTestAgent ablation: canonical pass 30% -> 100% with verification).',
+            '- Base rates: 46% of enterprise AI PoCs were scrapped before production in 2025 (S&P Global). Saved effort is capacity returned to the team, not a headcount line.',
+            '- Method: Layer 1 sums the use cases the answers switch on, adjusted for tooling aptitude, run-history readiness, and pyramid shape, capped at 30% of effort. Execution modelled at 35% of QE effort per release, design at 25%.'
           ]).join('\n');
         }
 
-        /* ---------- Presets: rewrite the generation & evaluation columns only ---------- */
-        var PRESETS = {
-          typical: [[2, 2], [0.1, 0.15], [0.75, 0.75], [1.5, 1.5], [8, 4], [0.15, 0.1], [0.25, 0.25]],
-          conservative: [[5, 6], [0.2, 0.25], [1.25, 1.5], [2.5, 3], [9, 8], [0.2, 0.25], [0.3, 0.375]],
-          pitch: [[1, 0], [0.05, 0], [0.375, 0], [0.75, 0], [4, 0], [0.075, 0], [0.125, 0]]
-        };
-        var presetBtns = Array.prototype.slice.call(document.querySelectorAll('.preset-btn'));
-        function markPreset(name) {
-          presetBtns.forEach(function (b) { b.classList.toggle('on', b.getAttribute('data-preset') === name); });
-        }
-        presetBtns.forEach(function (btn) {
-          btn.addEventListener('click', function () {
-            var p = PRESETS[btn.getAttribute('data-preset')];
-            if (!p) return;
-            p.forEach(function (pair, i) {
-              var g = document.getElementById('inGen' + (i + 1));
-              var e = document.getElementById('inEval' + (i + 1));
-              if (g) g.value = pair[0];
-              if (e) e.value = pair[1];
-            });
-            markPreset(btn.getAttribute('data-preset'));
-            compute();
-          });
-        });
-
-        var inputIds = ['inRate', 'inTooling'];
-        for (var k = 1; k <= 7; k++) { inputIds.push('inVol' + k, 'inToday' + k, 'inGen' + k, 'inEval' + k); }
-        inputIds.forEach(function (id) {
+        /* ---------- Question wiring ---------- */
+        ['qReleases', 'qTeam', 'qMix', 'qAutoTool', 'qTmTool', 'qPyramid', 'inRate'].forEach(function (id) {
           var el = document.getElementById(id);
-          if (el) el.addEventListener('input', function () {
-            if (id.indexOf('inGen') === 0 || id.indexOf('inEval') === 0) markPreset('');
+          if (!el) return;
+          el.addEventListener('input', compute);
+          el.addEventListener('change', compute);
+        });
+        Array.prototype.slice.call(document.querySelectorAll('.opt-btn')).forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            var on = btn.classList.toggle('on');
+            btn.setAttribute('aria-pressed', on ? 'true' : 'false');
             compute();
           });
         });
-        Array.prototype.slice.call(document.querySelectorAll('#calcView form')).forEach(function (f) {
-          f.addEventListener('submit', function (e) { e.preventDefault(); });
-        });
+        var qForm = document.getElementById('qForm');
+        if (qForm) qForm.addEventListener('submit', function (e) { e.preventDefault(); });
 
-        /* ---------- Copy / download the result ---------- */
+        /* ---------- Copy / download the analysis ---------- */
         var copyStatus = document.getElementById('copyStatus');
         function setStatus(t) { if (copyStatus) copyStatus.textContent = t; }
         var btnCopy = document.getElementById('btnCopy');
         if (btnCopy) btnCopy.addEventListener('click', function () {
-          if (!lastSummary) { setStatus('Add your program’s volumes first — there is nothing to copy yet.'); return; }
-          function done() { setStatus('Copied — paste it into the budget deck.'); }
+          if (!lastSummary) { setStatus('Nothing to copy yet — the analysis builds from your answers above.'); return; }
+          function done() { setStatus('Copied — paste it into the business case.'); }
           function fallback() {
             var ta = document.createElement('textarea');
             ta.value = lastSummary;
@@ -1623,14 +1702,14 @@
         });
         var btnDownload = document.getElementById('btnDownload');
         if (btnDownload) btnDownload.addEventListener('click', function () {
-          if (!lastSummary) { setStatus('Add your program’s volumes first — there is nothing to download yet.'); return; }
+          if (!lastSummary) { setStatus('Nothing to download yet — the analysis builds from your answers above.'); return; }
           var blob = new Blob([lastSummary], { type: 'text/plain;charset=utf-8' });
           var url = URL.createObjectURL(blob);
           var a = document.createElement('a');
-          a.href = url; a.download = 'ai-qe-roi-result.txt';
+          a.href = url; a.download = 'ai-qe-savings-analysis.txt';
           document.body.appendChild(a); a.click(); document.body.removeChild(a);
           setTimeout(function () { URL.revokeObjectURL(url); }, 2000);
-          setStatus('Downloaded as ai-qe-roi-result.txt.');
+          setStatus('Downloaded as ai-qe-savings-analysis.txt.');
         });
 
         compute();
