@@ -49,7 +49,7 @@
         }
       }
       * { box-sizing: border-box; }
-      html { scroll-behavior: smooth; scroll-padding-top: 32px; }
+      html { scroll-behavior: smooth; scroll-padding-top: 88px; }
       body {
         margin: 0;
         background: var(--paper);
@@ -89,7 +89,17 @@
       }
 
       /* ---------- Nav ---------- */
-      header { padding-top: 30px; }
+      header {
+        position: sticky; top: 0; z-index: 60;
+        padding-top: 16px; padding-bottom: 13px;
+        background: color-mix(in srgb, var(--paper) 86%, transparent);
+        -webkit-backdrop-filter: blur(12px) saturate(1.4); backdrop-filter: blur(12px) saturate(1.4);
+        border-bottom: 1px solid var(--line);
+      }
+      #progress {
+        position: fixed; top: 0; left: 0; height: 2px; width: 0;
+        background: var(--accent); z-index: 70; pointer-events: none;
+      }
       .nav { display: flex; align-items: baseline; justify-content: space-between; gap: 14px 28px; flex-wrap: wrap; }
       .wordmark { font-family: "Fraunces", Georgia, serif; font-size: 24px; font-weight: 600; letter-spacing: -.01em; color: var(--ink); }
       .wordmark:hover { text-decoration: none; color: var(--accent); }
@@ -220,6 +230,53 @@
       .card-top h3 { min-width: 0; }
       .slide figcaption > span:first-child { min-width: 0; }
       .wrow .arr { font-size: 26px; color: var(--accent); flex: none; line-height: 1; }
+
+      /* ---------- News ---------- */
+      .nweek { font-family: "Fraunces", Georgia, serif; font-size: 21px; font-weight: 600; letter-spacing: -.01em; margin: 0; padding-top: 24px; border-top: 1px solid var(--ink); }
+      .nlist { list-style: none; margin: 0; padding: 0; }
+      .nitem { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 2px 18px; padding: 17px 14px; margin: 0 -14px; border-bottom: 1px solid var(--line); }
+      .ndate { font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); padding-top: 5px; white-space: nowrap; }
+      .nbody h3 { font-family: "Fraunces", Georgia, serif; font-size: 20px; font-weight: 500; letter-spacing: -.01em; line-height: 1.25; margin: 0 0 3px; }
+      .nbody h3 a { color: var(--ink); transition: color .25s ease; }
+      .nbody h3 a:hover { color: var(--accent); text-decoration: none; }
+      .nbody h3 .arr { font-size: 15px; color: var(--accent); margin-left: 4px; }
+      .nbody p { color: var(--muted); font-size: 16px; line-height: 1.6; margin: 0; max-width: 64ch; }
+      .nsrc { color: var(--accent); font-weight: 600; font-size: 14.5px; white-space: nowrap; }
+
+      /* ---------- Newsletter band (the whole Writing section, kept small) ---------- */
+      .band {
+        border: 1px solid var(--line-strong); background: var(--paper-2);
+        padding: 30px 32px; display: flex; justify-content: space-between;
+        align-items: center; gap: 18px 34px; flex-wrap: wrap;
+      }
+      .band h2 { font-size: clamp(26px, 3.2vw, 34px); margin: 0 0 6px; }
+      .band p { color: var(--muted); margin: 0; font-size: 16.5px; max-width: 56ch; }
+      .band a.btn {
+        flex: none; border: 1px solid var(--accent); color: var(--accent);
+        font-weight: 600; font-size: 16px; padding: 13px 22px;
+        transition: background .25s ease, color .25s ease;
+      }
+      .band a.btn:hover { background: var(--accent); color: var(--paper); text-decoration: none; }
+      @media (max-width: 640px) { .band { padding: 24px 22px; } }
+
+      /* ---------- Home news teaser (latest three; the rest lives on #/news) ---------- */
+      .sec-head .sec-link { margin-left: auto; font-size: 15px; font-weight: 600; white-space: nowrap; }
+      .nteaser { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--ink); }
+      .nteaser li { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 2px 18px; padding: 15px 0; border-bottom: 1px solid var(--line); }
+      .nteaser a { font-family: "Fraunces", Georgia, serif; font-size: 19.5px; font-weight: 500; letter-spacing: -.01em; line-height: 1.3; color: var(--ink); transition: color .25s ease; }
+      .nteaser a:hover { color: var(--accent); text-decoration: none; }
+      .nteaser a .arr { font-size: 14px; color: var(--accent); margin-left: 4px; }
+
+      /* ---------- News page ---------- */
+      .nweek-head { display: flex; align-items: center; gap: 14px; }
+      .nweek-head .nweek { flex: none; }
+      .npill {
+        font-size: 12px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase;
+        color: var(--accent); background: var(--accent-soft);
+        border: 1px solid var(--line-strong); padding: 4px 10px 3px; margin-top: 24px;
+      }
+      .nitem { transition: background .25s ease; }
+      .nitem:hover { background: var(--paper-2); }
 
       /* ---------- About + carousel ---------- */
       .about-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px 60px; align-items: start; }
@@ -429,12 +486,15 @@
   </head>
   <body>
 
+    <div id="progress" aria-hidden="true"></div>
+
     <header class="wrap">
       <nav class="nav" aria-label="Site">
         <a class="wordmark" href="#top">DJ Chanda</a>
         <div class="nav-links">
           <a href="#work">Work</a>
           <a href="#writing">Writing</a>
+          <a class="ext" href="#/news">News</a>
           <a class="ext" href="#/calculator">Savings Analysis</a>
           <a href="#about">About</a>
           <a href="#contact">Contact</a>
@@ -937,38 +997,37 @@
         </div>
       </section>
 
-      <!-- WRITING -->
+      <!-- WRITING — one small reference to the newsletter -->
       <section id="writing" class="wrap">
-        <div class="sec-head reveal"><h2>Writing</h2></div>
-        <p class="sec-note reveal">Writing is how I keep up — and how I test ideas in the open. It all lives under one name: <strong>AI × QE</strong>. Not vendor theory, but my own tools, workflows, and experiments — and what actually held up when I put them to work.</p>
-        <a class="wrow reveal" href="https://www.linkedin.com/newsletters/7517165851129610240/" target="_blank" rel="noopener">
+        <div class="band reveal">
           <div>
-            <h3>AI × QE — the newsletter</h3>
-            <p>My weekly LinkedIn newsletter on AI in quality engineering: new tooling, agentic workflows, and the evidence behind the claims — “Quality Accuracy.” Subscribe to get each edition as it lands.</p>
+            <h2>AI × QE — the newsletter</h2>
+            <p>My writing lives in one place: a weekly LinkedIn newsletter on AI in quality engineering — new tooling, agentic workflows, and the evidence behind the claims. New edition every Wednesday.</p>
           </div>
-          <span class="arr" aria-hidden="true">↗</span>
-        </a>
-        <a class="wrow reveal" href="https://www.linkedin.com/pulse/30-ai-keywords-you-hear-meetings-explained-like-youre-chanda-7pkjc" target="_blank" rel="noopener">
-          <div>
-            <h3>Edition Nº 1 — “30 AI keywords you hear in meetings, explained like you're five”</h3>
-            <p>The first edition: thirty AI terms that come up in every meeting — attention, MoE, quantization, LoRA, RLHF, evals and more — each explained in plain language, with an everyday object to picture it by. For everyone who nods along in the meeting and googles it after.</p>
-          </div>
-          <span class="arr" aria-hidden="true">↗</span>
-        </a>
-        <a class="wrow reveal" href="https://www.linkedin.com/newsletters/7517165851129610240/" target="_blank" rel="noopener">
-          <div>
-            <h3>Next edition — Wed Oct 28: spec-driven development</h3>
-            <p>Edition Nº 2: why the blueprint matters more than the prompt — traceability, independent verification, and evidence as a requirement, drawn from the spec-driven framework in my work above.</p>
-          </div>
-          <span class="arr" aria-hidden="true">↗</span>
-        </a>
-        <a class="wrow reveal" href="https://www.linkedin.com/in/djchanda/" target="_blank" rel="noopener">
-          <div>
-            <h3>The weekly LinkedIn series</h3>
-            <p>Between editions, shorter posts on my profile — one idea at a time, argued in the open: what AI actually changes in testing, and where the hype breaks.</p>
-          </div>
-          <span class="arr" aria-hidden="true">↗</span>
-        </a>
+          <a class="btn" href="https://www.linkedin.com/newsletters/7517165851129610240/" target="_blank" rel="noopener">Subscribe on LinkedIn ↗</a>
+        </div>
+      </section>
+
+      <!-- AI NEWS — teaser only; the full list lives on its own page (#/news) -->
+      <section id="news" class="wrap">
+        <div class="sec-head reveal">
+          <h2>AI news this week</h2>
+          <a class="sec-link" href="#/news">The last three weeks →</a>
+        </div>
+        <ul class="nteaser reveal">
+          <li>
+            <span class="ndate">Oct 18</span>
+            <a href="https://claude-updates.com/posts/spec-kitty-g51lw" target="_blank" rel="noopener">Spec Kitty — a governed spec-driven loop for coding agents<span class="arr" aria-hidden="true">↗</span></a>
+          </li>
+          <li>
+            <span class="ndate">Oct 15</span>
+            <a href="https://www.izz.co.in/2026/10/meta-muse-spark-open-mac-studio.html" target="_blank" rel="noopener">Meta releases Muse Spark Open — 816B open-weight model for coding and agents<span class="arr" aria-hidden="true">↗</span></a>
+          </li>
+          <li>
+            <span class="ndate">Oct 13–15</span>
+            <a href="https://vectorwire.ai/article/singapore-stacks-agentic-ai-testing-frontier-model-access-and-cyber-diplomacy-in-38243f" target="_blank" rel="noopener">Singapore builds the first national agentic-AI governance stack<span class="arr" aria-hidden="true">↗</span></a>
+          </li>
+        </ul>
       </section>
 
       <!-- ROI CALCULATOR -->
@@ -1296,6 +1355,70 @@
       </section>
     </main>
 
+    <!-- AI NEWS PAGE (own view: #/news) — holds the last three weeks, newest first -->
+    <main id="newsView" hidden>
+      <div class="wrap calc-head">
+        <a class="calc-back" href="#top">← Back to the site</a>
+        <div class="hero-rule" aria-hidden="true"></div>
+        <h2 class="calc-title">AI news, <em>week by week</em></h2>
+        <p class="calc-lede">
+          <span>The AI stories that matter for quality engineering — one line each, source linked.</span><br />
+          <span class="l2">The last three weeks, newest first. A new week lands every Friday; the oldest rolls off.</span>
+        </p>
+      </div>
+
+      <section class="wrap" style="padding-top:8px">
+        <div class="nweek-head">
+          <h3 class="nweek">Week of Oct 12–19, 2026</h3>
+          <span class="npill">Latest</span>
+        </div>
+        <ul class="nlist">
+          <li class="nitem">
+            <span class="ndate">Oct 18</span>
+            <div class="nbody">
+              <h3><a href="https://claude-updates.com/posts/spec-kitty-g51lw" target="_blank" rel="noopener">Spec Kitty — a governed spec-driven loop for coding agents<span class="arr" aria-hidden="true">↗</span></a></h3>
+              <p>Open-source CLI: spec → plan → tasks → review → accept → merge, with explicit human gates. Per the project's own documentation. <span class="nsrc">claude-updates.com</span></p>
+            </div>
+          </li>
+          <li class="nitem">
+            <span class="ndate">Oct 15</span>
+            <div class="nbody">
+              <h3><a href="https://www.izz.co.in/2026/10/meta-muse-spark-open-mac-studio.html" target="_blank" rel="noopener">Meta releases Muse Spark Open — 816B open-weight model for coding and agents<span class="arr" aria-hidden="true">↗</span></a></h3>
+              <p>Free to download and self-host: frontier-scale test agents can run on your own hardware, and test data stays in-house. <span class="nsrc">Izz</span></p>
+            </div>
+          </li>
+          <li class="nitem">
+            <span class="ndate">Oct 15</span>
+            <div class="nbody">
+              <h3><a href="https://blockchain.news/news/nvidia-rtx-spark-software-ecosystem-updates-october-2026" target="_blank" rel="noopener">NVIDIA Nemotron 3.5 Bolt — a fully open model for agentic AI<span class="arr" aria-hidden="true">↗</span></a></h3>
+              <p>74B-parameter MoE with weights, data, and recipes all open, built for agentic work. Vendor announcement. <span class="nsrc">Blockchain News</span></p>
+            </div>
+          </li>
+          <li class="nitem">
+            <span class="ndate">Oct 13–15</span>
+            <div class="nbody">
+              <h3><a href="https://vectorwire.ai/article/singapore-stacks-agentic-ai-testing-frontier-model-access-and-cyber-diplomacy-in-38243f" target="_blank" rel="noopener">Singapore builds the first national agentic-AI governance stack<span class="arr" aria-hidden="true">↗</span></a></h3>
+              <p>IMDA's starter kit for testing agentic systems, plus accredited AI testers (AI TAP) — agent testing is becoming a compliance expectation, not a nice-to-have. <span class="nsrc">Vector Wire</span></p>
+            </div>
+          </li>
+          <li class="nitem">
+            <span class="ndate">Oct 12</span>
+            <div class="nbody">
+              <h3><a href="https://axeetech.com/meta-launches-muse-wonder-its-first-frontier-ai-model-to-rival-openai-and-anthropic/" target="_blank" rel="noopener">Meta launches Muse Wonder, its first frontier AI model<span class="arr" aria-hidden="true">↗</span></a></h3>
+              <p>Built for agentic coding — but the stronger Wonder Full is not on the API, so tool builders on open APIs don't get the best model. <span class="nsrc">AxeeTech</span></p>
+            </div>
+          </li>
+          <li class="nitem">
+            <span class="ndate">Oct 12</span>
+            <div class="nbody">
+              <h3><a href="https://koreatechdesk.com/ai-generated-software-testing-build-verification" target="_blank" rel="noopener">ONYCOM's [ai]Q platform takes on AI test design<span class="arr" aria-hidden="true">↗</span></a></h3>
+              <p>Korean testing firm reports a financial-sector PoC cut test-design work by ~50%. Company-reported, single source. <span class="nsrc">KoreaTechDesk</span></p>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </main>
+
     <!-- CONTACT / FOOTER -->
     <footer id="contact">
       <div class="wrap">
@@ -1411,25 +1534,42 @@
 
     <script>
       (function () {
-        /* ---------- Page routing: home <-> calculator (#/calculator) ---------- */
+        /* ---------- Page routing: home <-> calculator (#/calculator) <-> news (#/news) ---------- */
         var homeView = document.getElementById('top');
         var calcView = document.getElementById('calcView');
+        var newsView = document.getElementById('newsView');
         var HOME_TITLE = document.title;
         var CALC_TITLE = 'The AI in QE Savings Analysis — AI × QE | DJ Chanda';
+        var NEWS_TITLE = 'AI News — AI × QE | DJ Chanda';
         function isCalc() { return location.hash.indexOf('#/calculator') === 0; }
+        function isNews() { return location.hash.indexOf('#/news') === 0; }
         function route() {
           var calc = isCalc();
+          var news = isNews();
           if (calcView) calcView.hidden = !calc;
-          if (homeView) homeView.hidden = calc;
-          document.title = calc ? CALC_TITLE : HOME_TITLE;
-          if (calc) {
+          if (newsView) newsView.hidden = !news;
+          if (homeView) homeView.hidden = calc || news;
+          document.title = calc ? CALC_TITLE : (news ? NEWS_TITLE : HOME_TITLE);
+          if (calc || news) {
             window.scrollTo(0, 0);
           } else if (location.hash && location.hash.charAt(1) !== '/') {
             var target = document.querySelector(location.hash);
             if (target) target.scrollIntoView();
           }
+          updateProgress();
         }
         window.addEventListener('hashchange', route);
+
+        /* ---------- Scroll progress (thin accent bar under the sticky nav) ---------- */
+        var progressEl = document.getElementById('progress');
+        function updateProgress() {
+          if (!progressEl) return;
+          var max = document.documentElement.scrollHeight - window.innerHeight;
+          var y = window.scrollY || window.pageYOffset || 0;
+          progressEl.style.width = (max > 0 ? Math.min(100, (y / max) * 100) : 0) + '%';
+        }
+        window.addEventListener('scroll', updateProgress, { passive: true });
+        window.addEventListener('resize', updateProgress);
 
         /* ---------- Savings analysis: questions in, two layers out ----------
            No per-unit AI hours anywhere. The visitor describes their program;
