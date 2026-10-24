@@ -14,7 +14,7 @@
     <meta name="twitter:title" content="DJ Chanda — AI in Quality Engineering" />
     <meta name="twitter:description" content="Senior Manager, Accenture — AI in Quality Engineering. I make quality the competitive advantage." />
     <meta name="twitter:image" content="https://aixqe.com/og-logo.jpg" />
-    <link rel="icon" href="data:," />
+    <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -103,6 +103,13 @@
       .nav { display: flex; align-items: baseline; justify-content: space-between; gap: 14px 28px; flex-wrap: wrap; }
       .wordmark { font-family: "Fraunces", Georgia, serif; font-size: 24px; font-weight: 600; letter-spacing: -.01em; color: var(--ink); }
       .wordmark:hover { text-decoration: none; color: var(--accent); }
+      .wordmark { line-height: 0; }
+      .brand-logo { height: 30px; width: auto; display: block; }
+      .logo-dark { display: none; }
+      @media (prefers-color-scheme: dark) {
+        .logo-light { display: none; }
+        .logo-dark { display: block; }
+      }
       .nav-links { display: flex; gap: 26px; flex-wrap: wrap; font-size: 15.5px; font-weight: 500; }
       .nav-links a { color: var(--ink); transition: color .25s ease; }
       .nav-links a:hover { color: var(--accent); text-decoration: none; }
@@ -490,7 +497,7 @@
 
     <header class="wrap">
       <nav class="nav" aria-label="Site">
-        <a class="wordmark" href="#top">DJ Chanda</a>
+        <a class="wordmark" href="#top" aria-label="AI × QE home"><img class="brand-logo logo-light" src="/logo-wordmark.png" alt="AI × QE" /><img class="brand-logo logo-dark" src="/logo-wordmark-dark.png" alt="" aria-hidden="true" /></a>
         <div class="nav-links">
           <a href="#work">Work</a>
           <a href="#writing">Writing</a>
@@ -1012,7 +1019,7 @@
       <section id="news" class="wrap">
         <div class="sec-head reveal">
           <h2>AI news this week</h2>
-          <a class="sec-link" href="#/news">The last three weeks →</a>
+          <a class="sec-link" href="#/news">The last two weeks →</a>
         </div>
         <ul class="nteaser reveal">
           <li>
@@ -1355,7 +1362,7 @@
       </section>
     </main>
 
-    <!-- AI NEWS PAGE (own view: #/news) — holds the last three weeks, newest first -->
+    <!-- AI NEWS PAGE (own view: #/news) — holds the last two weeks, newest first -->
     <main id="newsView" hidden>
       <div class="wrap calc-head">
         <a class="calc-back" href="#top">← Back to the site</a>
@@ -1363,7 +1370,7 @@
         <h2 class="calc-title">AI news, <em>week by week</em></h2>
         <p class="calc-lede">
           <span>The AI stories that matter for quality engineering — one line each, source linked.</span><br />
-          <span class="l2">The last three weeks, newest first. A new week lands every Friday; the oldest rolls off.</span>
+          <span class="l2">The last two weeks, newest first. A new week lands every Friday; the oldest rolls off.</span>
         </p>
       </div>
 
