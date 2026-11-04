@@ -818,7 +818,7 @@
       <section id="tools" class="wrap">
         <p class="eyebrow">Tool</p>
         <div class="sec-head"><h2>The AI in QE Savings Analysis</h2></div>
-        <p class="sec-note">What can AI actually save a testing program? It depends on how far you take it: <strong>one use case at a time, or the whole lifecycle run from the spec.</strong> A short guided setup, all figures in CAD, shows both layers side by side: Layer 1, cherry-picked use cases, at <strong>−26%</strong> of QE effort, and Layer 2, Spec-Driven QE, at <strong>−42%</strong>, with coverage rising from <strong>58% to 76%</strong> across the two layers. Stated plainly: the Layer 2 figure is my implementation experience, not a published study, and the tool shows ranges, not just point figures.</p>
+        <p class="sec-note">What can AI actually save a testing program? It depends on how far you take it: <strong>one use case at a time, or the whole lifecycle run from the spec.</strong> A short guided setup, all figures in CAD, shows both layers side by side: Layer 1, cherry-picked use cases, at <strong>−26%</strong> of QE effort at typical answers, and Layer 2, Spec-Driven QE, at <strong>−42%</strong> at typical answers — scaling with your Layer 1 result — with coverage rising from <strong>58% to 76%</strong> across the two layers. Stated plainly: the Layer 2 figure is my implementation experience, not a published study, and the tool shows ranges, not just point figures.</p>
         <div class="calc-cta">
           <a class="btn" href="#/calculator">Open the Savings Analysis →</a>
         </div>
@@ -1624,7 +1624,7 @@
               <div class="lrow"><dt>Regression cycle</dt><dd id="bReg">-</dd></div>
             </dl>
             <p class="lnote" id="bRange">-</p>
-            <p class="lnote">Everything in Layer 1, plus the connective layer: tests generated from the spec and checked by gates, so phases stop handing effort to each other. This figure is my implementation experience, 38–48% across enterprise programs, not a study result.</p>
+            <p class="lnote">Everything in Layer 1, plus the connective layer: tests generated from the spec and checked by gates, so phases stop handing effort to each other. This figure scales with your Layer 1 — 42% at typical answers, from my implementation experience across enterprise programs, not a study result.</p>
           </div>
         </div>
 
@@ -1686,7 +1686,7 @@
           <div class="how-card">
             <h3>Layer 2: experience, and the two warnings</h3>
             <ul>
-              <li><b>The figure is experience, not a study.</b> 42% (range 38–48%) is what I've seen implementing spec-driven QE in enterprise programs. No peer-reviewed outcome study of spec-driven adoption exists. This page won't dress it up as one.</li>
+              <li><b>The figure is experience, not a study.</b> 42% at typical answers (range 38–48% at that level), scaling with your Layer 1 result, is what I've seen implementing spec-driven QE in enterprise programs. No peer-reviewed outcome study of spec-driven adoption exists. This page won't dress it up as one.</li>
               <li><b>Why it works when it works: the verification loop.</b> ReqTestAgent ablation: adding execution-and-verification to generation took canonical pass rates from 30% to 100% and mutation scores from 0.216 to 0.678. MutGen (2025) shows the same lever. Specs as contracts plus eval gates is that loop, run as an operating model.</li>
               <li><b>Warning one: the base rate.</b> 46% of enterprise AI PoCs were scrapped before production in 2025; 42% of companies abandoned most AI initiatives (S&amp;P Global). Layer 2 assumes the operating model is actually adopted, gates, baselines, and all. Half-adopted, it performs like an expensive Layer 1.</li>
               <li><b>Warning two: perception lies.</b> In METR's 2025 trial, developers using AI were measured 19% slower while believing they were ~20% faster. Baseline first; judge on coverage, escapes, and flake, never on how fast the team <i>feels</i>.</li>
@@ -1700,10 +1700,10 @@
         <div class="calc-how">
           <div class="how-card">
             <h3>How the estimate works</h3>
-            <p>Annual QE effort is your input above. Layer 1 % sums the use cases your answers switch on, multiplied by your automation tool's aptitude, capped at 30%. Layer 2 is a fixed 42% experience figure. ROI = (annual savings − implementation cost) / implementation cost.</p>
+            <p>Annual QE effort is your input above. Layer 1 % sums the use cases your answers switch on, multiplied by your automation tool's aptitude, capped at 30%. Layer 2 scales with your Layer 1: 42% at typical answers, proportionally lower or higher as your answers change it. ROI = (annual savings − implementation cost) / implementation cost.</p>
             <p>The use cases are test design, script generation, regression selection, self-healing, triage, test data, reporting, and the rest, each contributing the share of effort its published evidence supports, adjusted by your test-management history (selection needs it) and your pyramid shape. The Layer 1 total is capped at 30% of effort, because that is where cherry-picking plateaus in practice.</p>
             <p>Coverage starts from a baseline derived from your automation share and pyramid (an automation-first, healthy-pyramid program starts high; a manual, inverted one starts low), and each layer adds the points its use cases can defend, capped, because coverage bought by generation alone is coverage without verification. Execution speed is the reduction in regression-cycle time: per release, execution is modelled at 35% of QE effort and test design at 25%. Stated assumptions, the same for every visitor, so two programs answering alike get alike answers.</p>
-            <p>Layer 2 replaces the sum with the operating-model figure: 42% of effort (range 38–48%), execution speed carried a further step beyond Layer 1, and coverage lifted end to end, because in a spec-driven program the gains are not confined to the activities you remembered to cherry-pick.</p>
+            <p>Layer 2 replaces the sum with the operating-model figure, scaled from your Layer 1 result: 42% of effort at typical answers (range 38–48% at that level, scaling proportionally with it), execution speed carried a further step beyond Layer 1, and coverage lifted end to end, because in a spec-driven program the gains are not confined to the activities you remembered to cherry-pick.</p>
           </div>
           <div class="how-card">
             <h3>How to read the result</h3>
@@ -2114,8 +2114,11 @@
           var covBase = clamp(Math.round(45 + autoShare * 0.35 + pyrCov), 20, 90);
           var covA = Math.min(95, covBase + covGainA);
 
-          /* ----- Layer 2: the operating model ----- */
-          var pctB = LAYER_B_PCT;
+          /* ----- Layer 2: the operating model -----
+             Scales with Layer 1: 42% at typical answers (pctA 26),
+             proportionally lower or higher as the answers change it. */
+          var pctB = Math.round(LAYER_B_PCT * (pctA / 26) * 10) / 10;
+          var loB = pctB * 38 / 42, hiB = pctB * 48 / 42;
           var speedB = clamp(speedA + 25, 0, 70);
           var covB = Math.min(95, covBase + LAYER_B_COV);
 
@@ -2145,7 +2148,7 @@
           setText('aSpeed', 'cycles ~' + speedA + '% faster');
           setText('aCov', covBase + '% → ' + covA + '%');
           setText('aReg', fmtDays(regDays) + ' → ' + fmtDays(execDaysA) + ' days per release');
-          setText('bPct', '−' + pctB + '%');
+          setText('bPct', '−' + fmtHrs(pctB) + '%');
           setText('bHrs', fmtHrs(hrsB) + ' hrs / yr');
           setText('bMoney', fmtMoney(moneyB) + ' / yr');
           setText('bSpeed', 'cycles ~' + speedB + '% faster');
@@ -2165,10 +2168,10 @@
           var bRoiRow = document.getElementById('bRoiRow'); if (bRoiRow) bRoiRow.hidden = roiB === null;
           var loA = Math.max(0, pctA - 5), hiA = Math.min(LAYER_A_CAP, pctA + 5);
           setText('aRange', 'Estimated range: \u2212' + fmtHrs(loA) + '% to \u2212' + fmtHrs(hiA) + '% of effort (' + fmtHrs(totalHrs * loA / 100) + '\u2013' + fmtHrs(totalHrs * hiA / 100) + ' hrs), the spread across the studies Layer 1 draws on.');
-          setText('bRange', 'Estimated range: \u221238% to \u221248% of effort (' + fmtHrs(totalHrs * 0.38) + '\u2013' + fmtHrs(totalHrs * 0.48) + ' hrs), the spread across the enterprise programs this experience figure comes from.');
+          setText('bRange', 'Estimated range: \u2212' + fmtHrs(loB) + '% to \u2212' + fmtHrs(hiB) + '% of effort (' + fmtHrs(totalHrs * loB / 100) + '\u2013' + fmtHrs(totalHrs * hiB / 100) + ' hrs), the spread across the enterprise programs this experience figure comes from, scaled with your Layer 1 result.');
           setHTML('sumLine',
             'About <b>' + fmtHrs(totalHrs) + ' hours</b> of QE work a year across <b>' + releases + ' releases</b>. Cherry-picked AI saves roughly <b>' + fmtHrs(pctA) +
-            '% of effort</b>. Spec-driven, end to end, the saving rises to <b>' + pctB +
+            '% of effort</b>. Spec-driven, end to end, the saving rises to <b>' + fmtHrs(pctB) +
             '%</b>, with coverage moving from ' + covBase + '% to ' + covB + '% instead of ' + covA +
             '%. The difference between the layers is not more AI. It is where the AI sits.');
 
@@ -2253,7 +2256,7 @@
             'Use cases switched on by the answers:'
           ].concat(ucLines.length ? ucLines : ['- (none: the answers switch no Layer 1 use case on)']).concat([
             '',
-            'Layer 2: Spec-Driven QE, −' + pctB + '% of effort (experience range 38–48%)',
+            'Layer 2: Spec-Driven QE, −' + fmtHrs(pctB) + '% of effort (experience range ' + fmtHrs(loB) + '–' + fmtHrs(hiB) + '%, scaled with Layer 1)',
             '- Effort saved: ' + fmtHrs(hrsB) + ' hrs per year = ' + fmtMoney(moneyB),
             '- Released capacity: ' + (Math.round(capB * 10) / 10) + ' FTE-years; net of implementation cost, year one: ' + fmtMoney(netB),
             '- ROI on implementation cost, year one: ' + (roiB === null ? 'n/a (no implementation cost entered)' : fmtRoi(roiB)),
@@ -2273,9 +2276,9 @@
             '',
             'Evidence & honesty notes',
             '- Layer 1 gains are anchored to published research: Meta predictive test selection (~2x infra-cost cut at >95% failure recall, ICSE-SEIP 2019); Meta TestGen-LLM behind filters (57% pass reliably, 73% accepted, FSE 2024); AI coding-assistance RCTs spanning +55.8% to -19% by task (Peng 2023; Cui et al.; METR 2025). Self-healing figures are vendor-only and counted small. Performance/exploratory AI: no quantified enterprise effect found, counted as assistive only.',
-            '- Layer 2 (42%, range 38-48%) is DJ\u2019s implementation experience, not a published study: no peer-reviewed enterprise outcome study of spec-driven adoption exists. The evidenced mechanism is the verification loop (ReqTestAgent ablation: canonical pass 30% -> 100% with verification).',
+            '- Layer 2 (' + fmtHrs(pctB) + '%, scaled from 42% at typical answers, range ' + fmtHrs(loB) + '-' + fmtHrs(hiB) + '%) is DJ\u2019s implementation experience, not a published study: no peer-reviewed enterprise outcome study of spec-driven adoption exists. The evidenced mechanism is the verification loop (ReqTestAgent ablation: canonical pass 30% -> 100% with verification).',
             '- Base rates: 46% of enterprise AI PoCs were scrapped before production in 2025 (S&P Global). Saved effort is capacity returned to the team, not a headcount line.',
-            '- Method: Annual QE effort is the visitor\u2019s own input. Layer 1 % sums the use cases the answers switch on, multiplied by the automation tool\u2019s aptitude, capped at 30% of effort. Layer 2 is a fixed 42% experience figure. ROI = (annual savings - implementation cost) / implementation cost. Execution modelled at 35% of QE effort per release, design at 25%.'
+            '- Method: Annual QE effort is the visitor\u2019s own input. Layer 1 % sums the use cases the answers switch on, multiplied by the automation tool\u2019s aptitude, capped at 30% of effort. Layer 2 scales with your Layer 1: 42% at typical answers, proportionally lower or higher as your answers change it. ROI = (annual savings - implementation cost) / implementation cost. Execution modelled at 35% of QE effort per release, design at 25%.'
           ]).join('\n');
         }
 
