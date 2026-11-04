@@ -839,8 +839,8 @@
             <p><b>Takeaway:</b> blueprint first — a user story becomes a contract, and tests come from its acceptance criteria.</p>
           </article>
           <article class="article-card">
-            <p class="a-meta">Edition 3 · Nov 4, 2026</p>
-            <h3><a href="https://www.linkedin.com/pulse/i-tried-break-our-own-ai-broke-8-predictable-places-debajyoti-chanda-azfnc" target="_blank" rel="noopener">I Tried to Break "Our Own AI". It Broke in 8 Predictable Places.</a></h3>
+            <p class="a-meta">Upcoming · Nov 4, 2026</p>
+            <h3><a href="https://www.linkedin.com/newsletters/7517165851129610240/" target="_blank" rel="noopener">I Tried to Break "Our Own AI". It Broke in 8 Predictable Places.</a></h3>
             <p>I handed Relay, a fictional delivery company's AI assistant, to my test plan: happy path 8/8, adversarial path 0/8. Each failure maps to an engineering layer: identity anchoring, RAG grounding, agentic tool use, least privilege, indirect prompt injection, model routing, observability, and eval-driven deployment.</p>
             <p style="margin-top:8px"><b>Takeaway:</b> A model can answer. Only a tested system can be trusted.</p>
           </article>
@@ -1490,7 +1490,7 @@
               <label for="qReleases">Releases per year (exact)</label>
               <input type="number" id="qReleases" value="10" min="1" max="365" step="1" inputmode="numeric" aria-describedby="err-qReleases" />
               <p class="field-error" id="err-qReleases" role="alert" hidden></p>
-              <p class="fhelp">Your real cadence: cadence turns per-release savings into annual ones.</p>
+              <p class="fhelp">Sizes each release's regression cycle. Annual savings assume the same team and year, so they don't move with this number.</p>
             </div>
             <div class="field">
               <label for="qTeam">QE team size (exact)</label>
@@ -1516,6 +1516,7 @@
                 <option value="0.9" data-k="selenium">Selenium</option>
                 <option value="0.95" data-k="cypress">Cypress</option>
                 <option value="1.05" data-k="accelq">ACCELQ or a similar codeless platform</option>
+                <option value="1.1" data-k="functionize">Functionize, AI-native agentic platform</option>
                 <option value="0.9" data-k="other">Other / not sure</option>
               </select>
               <p class="fhelp">AI-ready frameworks get more from the same use cases than legacy stacks.</p>
@@ -2130,13 +2131,13 @@
           setText('aMoney', fmtMoney(moneyA) + ' / yr');
           setText('aSpeed', 'cycles ~' + speedA + '% faster');
           setText('aCov', covBase + '% → ' + covA + '%');
-          setText('aReg', fmtDays(execDays) + ' → ' + fmtDays(execDaysA) + ' days');
+          setText('aReg', fmtDays(execDays) + ' → ' + fmtDays(execDaysA) + ' days per release');
           setText('bPct', '−' + pctB + '%');
           setText('bHrs', fmtHrs(hrsB) + ' hrs');
           setText('bMoney', fmtMoney(moneyB) + ' / yr');
           setText('bSpeed', 'cycles ~' + speedB + '% faster');
           setText('bCov', covBase + '% → ' + covB + '%');
-          setText('bReg', fmtDays(execDays) + ' → ' + fmtDays(execDaysB) + ' days');
+          setText('bReg', fmtDays(execDays) + ' → ' + fmtDays(execDaysB) + ' days per release');
 
           var implCost = num('inCost');
           var capA = hrsA / FTE_HOURS, capB = hrsB / FTE_HOURS;
@@ -2201,6 +2202,10 @@
             html: '<b>TestMu AI</b> (formerly LambdaTest): cloud execution at scale to pair with your codeless authoring, so generated tests have somewhere fast to run.',
             text: 'TestMu AI (formerly LambdaTest): cloud execution at scale to pair with codeless authoring.'
           });
+          if (autoKey === 'functionize') recs.push({
+            html: '<b>Functionize</b>: AI-native agentic platform; tests generated, executed, and self-healed as one system behind CI gates; the closest packaged match to the Layer 2 operating model in this analysis.',
+            text: 'Functionize: AI-native agentic platform; tests generated, executed, and self-healed as one system behind CI gates; the closest packaged match to the Layer 2 operating model in this analysis.'
+          });
           var recListEl = document.getElementById('recList');
           if (recListEl) recListEl.innerHTML = recs.map(function (r) { return '<li>' + r.html + '</li>'; }).join('');
           lastRecsText = recs.map(function (r) { return '- ' + r.text; });
@@ -2228,7 +2233,7 @@
             'Layer 1: Cherry-picked AI use cases, −' + fmtHrs(pctA) + '% of effort',
             '- Effort saved: ' + fmtHrs(hrsA) + ' hrs per year = ' + fmtMoney(moneyA),
             '- Released capacity: ' + (Math.round(capA * 10) / 10) + ' FTE-years; net of implementation cost, year one: ' + fmtMoney(moneyA - implCost),
-            '- Execution speed: regression cycles ~' + speedA + '% faster (' + fmtDays(execDays) + ' -> ' + fmtDays(execDaysA) + ' team-days)',
+            '- Execution speed: regression cycles ~' + speedA + '% faster (' + fmtDays(execDays) + ' -> ' + fmtDays(execDaysA) + ' team-days per release)',
             '- Coverage: ' + covBase + '% -> ' + covA + '%',
             'Use cases switched on by the answers:'
           ].concat(ucLines.length ? ucLines : ['- (none: the answers switch no Layer 1 use case on)']).concat([
@@ -2236,7 +2241,7 @@
             'Layer 2: Spec-Driven QE, −' + pctB + '% of effort (experience range 38–48%)',
             '- Effort saved: ' + fmtHrs(hrsB) + ' hrs per year = ' + fmtMoney(moneyB),
             '- Released capacity: ' + (Math.round(capB * 10) / 10) + ' FTE-years; net of implementation cost, year one: ' + fmtMoney(moneyB - implCost),
-            '- Execution speed: regression cycles ~' + speedB + '% faster (' + fmtDays(execDays) + ' -> ' + fmtDays(execDaysB) + ' team-days)',
+            '- Execution speed: regression cycles ~' + speedB + '% faster (' + fmtDays(execDays) + ' -> ' + fmtDays(execDaysB) + ' team-days per release)',
             '- Coverage: ' + covBase + '% -> ' + covB + '%',
             '- Testing starts ~' + fmtDays(startB) + ' team-days earlier per release (design generated from the spec)',
             '',
@@ -2254,7 +2259,7 @@
             '- Layer 1 gains are anchored to published research: Meta predictive test selection (~2x infra-cost cut at >95% failure recall, ICSE-SEIP 2019); Meta TestGen-LLM behind filters (57% pass reliably, 73% accepted, FSE 2024); AI coding-assistance RCTs spanning +55.8% to -19% by task (Peng 2023; Cui et al.; METR 2025). Self-healing figures are vendor-only and counted small. Performance/exploratory AI: no quantified enterprise effect found, counted as assistive only.',
             '- Layer 2 (42%, range 38-48%) is DJ\u2019s implementation experience, not a published study: no peer-reviewed enterprise outcome study of spec-driven adoption exists. The evidenced mechanism is the verification loop (ReqTestAgent ablation: canonical pass 30% -> 100% with verification).',
             '- Base rates: 46% of enterprise AI PoCs were scrapped before production in 2025 (S&P Global). Saved effort is capacity returned to the team, not a headcount line.',
-            '- Method: Layer 1 sums the use cases the answers switch on, adjusted for tooling aptitude, run-history readiness, and pyramid shape, capped at 30% of effort. Execution modelled at 35% of QE effort per release, design at 25%.'
+            '- Method: Layer 1 sums the use cases the answers switch on, adjusted for tooling aptitude, run-history readiness, and pyramid shape, capped at 30% of effort. Execution modelled at 35% of QE effort per release, design at 25%. Annual effort and dollar savings assume the team\'s total yearly QE effort stays roughly constant as release count changes (same people, same year); the regression-cycle figure is per release. Savings that would grow with cadence would require headcount or hours to grow with it, which this model does not assume.'
           ]).join('\n');
         }
 
