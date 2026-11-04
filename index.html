@@ -1483,28 +1483,22 @@
 
       <section class="wrap" style="padding-top:0">
         <div class="sec-head"><h2>How your testing runs today</h2></div>
-        <p class="step-note">Start with the guided setup: six answers and both layers recompute instantly, beside the inputs. Tools, pyramid, testing types, and lifecycle phases sit under Advanced settings, pre-set to sensible defaults.</p>
+        <p class="step-note">Start with the guided setup: five answers and both layers recompute instantly, beside the inputs. Tools, pyramid, testing types, and lifecycle phases sit under Advanced settings, pre-set to sensible defaults.</p>
         <form class="calc-panel" id="qForm" aria-label="Your testing program today">
           <h3>Your program</h3>
-          <p class="panel-note">Guided setup: starting answers describe a mid-size enterprise team: 15 QE engineers, 10 releases a year, mixed manual/automated. Change any number to your own; results update as you type.</p>
+          <p class="panel-note">Guided setup: starting answers describe a mid-size enterprise program: 30,000 QE hours a year across 10 releases, mixed manual/automated. Change any number to your own; results update as you type.</p>
           <div class="prog-fields">
+            <div class="field">
+              <label for="qTotalHours">Total QE effort per year (hours, exact)</label>
+              <input type="number" id="qTotalHours" value="30000" min="1" max="10000000" step="1" inputmode="numeric" aria-describedby="err-qTotalHours" />
+              <p class="field-error" id="err-qTotalHours" role="alert" hidden></p>
+              <p class="fhelp">Your program's total QE work in a year, in hours. Rough guide: engineers × 1,880 hours, or releases × hours per release.</p>
+            </div>
             <div class="field">
               <label for="qReleases">Releases per year (exact)</label>
               <input type="number" id="qReleases" value="10" min="1" max="365" step="1" inputmode="numeric" aria-describedby="err-qReleases" />
               <p class="field-error" id="err-qReleases" role="alert" hidden></p>
-              <p class="fhelp">More releases mean more total QE work in the year, so annual savings grow with this number.</p>
-            </div>
-            <div class="field">
-              <label for="qTeamDays">QE team-days per release (exact)</label>
-              <input type="number" id="qTeamDays" value="350" min="1" max="10000" step="1" inputmode="numeric" aria-describedby="err-qTeamDays" />
-              <p class="field-error" id="err-qTeamDays" role="alert" hidden></p>
-              <p class="fhelp">One release's QE work in team-days: regression + design + triage + reporting. Rough guide: team size × working days per release. A 15-person team spending ~23 working days per release ≈ 350.</p>
-            </div>
-            <div class="field">
-              <label for="qTeam">QE team size (exact)</label>
-              <input type="number" id="qTeam" value="15" min="1" max="500" step="1" inputmode="numeric" aria-describedby="err-qTeam" />
-              <p class="field-error" id="err-qTeam" role="alert" hidden></p>
-              <p class="fhelp">Your real headcount: sets team capacity at 1,880 hours per engineer-year for the workload check below. Savings come from the release workload.</p>
+              <p class="fhelp">Used for the per-release breakdown below. Annual savings come from total hours above.</p>
             </div>
             <div class="field">
               <label for="qMix">Manual vs automated testing today</label>
@@ -1595,7 +1589,6 @@
       <section class="wrap">
         <div class="sec-head"><h2>Two layers, two different answers</h2></div>
         <p class="sum-line" id="sumLine">-</p>
-        <p class="cap-line" id="capLine">-</p>
         <div class="layers">
           <div class="layer-card">
             <p class="llabel">Layer 1: Cherry-picked AI use cases</p>
@@ -1607,6 +1600,7 @@
               <div class="lrow"><dt>Released capacity</dt><dd id="aCap">-</dd></div>
               <div class="lrow"><dt>Implementation cost (your est.)</dt><dd id="aCost">-</dd></div>
               <div class="lrow"><dt>Net value, year one</dt><dd id="aNet">-</dd></div>
+              <div class="lrow" id="aRoiRow" hidden><dt>ROI on implementation cost</dt><dd id="aRoi">-</dd></div>
               <div class="lrow"><dt>Execution speed</dt><dd id="aSpeed">-</dd></div>
               <div class="lrow"><dt>Coverage</dt><dd id="aCov">-</dd></div>
               <div class="lrow"><dt>Regression cycle</dt><dd id="aReg">-</dd></div>
@@ -1624,6 +1618,7 @@
               <div class="lrow"><dt>Released capacity</dt><dd id="bCap">-</dd></div>
               <div class="lrow"><dt>Implementation cost (your est.)</dt><dd id="bCost">-</dd></div>
               <div class="lrow"><dt>Net value, year one</dt><dd id="bNet">-</dd></div>
+              <div class="lrow" id="bRoiRow" hidden><dt>ROI on implementation cost</dt><dd id="bRoi">-</dd></div>
               <div class="lrow"><dt>Execution speed</dt><dd id="bSpeed">-</dd></div>
               <div class="lrow"><dt>Coverage</dt><dd id="bCov">-</dd></div>
               <div class="lrow"><dt>Regression cycle</dt><dd id="bReg">-</dd></div>
@@ -1705,7 +1700,8 @@
         <div class="calc-how">
           <div class="how-card">
             <h3>How the estimate works</h3>
-            <p>Your answers set the size of the program: annual QE workload = releases per year × team-days per release × 8 hours. Team size sets capacity at 1,880 hours per engineer-year, not workload, so savings scale with the workload. Layer 1 then adds up the use cases your answers switch on (test design, script generation, regression selection, self-healing, triage, test data, reporting, and the rest), each contributing the share of effort its published evidence supports, adjusted by your automation tool's aptitude, your test-management history (selection needs it), and your pyramid shape. The Layer 1 total is capped at 30% of effort, because that is where cherry-picking plateaus in practice.</p>
+            <p>Annual QE effort is your input above. Layer 1 % sums the use cases your answers switch on, multiplied by your automation tool's aptitude, capped at 30%. Layer 2 is a fixed 42% experience figure. ROI = (annual savings − implementation cost) / implementation cost.</p>
+            <p>The use cases are test design, script generation, regression selection, self-healing, triage, test data, reporting, and the rest, each contributing the share of effort its published evidence supports, adjusted by your test-management history (selection needs it) and your pyramid shape. The Layer 1 total is capped at 30% of effort, because that is where cherry-picking plateaus in practice.</p>
             <p>Coverage starts from a baseline derived from your automation share and pyramid (an automation-first, healthy-pyramid program starts high; a manual, inverted one starts low), and each layer adds the points its use cases can defend, capped, because coverage bought by generation alone is coverage without verification. Execution speed is the reduction in regression-cycle time: per release, execution is modelled at 35% of QE effort and test design at 25%. Stated assumptions, the same for every visitor, so two programs answering alike get alike answers.</p>
             <p>Layer 2 replaces the sum with the operating-model figure: 42% of effort (range 38–48%), execution speed carried a further step beyond Layer 1, and coverage lifted end to end, because in a spec-driven program the gains are not confined to the activities you remembered to cherry-pick.</p>
           </div>
@@ -1984,6 +1980,7 @@
           return r.toLocaleString('en-US', { minimumFractionDigits: (r % 1 === 0 ? 0 : 1), maximumFractionDigits: 1 });
         }
         function fmtDays(v) { return fmtHrs(v); }
+        function fmtRoi(v) { if (!isFinite(v)) return '-'; return (v < 0 ? '−' : '+') + Math.round(Math.abs(v)).toLocaleString('en-US') + '%'; }
         function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
         function selKey(id) {
           var el = document.getElementById(id);
@@ -2025,13 +2022,12 @@
            an invalid value shows an inline explanation beside its
            field and blocks calculation and all result exports. */
         var FIELD_MESSAGES = {
+          qTotalHours: 'Enter a whole number between 1 and 10,000,000.',
           qReleases: 'Enter a whole number between 1 and 365.',
-          qTeamDays: 'Enter a whole number between 1 and 10,000.',
-          qTeam: 'Enter a whole number between 1 and 500.',
           inRate: 'Enter a whole number between 0 and 10,000, in steps of 5.',
           inCost: 'Enter a whole number between 0 and 10,000,000, in steps of 1,000.'
         };
-        var NUMERIC_IDS = ['qReleases', 'qTeamDays', 'qTeam', 'inRate', 'inCost'];
+        var NUMERIC_IDS = ['qTotalHours', 'qReleases', 'inRate', 'inCost'];
         var VALIDATION_STATUS = 'Fix the highlighted fields first. Results calculate, copy, and download only when every input is valid.';
         function validateField(el) {
           if (!el) return true;
@@ -2078,7 +2074,6 @@
         function compute() {
           if (!validateAll()) return;
           var releases = num('qReleases');
-          var team = num('qTeam');
           var autoShare = clamp(num('qMix'), 0, 100);
           var apt = num('qAutoTool'); if (!(apt > 0)) apt = 1;
           var autoKey = selKey('qAutoTool');
@@ -2097,9 +2092,9 @@
           if (phases.design || types.functional) ucs.push({ name: 'AI test design & case generation', effort: 7, speed: 0, cov: 4 });
           if (phases.requirements) ucs.push({ name: 'AI requirements & spec analysis', effort: 3, speed: 0, cov: 1 });
           if (phases.planning) ucs.push({ name: 'AI-assisted test planning', effort: 1, speed: 0, cov: 0 });
-          if (phases.automation || autoShare >= 25) ucs.push({ name: 'AI automation script generation', effort: 6 * apt * pyr, speed: 5, cov: 0 });
+          if (phases.automation || autoShare >= 25) ucs.push({ name: 'AI automation script generation', effort: 6 * pyr, speed: 5, cov: 0 });
           if (types.regression || phases.execution) ucs.push({ name: 'AI regression test selection', effort: 4, speed: 30 * tm, cov: 0 });
-          if (autoShare >= 25 && autoKey !== 'none') ucs.push({ name: 'Self-healing test maintenance', effort: 3 * apt * pyr, speed: 0, cov: 0 });
+          if (autoShare >= 25 && autoKey !== 'none') ucs.push({ name: 'Self-healing test maintenance', effort: 3 * pyr, speed: 0, cov: 0 });
           if (phases.defects) ucs.push({ name: 'AI defect triage & root-cause analysis', effort: 3, speed: 0, cov: 0 });
           if (phases.data) ucs.push({ name: 'AI test data generation', effort: 2, speed: 0, cov: 1 });
           if (phases.reporting) ucs.push({ name: 'AI reporting & release analytics', effort: 2, speed: 0, cov: 0 });
@@ -2112,7 +2107,8 @@
 
           var sumEffort = 0, sumSpeed = 0, sumCov = 0;
           ucs.forEach(function (u) { sumEffort += u.effort; sumSpeed += u.speed; sumCov += u.cov; });
-          var pctA = clamp(Math.round(sumEffort * 10) / 10, 0, LAYER_A_CAP);
+          var baseSum = sumEffort;
+          var pctA = clamp(Math.round(baseSum * apt * 10) / 10, 0, LAYER_A_CAP);
           var speedA = clamp(Math.round(sumSpeed), 0, 45);
           var covGainA = clamp(sumCov, 0, 15);
           var covBase = clamp(Math.round(45 + autoShare * 0.35 + pyrCov), 20, 90);
@@ -2124,72 +2120,66 @@
           var covB = Math.min(95, covBase + LAYER_B_COV);
 
           /* ----- Translate into hours, dollars, days -----
-             Workload-based model: annual QE effort is what the release
-             plan demands (releases x team-days per release x 8 hours).
-             Team size sets capacity (team x 1,880 hrs), not workload,
-             so both layers' savings scale with the number of releases. */
-          var teamDaysPerRelease = num('qTeamDays');
-          var annualWorkloadHrs = releases * teamDaysPerRelease * 8;
-          var teamCapacityHrs = team * FTE_HOURS;
-          var hrsA = annualWorkloadHrs * pctA / 100, hrsB = annualWorkloadHrs * pctB / 100;
+             Direct-hours model: annual QE effort is the visitor's own
+             input (total hours per year). Both layers' savings scale
+             with that input; releases per year only slices it into the
+             per-release breakdown below. */
+          var totalHrs = num('qTotalHours');
+          var implCost = num('inCost');
+          var hrsA = totalHrs * pctA / 100, hrsB = totalHrs * pctB / 100;
           var moneyA = hrsA * rate, moneyB = hrsB * rate;
-          var regTeamDays = teamDaysPerRelease * EXEC_SHARE;
-          var execDaysA = regTeamDays * (1 - speedA / 100);
-          var execDaysB = regTeamDays * (1 - speedB / 100);
-          var designTeamDays = teamDaysPerRelease * DESIGN_SHARE;
-          var startA = (phases.design || types.functional || phases.requirements) ? designTeamDays * 0.35 : 0;
-          var startB = designTeamDays * 0.5;
+          var netA = moneyA - implCost, netB = moneyB - implCost;
+          var roiA = implCost > 0 ? netA / implCost * 100 : null;
+          var roiB = implCost > 0 ? netB / implCost * 100 : null;
+          var hoursPerRelease = releases > 0 ? totalHrs / releases : 0;
+          var regDays = hoursPerRelease * EXEC_SHARE / 8;
+          var execDaysA = regDays * (1 - speedA / 100);
+          var execDaysB = regDays * (1 - speedB / 100);
+          var designDays = hoursPerRelease * DESIGN_SHARE / 8;
+          var startA = (phases.design || types.functional || phases.requirements) ? designDays * 0.35 : 0;
+          var startB = designDays * 0.5;
 
           setText('aPct', '−' + fmtHrs(pctA) + '%');
-          setText('aHrs', fmtHrs(hrsA) + ' hrs');
+          setText('aHrs', fmtHrs(hrsA) + ' hrs / yr');
           setText('aMoney', fmtMoney(moneyA) + ' / yr');
           setText('aSpeed', 'cycles ~' + speedA + '% faster');
           setText('aCov', covBase + '% → ' + covA + '%');
-          setText('aReg', fmtDays(regTeamDays) + ' → ' + fmtDays(execDaysA) + ' days per release');
+          setText('aReg', fmtDays(regDays) + ' → ' + fmtDays(execDaysA) + ' days per release');
           setText('bPct', '−' + pctB + '%');
-          setText('bHrs', fmtHrs(hrsB) + ' hrs');
+          setText('bHrs', fmtHrs(hrsB) + ' hrs / yr');
           setText('bMoney', fmtMoney(moneyB) + ' / yr');
           setText('bSpeed', 'cycles ~' + speedB + '% faster');
           setText('bCov', covBase + '% → ' + covB + '%');
-          setText('bReg', fmtDays(regTeamDays) + ' → ' + fmtDays(execDaysB) + ' days per release');
+          setText('bReg', fmtDays(regDays) + ' → ' + fmtDays(execDaysB) + ' days per release');
 
-          var implCost = num('inCost');
           var capA = hrsA / FTE_HOURS, capB = hrsB / FTE_HOURS;
           setText('aCap', (Math.round(capA * 10) / 10).toLocaleString('en-US') + ' FTE-years');
           setText('bCap', (Math.round(capB * 10) / 10).toLocaleString('en-US') + ' FTE-years');
           setText('aCost', fmtMoney(implCost) + ' one-time');
           setText('bCost', fmtMoney(implCost) + ' one-time');
-          setText('aNet', fmtMoney(moneyA - implCost) + ' / yr');
-          setText('bNet', fmtMoney(moneyB - implCost) + ' / yr');
+          setText('aNet', fmtMoney(netA) + ' / yr');
+          setText('bNet', fmtMoney(netB) + ' / yr');
+          setText('aRoi', roiA === null ? '-' : fmtRoi(roiA));
+          setText('bRoi', roiB === null ? '-' : fmtRoi(roiB));
+          var aRoiRow = document.getElementById('aRoiRow'); if (aRoiRow) aRoiRow.hidden = roiA === null;
+          var bRoiRow = document.getElementById('bRoiRow'); if (bRoiRow) bRoiRow.hidden = roiB === null;
           var loA = Math.max(0, pctA - 5), hiA = Math.min(LAYER_A_CAP, pctA + 5);
-          setText('aRange', 'Estimated range: \u2212' + fmtHrs(loA) + '% to \u2212' + fmtHrs(hiA) + '% of effort (' + fmtHrs(annualWorkloadHrs * loA / 100) + '\u2013' + fmtHrs(annualWorkloadHrs * hiA / 100) + ' hrs), the spread across the studies Layer 1 draws on.');
-          setText('bRange', 'Estimated range: \u221238% to \u221248% of effort (' + fmtHrs(annualWorkloadHrs * 0.38) + '\u2013' + fmtHrs(annualWorkloadHrs * 0.48) + ' hrs), the spread across the enterprise programs this experience figure comes from.');
+          setText('aRange', 'Estimated range: \u2212' + fmtHrs(loA) + '% to \u2212' + fmtHrs(hiA) + '% of effort (' + fmtHrs(totalHrs * loA / 100) + '\u2013' + fmtHrs(totalHrs * hiA / 100) + ' hrs), the spread across the studies Layer 1 draws on.');
+          setText('bRange', 'Estimated range: \u221238% to \u221248% of effort (' + fmtHrs(totalHrs * 0.38) + '\u2013' + fmtHrs(totalHrs * 0.48) + ' hrs), the spread across the enterprise programs this experience figure comes from.');
           setHTML('sumLine',
-            'Releasing <b>' + releases + ' times a year</b> at <b>' + fmtHrs(teamDaysPerRelease) + ' team-days per release</b>: about <b>' +
-            fmtHrs(annualWorkloadHrs) + ' hours</b> of QE work annually. Your <b>' + team + '-engineer</b> team has <b>' +
-            fmtHrs(teamCapacityHrs) + ' hours</b> of capacity. Cherry-picked AI saves roughly <b>' + fmtHrs(pctA) +
+            'About <b>' + fmtHrs(totalHrs) + ' hours</b> of QE work a year across <b>' + releases + ' releases</b>. Cherry-picked AI saves roughly <b>' + fmtHrs(pctA) +
             '% of effort</b>. Spec-driven, end to end, the saving rises to <b>' + pctB +
             '%</b>, with coverage moving from ' + covBase + '% to ' + covB + '% instead of ' + covA +
             '%. The difference between the layers is not more AI. It is where the AI sits.');
-          var utilPct = teamCapacityHrs > 0 ? annualWorkloadHrs / teamCapacityHrs * 100 : 0;
-          var capNote = '';
-          if (utilPct > 105) {
-            capNote = ' Your release plan needs about <b>' + fmtHrs((annualWorkloadHrs - teamCapacityHrs) / FTE_HOURS) + ' more engineers</b> than you have. AI closes part of this gap; the rest is hiring or scope.';
-          } else if (utilPct < 70) {
-            capNote = ' Your team has spare capacity at this cadence.';
-          }
-          setHTML('capLine',
-            'Workload: <b>' + fmtHrs(annualWorkloadHrs) + ' hrs/yr</b>. Capacity: <b>' + fmtHrs(teamCapacityHrs) +
-            ' hrs/yr</b> (' + team + ' \u00d7 1,880). Utilization: <b>' + fmtHrs(utilPct) + '%</b>.' + capNote);
 
           /* ----- The cascade: why speed compounds ----- */
           setHTML('casDesign',
-            'Test design is about a quarter of QE effort per release, roughly <b>' + fmtDays(designTeamDays) + ' team-days</b> before testing starts.' +
+            'Test design is about a quarter of QE effort per release, roughly <b>' + fmtDays(designDays) + ' days</b> before testing starts.' +
             (startA > 0
               ? ' Layer 1 starts testing about <b>' + fmtDays(startA) + ' days earlier</b> per release; Layer 2, generating from the spec, about <b>' + fmtDays(startB) + ' days earlier</b>, every release, all year.'
               : ' Your answers switch design assistance off, so Layer 1 gains nothing here; Layer 2, generating from the spec, still starts about <b>' + fmtDays(startB) + ' days earlier</b> per release.'));
           setHTML('casExec',
-            'A regression cycle of about <b>' + fmtDays(regTeamDays) + ' team-days</b> today finishes in about <b>' + fmtDays(execDaysA) +
+            'A regression cycle of about <b>' + fmtDays(regDays) + ' days</b> today finishes in about <b>' + fmtDays(execDaysA) +
             ' days</b> at Layer 1, selection runs only the tests the change needs, and about <b>' + fmtDays(execDaysB) +
             ' days</b> at Layer 2, where the suite is generated, selected, and healed as one system.');
           setHTML('casDefect',
@@ -2244,34 +2234,32 @@
             'https://aixqe.com/#/calculator',
             '',
             'The program (as answered)',
+            '- Total QE effort per year: ' + fmtHrs(totalHrs) + ' hrs (your input)',
             '- Releases per year: ' + releases,
-            '- QE team-days per release: ' + teamDaysPerRelease,
-            '- QE team size: ' + team + ' engineers',
             '- Manual vs automated: ' + selText('qMix'),
             '- Automation tool: ' + selText('qAutoTool'),
             '- Test management tool: ' + selText('qTmTool'),
             '- Testing pyramid: ' + selText('qPyramid'),
             '- Blended loaded cost of one QE hour (CAD): ' + fmtMoney(rate),
             '- Implementation cost estimate (CAD, one-time): ' + fmtMoney(implCost),
-            '- Estimated QE workload: ' + fmtHrs(annualWorkloadHrs) + ' hrs per year (releases \u00d7 team-days per release \u00d7 8)',
-            '- Team capacity: ' + fmtHrs(teamCapacityHrs) + ' hrs per year (team \u00d7 1,880 hrs)',
-            '- Workload vs capacity: ' + fmtHrs(utilPct) + '% utilization',
             '- Baseline coverage implied by the answers: ' + covBase + '%',
             '',
             'Layer 1: Cherry-picked AI use cases, −' + fmtHrs(pctA) + '% of effort',
             '- Effort saved: ' + fmtHrs(hrsA) + ' hrs per year = ' + fmtMoney(moneyA),
-            '- Released capacity: ' + (Math.round(capA * 10) / 10) + ' FTE-years; net of implementation cost, year one: ' + fmtMoney(moneyA - implCost),
-            '- Execution speed: regression cycles ~' + speedA + '% faster (' + fmtDays(regTeamDays) + ' -> ' + fmtDays(execDaysA) + ' team-days per release)',
+            '- Released capacity: ' + (Math.round(capA * 10) / 10) + ' FTE-years; net of implementation cost, year one: ' + fmtMoney(netA),
+            '- ROI on implementation cost, year one: ' + (roiA === null ? 'n/a (no implementation cost entered)' : fmtRoi(roiA)),
+            '- Execution speed: regression cycles ~' + speedA + '% faster (' + fmtDays(regDays) + ' -> ' + fmtDays(execDaysA) + ' days per release)',
             '- Coverage: ' + covBase + '% -> ' + covA + '%',
             'Use cases switched on by the answers:'
           ].concat(ucLines.length ? ucLines : ['- (none: the answers switch no Layer 1 use case on)']).concat([
             '',
             'Layer 2: Spec-Driven QE, −' + pctB + '% of effort (experience range 38–48%)',
             '- Effort saved: ' + fmtHrs(hrsB) + ' hrs per year = ' + fmtMoney(moneyB),
-            '- Released capacity: ' + (Math.round(capB * 10) / 10) + ' FTE-years; net of implementation cost, year one: ' + fmtMoney(moneyB - implCost),
-            '- Execution speed: regression cycles ~' + speedB + '% faster (' + fmtDays(regTeamDays) + ' -> ' + fmtDays(execDaysB) + ' team-days per release)',
+            '- Released capacity: ' + (Math.round(capB * 10) / 10) + ' FTE-years; net of implementation cost, year one: ' + fmtMoney(netB),
+            '- ROI on implementation cost, year one: ' + (roiB === null ? 'n/a (no implementation cost entered)' : fmtRoi(roiB)),
+            '- Execution speed: regression cycles ~' + speedB + '% faster (' + fmtDays(regDays) + ' -> ' + fmtDays(execDaysB) + ' days per release)',
             '- Coverage: ' + covBase + '% -> ' + covB + '%',
-            '- Testing starts ~' + fmtDays(startB) + ' team-days earlier per release (design generated from the spec)',
+            '- Testing starts ~' + fmtDays(startB) + ' days earlier per release (design generated from the spec)',
             '',
             'What the client should do (the Spec-Driven QE path)',
             '1. Write specs as contracts: versioned, reviewed, approved before generation.',
@@ -2287,12 +2275,12 @@
             '- Layer 1 gains are anchored to published research: Meta predictive test selection (~2x infra-cost cut at >95% failure recall, ICSE-SEIP 2019); Meta TestGen-LLM behind filters (57% pass reliably, 73% accepted, FSE 2024); AI coding-assistance RCTs spanning +55.8% to -19% by task (Peng 2023; Cui et al.; METR 2025). Self-healing figures are vendor-only and counted small. Performance/exploratory AI: no quantified enterprise effect found, counted as assistive only.',
             '- Layer 2 (42%, range 38-48%) is DJ\u2019s implementation experience, not a published study: no peer-reviewed enterprise outcome study of spec-driven adoption exists. The evidenced mechanism is the verification loop (ReqTestAgent ablation: canonical pass 30% -> 100% with verification).',
             '- Base rates: 46% of enterprise AI PoCs were scrapped before production in 2025 (S&P Global). Saved effort is capacity returned to the team, not a headcount line.',
-            '- Method: Layer 1 sums the use cases the answers switch on, adjusted for tooling aptitude, run-history readiness, and pyramid shape, capped at 30% of effort. Execution modelled at 35% of QE effort per release, design at 25%. Annual QE workload = releases \u00d7 team-days per release \u00d7 8. Team size sets capacity (1,880 hrs/engineer-year), not workload. Savings scale with the workload.'
+            '- Method: Annual QE effort is the visitor\u2019s own input. Layer 1 % sums the use cases the answers switch on, multiplied by the automation tool\u2019s aptitude, capped at 30% of effort. Layer 2 is a fixed 42% experience figure. ROI = (annual savings - implementation cost) / implementation cost. Execution modelled at 35% of QE effort per release, design at 25%.'
           ]).join('\n');
         }
 
         /* ---------- Question wiring ---------- */
-        ['qReleases', 'qTeamDays', 'qTeam', 'qMix', 'qAutoTool', 'qTmTool', 'qPyramid', 'inRate', 'inCost'].forEach(function (id) {
+        ['qTotalHours', 'qReleases', 'qMix', 'qAutoTool', 'qTmTool', 'qPyramid', 'inRate', 'inCost'].forEach(function (id) {
           var el = document.getElementById(id);
           if (!el) return;
           el.addEventListener('input', compute);
@@ -2423,6 +2411,7 @@
             + '<tr><td>Value of effort / year</td><td>' + esc(t('aMoney')) + '</td><td>' + esc(t('bMoney')) + '</td></tr>'
             + '<tr><td>Implementation cost (your estimate)</td><td>' + esc(t('aCost')) + '</td><td>' + esc(t('bCost')) + '</td></tr>'
             + '<tr><td>Net value, year one</td><td>' + esc(t('aNet')) + '</td><td>' + esc(t('bNet')) + '</td></tr>'
+            + '<tr><td>ROI on implementation cost</td><td>' + esc(t('aRoi')) + '</td><td>' + esc(t('bRoi')) + '</td></tr>'
             + '<tr><td>Coverage</td><td>' + esc(t('aCov')) + '</td><td>' + esc(t('bCov')) + '</td></tr>'
             + '<tr><td>Regression cycle</td><td>' + esc(t('aReg')) + '</td><td>' + esc(t('bReg')) + '</td></tr></table>'
             + '<p class="note">' + esc(t('aRange')) + '</p><p class="note">' + esc(t('bRange')) + '</p>'
