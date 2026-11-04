@@ -468,13 +468,10 @@
       .layer-card .lrow dt { color: var(--muted); margin: 0; }
       .layer-card .lrow dd { margin: 0; font-weight: 600; font-variant-numeric: tabular-nums; white-space: nowrap; }
       .layer-card .lnote { color: var(--muted); font-size: 14px; line-height: 1.6; margin: 16px 0 0; }
-      .cascade { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 26px; margin-top: 38px; }
-      @media (max-width: 860px) { .cascade { grid-template-columns: 1fr; } }
-      .cas-card { border-top: 1px solid var(--ink); padding-top: 16px; }
-      .cas-card h3 { font-family: "Fraunces", Georgia, serif; font-size: 20px; font-weight: 500; letter-spacing: -.01em; margin: 0 0 8px; }
-      .cas-card p { font-size: 15px; line-height: 1.6; margin: 0; }
-      .cas-card p b { color: var(--accent); }
       .steps-panel { margin-top: 34px; }
+      .how-expander { margin-top: 0; }
+      .how-list { margin: 0 0 8px; padding-left: 20px; max-width: 78ch; }
+      .how-list li { font-size: 15.5px; line-height: 1.6; margin: 0 0 6px; }
       .steps-panel ol { margin: 0 0 14px; padding-left: 22px; }
       .steps-panel li { font-size: 16px; line-height: 1.65; margin: 0 0 10px; }
       .steps-panel .honest { color: var(--muted); font-size: 15px; line-height: 1.65; margin: 0; max-width: 76ch; }
@@ -622,12 +619,6 @@
       .adv-settings { border-top: 1px solid var(--line); margin-top: 22px; padding-top: 6px; }
       .adv-settings > summary { cursor: pointer; font-weight: 600; font-size: 15.5px; color: var(--accent); padding: 12px 0; min-height: 44px; }
       .adv-settings .opt-label { margin-top: 18px; }
-      @media (min-width: 1024px) {
-        .calc-layout { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 30px; align-items: start; }
-        .calc-layout > section.wrap { max-width: none; padding-left: 0; padding-right: 0; padding-top: 0; }
-        .calc-layout .layers { grid-template-columns: 1fr; }
-        .calc-layout .cascade { grid-template-columns: 1fr; }
-      }
       @media (prefers-reduced-motion: reduce) {
         .btn, .nav-cta { transition: none; }
       }
@@ -1477,16 +1468,16 @@
         <h2 class="calc-title">The AI in QE <em>Savings Analysis</em></h2>
         <p class="calc-lede">
           <span>Tell me how your testing runs today. I'll show you what AI can save, in two layers.</span><br />
-          <span class="l2">Layer 1: cherry-picked AI use cases, one at a time. Layer 2: Spec-Driven QE, spec as contract, tests generated from it, eval gates in CI. You answer plain questions; the model does the rest. Every number names its evidence.</span>
+          <span class="l2">Layer 1: cherry-picked AI use cases, one at a time. Layer 2: Spec-Driven QE, end to end from the spec. Answer plain questions; the model does the rest.</span>
         </p>
       </div>
 
       <section class="wrap" style="padding-top:0">
         <div class="sec-head"><h2>How your testing runs today</h2></div>
-        <p class="step-note">Start with the guided setup: five answers and both layers recompute instantly, beside the inputs. Tools, pyramid, testing types, and lifecycle phases sit under Advanced settings, pre-set to sensible defaults.</p>
+        <p class="step-note">Five answers and both layers recompute instantly. Tools, pyramid, testing types, and lifecycle phases sit under Advanced settings, pre-set to sensible defaults.</p>
         <form class="calc-panel" id="qForm" aria-label="Your testing program today">
           <h3>Your program</h3>
-          <p class="panel-note">Guided setup: starting answers describe a mid-size enterprise program: 30,000 QE hours a year across 10 releases, mixed manual/automated. Change any number to your own; results update as you type.</p>
+          <p class="panel-note">Starting answers describe a mid-size enterprise program: 30,000 QE hours a year across 10 releases, mixed manual/automated. Change any number; results update as you type.</p>
           <div class="prog-fields">
             <div class="field">
               <label for="qTotalHours">Total QE effort per year (hours, exact)</label>
@@ -1498,7 +1489,7 @@
               <label for="qReleases">Releases per year (exact)</label>
               <input type="number" id="qReleases" value="10" min="1" max="365" step="1" inputmode="numeric" aria-describedby="err-qReleases" />
               <p class="field-error" id="err-qReleases" role="alert" hidden></p>
-              <p class="fhelp">Used for the per-release breakdown below. Annual savings come from total hours above.</p>
+              <p class="fhelp">Annual savings come from total hours above.</p>
             </div>
             <div class="field">
               <label for="qMix">Manual vs automated testing today</label>
@@ -1508,7 +1499,7 @@
                 <option value="62">Automation-led, 50–75% automated</option>
                 <option value="85">Automation-first, 75%+ automated</option>
               </select>
-              <p class="fhelp">Traditional automation plateaued at 23–25% (Forrester, 2025). Your position sets the headroom and the baseline coverage.</p>
+              <p class="fhelp">Your position moves your savings % directly: a mostly-manual mix saves less, an automation-first mix saves more.</p>
             </div>
             <div class="field">
               <label for="qAutoTool">Automation tool</label>
@@ -1592,8 +1583,8 @@
         <div class="layers">
           <div class="layer-card">
             <p class="llabel">Layer 1: Cherry-picked AI use cases</p>
-            <p class="lbig" id="aPct">-</p>
-            <p class="lsub">of total QE effort saved per year, use case by use case</p>
+            <p class="lbig" id="aBig">-</p>
+            <p class="lsub"><span id="aPct">-</span> of your <span id="aBench">-</span>-hour benchmark</p>
             <dl>
               <div class="lrow"><dt>Effort saved / year</dt><dd id="aHrs">-</dd></div>
               <div class="lrow"><dt>Value of that effort / year</dt><dd id="aMoney">-</dd></div>
@@ -1601,17 +1592,15 @@
               <div class="lrow"><dt>Implementation cost (your est.)</dt><dd id="aCost">-</dd></div>
               <div class="lrow"><dt>Net value, year one</dt><dd id="aNet">-</dd></div>
               <div class="lrow" id="aRoiRow" hidden><dt>ROI on implementation cost</dt><dd id="aRoi">-</dd></div>
-              <div class="lrow"><dt>Execution speed</dt><dd id="aSpeed">-</dd></div>
-              <div class="lrow"><dt>Coverage</dt><dd id="aCov">-</dd></div>
-              <div class="lrow"><dt>Regression cycle</dt><dd id="aReg">-</dd></div>
             </dl>
+            <span hidden id="aSpeed"></span><span hidden id="aCov"></span><span hidden id="aReg"></span>
             <p class="lnote" id="aRange">-</p>
-            <p class="lnote">AI adopted activity by activity. Gains come from the published ranges below, adjusted for your tooling and pyramid, and capped where the evidence caps. Cherry-picking plateaus: each use case only touches its own activity.</p>
+            <p class="lnote">AI adopted activity by activity. Gains come from the published ranges, adjusted for your tooling and mix, and capped where the evidence caps.</p>
           </div>
           <div class="layer-card top">
             <p class="llabel">Layer 2: Spec-Driven QE</p>
-            <p class="lbig" id="bPct">-</p>
-            <p class="lsub">of total QE effort saved per year, end to end from the spec</p>
+            <p class="lbig" id="bBig">-</p>
+            <p class="lsub"><span id="bPct">-</span> of your <span id="bBench">-</span>-hour benchmark</p>
             <dl>
               <div class="lrow"><dt>Effort saved / year</dt><dd id="bHrs">-</dd></div>
               <div class="lrow"><dt>Value of that effort / year</dt><dd id="bMoney">-</dd></div>
@@ -1619,27 +1608,10 @@
               <div class="lrow"><dt>Implementation cost (your est.)</dt><dd id="bCost">-</dd></div>
               <div class="lrow"><dt>Net value, year one</dt><dd id="bNet">-</dd></div>
               <div class="lrow" id="bRoiRow" hidden><dt>ROI on implementation cost</dt><dd id="bRoi">-</dd></div>
-              <div class="lrow"><dt>Execution speed</dt><dd id="bSpeed">-</dd></div>
-              <div class="lrow"><dt>Coverage</dt><dd id="bCov">-</dd></div>
-              <div class="lrow"><dt>Regression cycle</dt><dd id="bReg">-</dd></div>
             </dl>
+            <span hidden id="bSpeed"></span><span hidden id="bCov"></span><span hidden id="bReg"></span>
             <p class="lnote" id="bRange">-</p>
-            <p class="lnote">Everything in Layer 1, plus the connective layer: tests generated from the spec and checked by gates, so phases stop handing effort to each other. This figure scales with your Layer 1 — 42% at typical answers, from my implementation experience across enterprise programs, not a study result.</p>
-          </div>
-        </div>
-
-        <div class="cascade">
-          <div class="cas-card">
-            <h3>Write cases faster → testing starts sooner</h3>
-            <p id="casDesign">-</p>
-          </div>
-          <div class="cas-card">
-            <h3>Automate faster → execution finishes sooner</h3>
-            <p id="casExec">-</p>
-          </div>
-          <div class="cas-card">
-            <h3>Find defects sooner → remediation costs less</h3>
-            <p id="casDefect">-</p>
+            <p class="lnote">Everything in Layer 1, plus the connective layer: tests generated from the spec and checked by gates. This figure scales with your Layer 1 result.</p>
           </div>
         </div>
 
@@ -1666,7 +1638,7 @@
 
       <section class="wrap">
         <div class="sec-head"><h2>Tools that fit your answers</h2></div>
-        <p class="step-note">Independent platforms, matched to your answers. None of them are mine. I sell judgement, not tools, and take nothing from any vendor listed.</p>
+        <p class="step-note">Independent platforms, matched to your answers. I take nothing from any vendor listed.</p>
         <ul class="rec-list" id="recList"></ul>
       </section>
 
@@ -1696,25 +1668,15 @@
       </section>
 
       <section class="wrap">
-        <div class="sec-head"><h2>Method</h2></div>
-        <div class="calc-how">
-          <div class="how-card">
-            <h3>How the estimate works</h3>
-            <p>Annual QE effort is your input above. Layer 1 % sums the use cases your answers switch on, multiplied by your automation tool's aptitude, capped at 30%. Layer 2 scales with your Layer 1: 42% at typical answers, proportionally lower or higher as your answers change it. ROI = (annual savings − implementation cost) / implementation cost. Tool aptitude: the Layer 1 % is multiplied by your automation tool: 1.1x for an AI-native agentic platform like Functionize, 1.05x for a codeless platform like ACCELQ, 1.0x for Playwright as the baseline, down to 0.85x for ad-hoc scripts.</p>
-            <p>The use cases are test design, script generation, regression selection, self-healing, triage, test data, reporting, and the rest, each contributing the share of effort its published evidence supports, adjusted by your test-management history (selection needs it) and your pyramid shape. The Layer 1 total is capped at 30% of effort, because that is where cherry-picking plateaus in practice.</p>
-            <p>Coverage starts from a baseline derived from your automation share and pyramid (an automation-first, healthy-pyramid program starts high; a manual, inverted one starts low), and each layer adds the points its use cases can defend, capped, because coverage bought by generation alone is coverage without verification. Execution speed is the reduction in regression-cycle time: per release, execution is modelled at 35% of QE effort and test design at 25%. Stated assumptions, the same for every visitor, so two programs answering alike get alike answers.</p>
-            <p>Layer 2 replaces the sum with the operating-model figure, scaled from your Layer 1 result: 42% of effort at typical answers (range 38–48% at that level, scaling proportionally with it), execution speed carried a further step beyond Layer 1, and coverage lifted end to end, because in a spec-driven program the gains are not confined to the activities you remembered to cherry-pick.</p>
-          </div>
-          <div class="how-card">
-            <h3>How to read the result</h3>
-            <ul>
-              <li><b>Hours first, dollars second.</b> The dollar figure is your hours at your rate. It moves when your rate moves. The hours, the speed, and the coverage are the substance.</li>
-              <li><b>Capacity, not headcount.</b> Saved effort is hours your team gets back: for the coverage you never had time for, the exploratory testing that keeps getting cut, the backlog. What leadership does with released capacity is a leadership decision; this analysis will not dress it up as a reduction plan.</li>
-              <li><b>Ranges, not promises.</b> Every figure here is an estimate from evidence and experience, to be replaced by your own pilot readout. If a vendor shows you a bigger number with no evaluation step and no source attached, you now know which questions to ask.</li>
-              <li><b>The gap between the layers is the argument.</b> If Layer 1 already looks good, Layer 2 is what the same investment returns when it stops being a collection of tools and becomes how the program runs.</li>
-            </ul>
-          </div>
-        </div>
+        <details class="expand how-expander">
+          <summary>How this estimate works</summary>
+          <ul class="how-list">
+            <li>Your benchmark hours × the use-case % your answers switch on = hours saved.</li>
+            <li>Your automation tool and manual/automated mix multiply that % — 1.1× for Functionize, 1.05× for ACCELQ, 1.0× for Playwright, down to 0.85× for ad-hoc scripts — capped at 30%.</li>
+            <li>Layer 2 scales from Layer 1: 42% when Layer 1 sits at its typical 26%, proportionally lower or higher as your answers move it.</li>
+            <li>ROI = (annual savings − implementation cost) ÷ implementation cost.</li>
+          </ul>
+        </details>
 
         <div class="calc-cta">
           <p><b>Want this run on your program?</b>
@@ -2075,6 +2037,7 @@
           if (!validateAll()) return;
           var releases = num('qReleases');
           var autoShare = clamp(num('qMix'), 0, 100);
+          var mixMult = autoShare <= 25 ? 0.9 : autoShare <= 50 ? 1 : autoShare <= 75 ? 1.05 : 1.1;
           var apt = num('qAutoTool'); if (!(apt > 0)) apt = 1;
           var autoKey = selKey('qAutoTool');
           var tm = num('qTmTool'); if (!(tm > 0)) tm = 1;
@@ -2108,7 +2071,7 @@
           var sumEffort = 0, sumSpeed = 0, sumCov = 0;
           ucs.forEach(function (u) { sumEffort += u.effort; sumSpeed += u.speed; sumCov += u.cov; });
           var baseSum = sumEffort;
-          var pctA = clamp(Math.round(baseSum * apt * 10) / 10, 0, LAYER_A_CAP);
+          var pctA = clamp(Math.round(baseSum * apt * mixMult * 10) / 10, 0, LAYER_A_CAP);
           var speedA = clamp(Math.round(sumSpeed), 0, 45);
           var covGainA = clamp(sumCov, 0, 15);
           var covBase = clamp(Math.round(45 + autoShare * 0.35 + pyrCov), 20, 90);
@@ -2143,12 +2106,16 @@
           var startB = designDays * 0.5;
 
           setText('aPct', '−' + fmtHrs(pctA) + '%');
+          setText('aBig', fmtHrs(hrsA) + ' hrs/yr');
+          setText('aBench', fmtHrs(totalHrs));
           setText('aHrs', fmtHrs(hrsA) + ' hrs / yr');
           setText('aMoney', fmtMoney(moneyA) + ' / yr');
           setText('aSpeed', 'cycles ~' + speedA + '% faster');
           setText('aCov', covBase + '% → ' + covA + '%');
           setText('aReg', fmtDays(regDays) + ' → ' + fmtDays(execDaysA) + ' days per release');
           setText('bPct', '−' + fmtHrs(pctB) + '%');
+          setText('bBig', fmtHrs(hrsB) + ' hrs/yr');
+          setText('bBench', fmtHrs(totalHrs));
           setText('bHrs', fmtHrs(hrsB) + ' hrs / yr');
           setText('bMoney', fmtMoney(moneyB) + ' / yr');
           setText('bSpeed', 'cycles ~' + speedB + '% faster');
@@ -2170,23 +2137,9 @@
           setText('aRange', 'Estimated range: \u2212' + fmtHrs(loA) + '% to \u2212' + fmtHrs(hiA) + '% of effort (' + fmtHrs(totalHrs * loA / 100) + '\u2013' + fmtHrs(totalHrs * hiA / 100) + ' hrs), the spread across the studies Layer 1 draws on.');
           setText('bRange', 'Estimated range: \u2212' + fmtHrs(loB) + '% to \u2212' + fmtHrs(hiB) + '% of effort (' + fmtHrs(totalHrs * loB / 100) + '\u2013' + fmtHrs(totalHrs * hiB / 100) + ' hrs), the spread across the enterprise programs this experience figure comes from, scaled with your Layer 1 result.');
           setHTML('sumLine',
-            'About <b>' + fmtHrs(totalHrs) + ' hours</b> of QE work a year across <b>' + releases + ' releases</b>. Cherry-picked AI saves roughly <b>' + fmtHrs(pctA) +
-            '% of effort</b>. Spec-driven, end to end, the saving rises to <b>' + fmtHrs(pctB) +
-            '%</b>, with coverage moving from ' + covBase + '% to ' + covB + '% instead of ' + covA +
-            '%. The difference between the layers is not more AI. It is where the AI sits.');
-
-          /* ----- The cascade: why speed compounds ----- */
-          setHTML('casDesign',
-            'Test design is about a quarter of QE effort per release, roughly <b>' + fmtDays(designDays) + ' days</b> before testing starts.' +
-            (startA > 0
-              ? ' Layer 1 starts testing about <b>' + fmtDays(startA) + ' days earlier</b> per release; Layer 2, generating from the spec, about <b>' + fmtDays(startB) + ' days earlier</b>, every release, all year.'
-              : ' Your answers switch design assistance off, so Layer 1 gains nothing here; Layer 2, generating from the spec, still starts about <b>' + fmtDays(startB) + ' days earlier</b> per release.'));
-          setHTML('casExec',
-            'A regression cycle of about <b>' + fmtDays(regDays) + ' days</b> today finishes in about <b>' + fmtDays(execDaysA) +
-            ' days</b> at Layer 1, selection runs only the tests the change needs, and about <b>' + fmtDays(execDaysB) +
-            ' days</b> at Layer 2, where the suite is generated, selected, and healed as one system.');
-          setHTML('casDefect',
-            'Defects surface <b>in the same cycle that wrote them</b>, while the change is small and the author remembers it, not in a regression pass weeks later, or in production. A defect costs a fraction to fix at the desk where it was born. No independent study prices this for AI testing, so the analysis puts no dollar figure on it, but it is the main reason Layer 2 outruns the sum of Layer 1.');
+            'Your benchmark: <b>' + fmtHrs(totalHrs) + ' hours</b> of QE work a year across <b>' + releases + ' releases</b>. Cherry-picked AI gives back <b>' + fmtHrs(hrsA) +
+            ' hours (' + fmtHrs(pctA) + '%)</b>. Spec-driven gives back <b>' + fmtHrs(hrsB) +
+            ' hours (' + fmtHrs(pctB) + '%)</b>. The difference between the layers is not more AI. It is where the AI sits.');
 
           /* ----- Tool recommendations, following from the answers -----
              Independent platforms only. The author's own tools never appear
@@ -2278,7 +2231,7 @@
             '- Layer 1 gains are anchored to published research: Meta predictive test selection (~2x infra-cost cut at >95% failure recall, ICSE-SEIP 2019); Meta TestGen-LLM behind filters (57% pass reliably, 73% accepted, FSE 2024); AI coding-assistance RCTs spanning +55.8% to -19% by task (Peng 2023; Cui et al.; METR 2025). Self-healing figures are vendor-only and counted small. Performance/exploratory AI: no quantified enterprise effect found, counted as assistive only.',
             '- Layer 2 (' + fmtHrs(pctB) + '%, scaled from 42% at typical answers, range ' + fmtHrs(loB) + '-' + fmtHrs(hiB) + '%) is DJ\u2019s implementation experience, not a published study: no peer-reviewed enterprise outcome study of spec-driven adoption exists. The evidenced mechanism is the verification loop (ReqTestAgent ablation: canonical pass 30% -> 100% with verification).',
             '- Base rates: 46% of enterprise AI PoCs were scrapped before production in 2025 (S&P Global). Saved effort is capacity returned to the team, not a headcount line.',
-            '- Method: Annual QE effort is the visitor\u2019s own input. Layer 1 % sums the use cases the answers switch on, multiplied by the automation tool\u2019s aptitude, capped at 30% of effort. Layer 2 scales with your Layer 1: 42% at typical answers, proportionally lower or higher as your answers change it. ROI = (annual savings - implementation cost) / implementation cost. Execution modelled at 35% of QE effort per release, design at 25%.'
+            '- Method: Annual QE effort is the visitor\u2019s own input. Layer 1 % sums the use cases the answers switch on, multiplied by the automation tool\u2019s aptitude and the automation mix (0.9x mostly-manual, 1.0x mixed, 1.05x automation-led, 1.1x automation-first), capped at 30% of effort. Layer 2 scales with your Layer 1: 42% at typical answers, proportionally lower or higher as your answers change it. ROI = (annual savings - implementation cost) / implementation cost. Execution modelled at 35% of QE effort per release, design at 25%.'
           ]).join('\n');
         }
 
@@ -2341,7 +2294,7 @@
 
     <script>
       (function () {
-        /* ---------- Calculator: advanced settings grouping + results beside inputs ---------- */
+        /* ---------- Calculator: advanced settings grouping (fields stay in the same even grid) ---------- */
         var form = document.getElementById('qForm');
         if (form) {
           var adv = document.createElement('details');
@@ -2350,10 +2303,13 @@
           advSum.textContent = 'Advanced settings: automation tool, test management, pyramid, testing types, lifecycle phases';
           adv.appendChild(advSum);
           form.appendChild(adv);
+          var advFields = document.createElement('div');
+          advFields.className = 'prog-fields';
+          adv.appendChild(advFields);
           ['qAutoTool', 'qTmTool', 'qPyramid'].forEach(function (id) {
             var el = document.getElementById(id);
             var f = el && el.closest ? el.closest('.field') : null;
-            if (f) adv.appendChild(f);
+            if (f) advFields.appendChild(f);
           });
           ['typesLabel', 'phasesLabel'].forEach(function (id) {
             var l = document.getElementById(id);
@@ -2362,17 +2318,6 @@
             adv.appendChild(l);
             if (row) adv.appendChild(row);
           });
-          var formSec = form.closest ? form.closest('section') : null;
-          var layersEl = document.querySelector('#calcView .layers');
-          var resSec = layersEl && layersEl.closest ? layersEl.closest('section') : null;
-          var calcMain = document.getElementById('calcView');
-          if (formSec && resSec && calcMain) {
-            var wrap = document.createElement('div');
-            wrap.className = 'calc-layout wrap';
-            calcMain.insertBefore(wrap, formSec);
-            wrap.appendChild(formSec);
-            wrap.appendChild(resSec);
-          }
         }
         /* Methodology & references become expandable sections */
         function makeExpandable(title) {
