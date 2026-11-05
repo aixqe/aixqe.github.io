@@ -478,6 +478,25 @@
       .steps-panel .honest b { color: var(--ink); }
       .rec-list { margin: 0; padding-left: 20px; max-width: 78ch; }
       .rec-list li { font-size: 16px; line-height: 1.65; margin: 0 0 10px; }
+
+      /* ---------- ROI Calibration ---------- */
+      .calib { margin-top: 40px; }
+      .calib-results { margin-top: 26px; }
+      .calib-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 0 0 18px; }
+      @media (max-width: 480px) { .calib-compare { grid-template-columns: 1fr; } }
+      .calib-mode { border: 1px solid var(--line); background: var(--paper); padding: 14px 16px 16px; }
+      .calib-mode.headline { border-color: var(--accent); background: var(--accent-soft); }
+      .calib-mode .cm-label { display: block; font-size: 12px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: var(--accent); margin: 0 0 6px; }
+      .calib-mode .cm-val { display: block; font-family: "Fraunces", Georgia, serif; font-size: clamp(28px, 3.6vw, 36px); font-weight: 600; letter-spacing: -.02em; line-height: 1; font-variant-numeric: tabular-nums; }
+      .calib-mode .cm-val.neg { color: var(--clay); }
+      .layer-card .lrow dd.neg { color: var(--clay); }
+      .bd-label { font-size: 12.5px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: var(--accent); margin: 20px 0 4px; }
+      .calib-eng { font-size: 15px; line-height: 1.6; color: var(--muted); margin: 22px 0 0; }
+      .calib-eng b { color: var(--ink); }
+      .calib-note { font-size: 15.5px; line-height: 1.6; margin: 22px 0 0; max-width: 74ch; }
+      @media (prefers-reduced-motion: reduce) {
+        .calib-mode { transition: none; }
+      }
       @media (prefers-reduced-motion: reduce) {
         .opt-btn { transition: none; }
       }
@@ -1615,6 +1634,120 @@
           </div>
         </div>
 
+        <div class="calib" id="roiCalibration">
+          <div class="sec-head"><h2>ROI Calibration</h2></div>
+          <p class="step-note">The cards above price the hours AI gives back. This section asks what survives verification, and what verification costs. The <b>calibrated</b> ROI is the headline financial answer; the optimistic ROI is the same math with acceptance, review, and evaluation switched off.</p>
+          <form class="calc-panel" id="calForm" aria-label="ROI calibration inputs">
+            <h3>Calibration inputs</h3>
+            <p class="panel-note">Every input is editable. Implementation cost is taken from your program answers above, so it is counted once, in both modes.</p>
+            <div class="prog-fields">
+              <div class="field">
+                <label for="roiAccept">AI output acceptance rate (%)</label>
+                <input type="number" id="roiAccept" value="30" min="0" max="100" step="1" inputmode="numeric" aria-describedby="err-roiAccept" />
+                <p class="field-error" id="err-roiAccept" role="alert" hidden></p>
+                <p class="fhelp">Share of AI output value that survives human review. Measured, not hoped.</p>
+              </div>
+              <div class="field">
+                <label for="roiReview">Review and rework cost (% of gross gain)</label>
+                <input type="number" id="roiReview" value="25" min="0" max="100" step="1" inputmode="numeric" aria-describedby="err-roiReview" />
+                <p class="field-error" id="err-roiReview" role="alert" hidden></p>
+                <p class="fhelp">Review effort as a share of gross gains.</p>
+              </div>
+              <div class="field">
+                <label for="roiSeat">Annual AI license cost per engineer (CAD $)</label>
+                <input type="number" id="roiSeat" value="1500" min="0" max="100000" step="100" inputmode="numeric" aria-describedby="err-roiSeat" />
+                <p class="field-error" id="err-roiSeat" role="alert" hidden></p>
+                <p class="fhelp">Per-engineer seat cost. Engineers derived from your total hours (hours / 1,880).</p>
+              </div>
+              <div class="field">
+                <label for="roiEval">Annual evaluation program cost (CAD $)</label>
+                <input type="number" id="roiEval" value="40000" min="0" max="1000000" step="1000" inputmode="numeric" aria-describedby="err-roiEval" />
+                <p class="field-error" id="err-roiEval" role="alert" hidden></p>
+              </div>
+              <div class="field">
+                <label for="roiInfra">Annual infrastructure / API cost (CAD $)</label>
+                <input type="number" id="roiInfra" value="0" min="0" max="1000000" step="1000" inputmode="numeric" aria-describedby="err-roiInfra" />
+                <p class="field-error" id="err-roiInfra" role="alert" hidden></p>
+              </div>
+              <div class="field">
+                <label for="roiRealize">Financial benefit realization (%)</label>
+                <input type="number" id="roiRealize" value="100" min="0" max="100" step="1" inputmode="numeric" aria-describedby="err-roiRealize" />
+                <p class="field-error" id="err-roiRealize" role="alert" hidden></p>
+                <p class="fhelp">Share of verified value that becomes real financial benefit.</p>
+              </div>
+              <div class="field">
+                <label for="roiAvoided">Verified avoided defect cost (CAD $ per year)</label>
+                <input type="number" id="roiAvoided" value="0" min="0" max="10000000" step="1000" inputmode="numeric" aria-describedby="err-roiAvoided" />
+                <p class="field-error" id="err-roiAvoided" role="alert" hidden></p>
+                <p class="fhelp">Book only what your evals prove. Kept separate from productivity gains to avoid double counting.</p>
+              </div>
+            </div>
+            <p class="calib-eng">Engineers derived from your total hours: <b id="calEng">-</b> (total hours &divide; 1,880). Licences at your seat cost: <b id="calLicTotal">-</b> per year.</p>
+          </form>
+
+          <div class="layers calib-results">
+            <div class="layer-card">
+              <p class="llabel">Layer 1: Cherry-picked AI use cases</p>
+              <div class="calib-compare">
+                <div class="calib-mode">
+                  <span class="cm-label">Optimistic ROI</span>
+                  <span class="cm-val" id="calOptA">-</span>
+                </div>
+                <div class="calib-mode headline">
+                  <span class="cm-label">Calibrated ROI</span>
+                  <span class="cm-val" id="calRoiA">-</span>
+                </div>
+              </div>
+              <dl>
+                <div class="lrow"><dt>Gross capacity value / year</dt><dd id="calGrossA">-</dd></div>
+                <div class="lrow"><dt>Verified value (after acceptance)</dt><dd id="calVerA">-</dd></div>
+                <div class="lrow"><dt>Realized value (after realization)</dt><dd id="calRealA">-</dd></div>
+                <div class="lrow"><dt>Calibrated net benefit / year</dt><dd id="calNetA">-</dd></div>
+                <div class="lrow"><dt>Break-even acceptance rate</dt><dd id="calBeA">-</dd></div>
+              </dl>
+              <p class="bd-label">Total investment breakdown (calibrated)</p>
+              <dl>
+                <div class="lrow"><dt>Licences</dt><dd id="calLicA">-</dd></div>
+                <div class="lrow"><dt>Review &amp; rework</dt><dd id="calRevA">-</dd></div>
+                <div class="lrow"><dt>Evaluation program</dt><dd id="calEvalA">-</dd></div>
+                <div class="lrow"><dt>Infrastructure / API</dt><dd id="calInfraA">-</dd></div>
+                <div class="lrow"><dt>Implementation (your est.)</dt><dd id="calImplA">-</dd></div>
+                <div class="lrow"><dt>Total investment</dt><dd id="calInvA">-</dd></div>
+              </dl>
+            </div>
+            <div class="layer-card top">
+              <p class="llabel">Layer 2: Spec-Driven QE</p>
+              <div class="calib-compare">
+                <div class="calib-mode">
+                  <span class="cm-label">Optimistic ROI</span>
+                  <span class="cm-val" id="calOptB">-</span>
+                </div>
+                <div class="calib-mode headline">
+                  <span class="cm-label">Calibrated ROI</span>
+                  <span class="cm-val" id="calRoiB">-</span>
+                </div>
+              </div>
+              <dl>
+                <div class="lrow"><dt>Gross capacity value / year</dt><dd id="calGrossB">-</dd></div>
+                <div class="lrow"><dt>Verified value (after acceptance)</dt><dd id="calVerB">-</dd></div>
+                <div class="lrow"><dt>Realized value (after realization)</dt><dd id="calRealB">-</dd></div>
+                <div class="lrow"><dt>Calibrated net benefit / year</dt><dd id="calNetB">-</dd></div>
+                <div class="lrow"><dt>Break-even acceptance rate</dt><dd id="calBeB">-</dd></div>
+              </dl>
+              <p class="bd-label">Total investment breakdown (calibrated)</p>
+              <dl>
+                <div class="lrow"><dt>Licences</dt><dd id="calLicB">-</dd></div>
+                <div class="lrow"><dt>Review &amp; rework</dt><dd id="calRevB">-</dd></div>
+                <div class="lrow"><dt>Evaluation program</dt><dd id="calEvalB">-</dd></div>
+                <div class="lrow"><dt>Infrastructure / API</dt><dd id="calInfraB">-</dd></div>
+                <div class="lrow"><dt>Implementation (your est.)</dt><dd id="calImplB">-</dd></div>
+                <div class="lrow"><dt>Total investment</dt><dd id="calInvB">-</dd></div>
+              </dl>
+            </div>
+          </div>
+          <p class="calib-note">Saved hours are capacity value, not cash, unless they translate into avoided spend or redeployed work.</p>
+        </div>
+
         <div class="calc-panel steps-panel">
           <h3>What the client should do: the Spec-Driven QE path</h3>
           <p class="panel-note">Layer 2 is an operating model, not a bigger licence. It pays only if the client changes how work flows. Five moves, in order:</p>
@@ -1987,9 +2120,16 @@
           qTotalHours: 'Enter a whole number between 1 and 10,000,000.',
           qReleases: 'Enter a whole number between 1 and 365.',
           inRate: 'Enter a whole number between 0 and 10,000, in steps of 5.',
-          inCost: 'Enter a whole number between 0 and 10,000,000, in steps of 1,000.'
+          inCost: 'Enter a whole number between 0 and 10,000,000, in steps of 1,000.',
+          roiAccept: 'Enter a whole number between 0 and 100.',
+          roiReview: 'Enter a whole number between 0 and 100.',
+          roiSeat: 'Enter a whole number between 0 and 100,000, in steps of 100.',
+          roiEval: 'Enter a whole number between 0 and 1,000,000, in steps of 1,000.',
+          roiInfra: 'Enter a whole number between 0 and 1,000,000, in steps of 1,000.',
+          roiRealize: 'Enter a whole number between 0 and 100.',
+          roiAvoided: 'Enter a whole number between 0 and 10,000,000, in steps of 1,000.'
         };
-        var NUMERIC_IDS = ['qTotalHours', 'qReleases', 'inRate', 'inCost'];
+        var NUMERIC_IDS = ['qTotalHours', 'qReleases', 'inRate', 'inCost', 'roiAccept', 'roiReview', 'roiSeat', 'roiEval', 'roiInfra', 'roiRealize', 'roiAvoided'];
         var VALIDATION_STATUS = 'Fix the highlighted fields first. Results calculate, copy, and download only when every input is valid.';
         function validateField(el) {
           if (!el) return true;
@@ -2141,6 +2281,62 @@
             ' hours (' + fmtHrs(pctA) + '%)</b>. Spec-driven gives back <b>' + fmtHrs(hrsB) +
             ' hours (' + fmtHrs(pctB) + '%)</b>. The difference between the layers is not more AI. It is where the AI sits.');
 
+          /* ----- ROI Calibration (Edition 4 model) -----
+             Same team, same productivity assumptions, two modes.
+             Optimistic: acceptance 100%, no review, no eval, no infra.
+             Calibrated: only verified value counts, and verification
+             itself is a cost inside total investment. Negative ROI is
+             shown as-is, never clamped to zero. */
+          var calAccept = num('roiAccept');
+          var calReviewPct = num('roiReview');
+          var calSeat = num('roiSeat');
+          var calEval = num('roiEval');
+          var calInfra = num('roiInfra');
+          var calRealize = num('roiRealize');
+          var calAvoided = num('roiAvoided');
+          var calEng = Math.round(totalHrs / FTE_HOURS);
+          var calLicenses = calEng * calSeat;
+          setText('calEng', calEng.toLocaleString('en-US'));
+          setText('calLicTotal', fmtMoney(calLicenses));
+          function fmtBe(v) {
+            if (v === null || !isFinite(v)) return '\u2014';
+            return (v < 0 ? '\u2212' : '') + Math.abs(v * 100).toFixed(1) + '%';
+          }
+          function setCal(id, text, neg) {
+            var el = document.getElementById(id);
+            if (!el) return;
+            el.textContent = text;
+            el.classList.toggle('neg', !!neg);
+          }
+          function calibrate(hrsSaved, sfx) {
+            var grossValue = hrsSaved * rate;
+            var review = grossValue * (calReviewPct / 100);
+            var totalInv = implCost + calLicenses + calInfra + calEval + review;
+            var verified = grossValue * (calAccept / 100);
+            var realized = verified * (calRealize / 100);
+            var netCal = realized + calAvoided - totalInv;
+            var roiCal = totalInv === 0 ? null : netCal / totalInv;
+            var invOpt = implCost + calLicenses;
+            var netOpt = grossValue - invOpt;
+            var roiOpt = invOpt === 0 ? null : netOpt / invOpt;
+            var beAccept = grossValue === 0 ? null : (totalInv - calAvoided) / grossValue;
+            setCal('calOpt' + sfx, roiOpt === null ? '\u2014' : fmtRoi(roiOpt * 100), roiOpt !== null && roiOpt < 0);
+            setCal('calRoi' + sfx, roiCal === null ? '\u2014' : fmtRoi(roiCal * 100), roiCal !== null && roiCal < 0);
+            setText('calGross' + sfx, fmtMoney(grossValue));
+            setText('calVer' + sfx, fmtMoney(verified));
+            setText('calReal' + sfx, fmtMoney(realized));
+            setCal('calNet' + sfx, fmtMoney(netCal), netCal < 0);
+            setText('calBe' + sfx, fmtBe(beAccept));
+            setText('calLic' + sfx, fmtMoney(calLicenses));
+            setText('calRev' + sfx, fmtMoney(review));
+            setText('calEval' + sfx, fmtMoney(calEval));
+            setText('calInfra' + sfx, fmtMoney(calInfra));
+            setText('calImpl' + sfx, fmtMoney(implCost));
+            setText('calInv' + sfx, fmtMoney(totalInv));
+          }
+          calibrate(hrsA, 'A');
+          calibrate(hrsB, 'B');
+
           /* ----- Tool recommendations, following from the answers -----
              Independent platforms only. The author's own tools never appear
              here: an analysis that recommends its author's products is an ad. */
@@ -2236,7 +2432,7 @@
         }
 
         /* ---------- Question wiring ---------- */
-        ['qTotalHours', 'qReleases', 'qMix', 'qAutoTool', 'qTmTool', 'qPyramid', 'inRate', 'inCost'].forEach(function (id) {
+        ['qTotalHours', 'qReleases', 'qMix', 'qAutoTool', 'qTmTool', 'qPyramid', 'inRate', 'inCost', 'roiAccept', 'roiReview', 'roiSeat', 'roiEval', 'roiInfra', 'roiRealize', 'roiAvoided'].forEach(function (id) {
           var el = document.getElementById(id);
           if (!el) return;
           el.addEventListener('input', compute);
@@ -2251,6 +2447,8 @@
         });
         var qForm = document.getElementById('qForm');
         if (qForm) qForm.addEventListener('submit', function (e) { e.preventDefault(); });
+        var calForm = document.getElementById('calForm');
+        if (calForm) calForm.addEventListener('submit', function (e) { e.preventDefault(); });
 
         /* ---------- Copy / download the analysis ---------- */
         var copyStatus = document.getElementById('copyStatus');
