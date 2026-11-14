@@ -2059,7 +2059,7 @@
           });
           var viewport = root.querySelector('.hc-viewport'); var hideTimer = null; function fitHeight() { try { if (viewport && slides[cur]) viewport.style.height = slides[cur].offsetHeight + 'px'; } catch (e) {} } root.classList.add('hc-js'); function go(n) {
             cur = ((n % slides.length) + slides.length) % slides.length;
-            track.style.transform = 'translateX(' + (-100 * cur) + '%'); if (hideTimer) clearTimeout(hideTimer); slides.forEach(function(s) { s.classList.remove('hc-hidden'); }); hideTimer = setTimeout(function() { slides.forEach(function(s, j) { if (j !== cur) s.classList.add('hc-hidden'); }); fitHeight(); }, 650); fitHeight(); track.style.transform = 'translateX(' + (-100 * cur) + '%)';
+            track.style.transform = 'translateX(' + (-100 * cur) + '%)'; if (hideTimer) clearTimeout(hideTimer); slides.forEach(function(s) { s.classList.remove('hc-hidden'); }); hideTimer = setTimeout(function() { slides.forEach(function(s, j) { if (j !== cur) s.classList.add('hc-hidden'); }); fitHeight(); }, 650); fitHeight(); track.style.transform = 'translateX(' + (-100 * cur) + '%)';
             slides.forEach(function (s, j) {
               var on = j === cur;
               s.setAttribute('aria-hidden', on ? 'false' : 'true');
