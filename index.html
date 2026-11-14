@@ -38,15 +38,18 @@
       @media (prefers-color-scheme: dark) {
         :root {
           --paper: #171A13;
-          --paper-2: #20241B;
+          --paper-2: #333A28;
           --ink: #EDEAE0;
           --muted: #A4A892;
-          --line: #2D3124;
-          --line-strong: #4C5140;
-          --accent: #AABE94;
-          --accent-soft: #27301F;
-          --clay: #D28D5E;
+          --line: #646B52;
+          --line-strong: #8A9174;
+          --accent: #B9CBA7;
+          --accent-soft: #41492F;
+          --clay: #E8B48C;
         }
+          /* Dark mode: diagram fills are 3.1:1+ vs the #171A13 ground (ink text 4.6:1+); base rules fill .nd-io/.nd-prop with var(--paper) and .nd/.nd-review with var(--paper-2). Extra .arch-canvas beats the later base rules. */
+          .arch-diagram .arch-canvas .nd rect, .arch-diagram .arch-canvas .nd-review polygon { fill: #646B51; }
+          .arch-diagram .arch-canvas .nd-io rect, .arch-diagram .arch-canvas .nd-prop rect { fill: #6D675A; }
       }
       * { box-sizing: border-box; }
       html { scroll-behavior: smooth; scroll-padding-top: 88px; }
