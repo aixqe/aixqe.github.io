@@ -240,18 +240,6 @@
       .slide figcaption > span:first-child { min-width: 0; }
       .wrow .arr { font-size: 26px; color: var(--accent); flex: none; line-height: 1; }
 
-      /* ---------- News ---------- */
-      .nweek { font-family: "Fraunces", Georgia, serif; font-size: 21px; font-weight: 600; letter-spacing: -.01em; margin: 0; padding-top: 24px; border-top: 1px solid var(--ink); }
-      .nlist { list-style: none; margin: 0; padding: 0; }
-      .nitem { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 2px 18px; padding: 17px 14px; margin: 0 -14px; border-bottom: 1px solid var(--line); }
-      .ndate { font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); padding-top: 5px; white-space: nowrap; }
-      .nbody h3 { font-family: "Fraunces", Georgia, serif; font-size: 20px; font-weight: 500; letter-spacing: -.01em; line-height: 1.25; margin: 0 0 3px; }
-      .nbody h3 a { color: var(--ink); transition: color .25s ease; }
-      .nbody h3 a:hover { color: var(--accent); text-decoration: none; }
-      .nbody h3 .arr { font-size: 15px; color: var(--accent); margin-left: 4px; }
-      .nbody p { color: var(--muted); font-size: 16px; line-height: 1.6; margin: 0; max-width: 64ch; }
-      .nsrc { color: var(--accent); font-weight: 600; font-size: 14.5px; white-space: nowrap; }
-
       /* ---------- Newsletter band (the whole Writing section, kept small) ---------- */
       .band {
         border: 1px solid var(--line-strong); background: var(--paper-2);
@@ -268,473 +256,7 @@
       .band a.btn:hover { background: var(--accent); color: var(--paper); text-decoration: none; }
       @media (max-width: 640px) { .band { padding: 24px 22px; } }
 
-      /* ---------- Home news teaser (latest three; the rest lives on #/news) ---------- */
-      .sec-head .sec-link { margin-left: auto; font-size: 15px; font-weight: 600; white-space: nowrap; }
-      .nteaser { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--ink); }
-      .nteaser li { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 2px 18px; padding: 15px 0; border-bottom: 1px solid var(--line); }
-      .nteaser a { font-family: "Fraunces", Georgia, serif; font-size: 19.5px; font-weight: 500; letter-spacing: -.01em; line-height: 1.3; color: var(--ink); transition: color .25s ease; }
-      .nteaser a:hover { color: var(--accent); text-decoration: none; }
-      .nteaser a .arr { font-size: 14px; color: var(--accent); margin-left: 4px; }
-
-      /* ---------- News page ---------- */
-      .nweek-head { display: flex; align-items: center; gap: 14px; }
-      .nweek-head .nweek { flex: none; }
-      .npill {
-        font-size: 12px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase;
-        color: var(--accent); background: var(--accent-soft);
-        border: 1px solid var(--line-strong); padding: 4px 10px 3px; margin-top: 24px;
-      }
-      .nitem { transition: background .25s ease; }
-      .nitem:hover { background: var(--paper-2); }
-
-      /* ---------- About + carousel ---------- */
-      .about-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px 60px; align-items: start; }
-      @media (min-width: 900px) { .about-grid { grid-template-columns: minmax(0, 1fr) 252px; } }
-      .about-copy { max-width: 66ch; }
-      .about-copy p { margin: 0 0 20px; font-size: 17.5px; line-height: 1.75; }
-      .about-copy p:first-child { font-size: 21px; line-height: 1.6; }
-      .about-meta { margin: 4px 0 0; border-top: 1px solid var(--ink); }
-      .about-meta .mrow { padding: 13px 0 15px; margin: 0; }
-      .about-meta .mrow + .mrow { border-top: 1px solid var(--line); }
-      .about-meta dt { font-size: 12.5px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: var(--accent); margin: 0 0 5px; }
-      .about-meta dd { margin: 0; font-size: 16px; line-height: 1.55; }
-      .about-copy p:last-child { margin-bottom: 0; }
-      .tight-list { margin: 0; padding-left: 22px; font-size: 17.5px; line-height: 1.7; }
-      .tight-list li { margin-bottom: 12px; }
-      .tight-list li:last-child { margin-bottom: 0; }
-      .carousel { margin-top: 56px; }
-      .carousel-frame { overflow: hidden; border: 1px solid var(--line-strong); background: var(--paper-2); }
-      .carousel-track { display: flex; transition: transform .7s var(--ease); }
-      .slide { flex: 0 0 100%; margin: 0; }
-      .slide img { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: contain; background: var(--paper-2); }
-      .slide figcaption { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 14px 20px 16px; font-size: 14.5px; color: var(--muted); }
-      .slide figcaption .n { color: var(--accent); font-weight: 600; letter-spacing: .05em; font-size: 13px; white-space: nowrap; }
-      .carousel-bar { display: flex; align-items: center; justify-content: space-between; gap: 18px; margin-top: 16px; flex-wrap: wrap; }
-      .cbtn-group { display: flex; gap: 10px; }
-      .cbtn {
-        width: 46px; height: 46px; border: 1px solid var(--line-strong); background: var(--paper);
-        color: var(--ink); font-size: 19px; line-height: 1; cursor: pointer;
-        display: inline-flex; align-items: center; justify-content: center;
-        transition: border-color .25s ease, color .25s ease, background .25s ease;
-      }
-      .cbtn:hover { border-color: var(--accent); color: var(--accent); }
-      .dots { display: flex; gap: 8px; flex-wrap: wrap; }
-      .dot { width: 9px; height: 9px; border-radius: 50%; border: 1px solid var(--line-strong); background: transparent; padding: 0; cursor: pointer; transition: background .25s ease, border-color .25s ease; }
-      .dot:hover { border-color: var(--accent); }
-      .dot.on { background: var(--accent); border-color: var(--accent); }
-
-      /* ---------- Calculator page ---------- */
-      [hidden] { display: none !important; }
-      .calc-head { padding-top: 72px; }
-      @media (max-width: 640px) { .calc-head { padding-top: 48px; } }
-      .calc-back { display: inline-block; font-size: 15px; font-weight: 600; color: var(--accent); margin: 0 0 26px; }
-      .calc-title {
-        font-family: "Fraunces", Georgia, serif;
-        font-size: clamp(40px, 6.4vw, 68px);
-        line-height: 1.04; letter-spacing: -.015em; font-weight: 500;
-        margin: 0 0 22px; max-width: 16ch;
-      }
-      .calc-title em { font-style: italic; color: var(--clay); }
-      .calc-lede { font-size: clamp(18px, 2.2vw, 20.5px); line-height: 1.6; margin: 0; max-width: 62ch; }
-      .calc-lede .l2 { color: var(--muted); }
-      .calc-panel { border: 1px solid var(--line-strong); background: var(--paper-2); padding: 28px 28px 30px; }
-      .calc-panel h3 { font-family: "Fraunces", Georgia, serif; font-size: 23px; font-weight: 500; letter-spacing: -.01em; margin: 0 0 6px; }
-      .calc-panel .panel-note { color: var(--muted); font-size: 15px; margin: 0 0 22px; line-height: 1.55; max-width: 74ch; }
-      .field { margin: 0 0 20px; }
-      .field:last-child { margin-bottom: 0; }
-      .field label { display: block; font-size: 14px; font-weight: 600; letter-spacing: .02em; margin: 0 0 8px; color: var(--ink); }
-      .field .fhelp { color: var(--muted); font-size: 13.5px; font-weight: 400; margin: 6px 0 0; line-height: 1.5; }
-      .field-error { color: var(--clay); font-size: 13.5px; font-weight: 600; margin: 6px 0 0; line-height: 1.5; }
-      .field input[type="number"][aria-invalid="true"] { border-color: var(--clay); outline: 2px solid var(--clay); outline-offset: 1px; }
-      .field input[type="number"] {
-        width: 100%; padding: 11px 13px; font: inherit; font-size: 16.5px;
-        color: var(--ink); background: var(--paper); border: 1px solid var(--line-strong);
-      }
-      .field input[type="number"]:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-color: var(--accent); }
-      .prog-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 26px; }
-      @media (max-width: 640px) { .prog-fields { grid-template-columns: 1fr; } }
-      .preset-row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 24px; border-top: 1px solid var(--line); padding-top: 20px; }
-      .preset-label { font-size: 13px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: var(--accent); margin-right: 4px; }
-      .preset-btn {
-        border: 1px solid var(--line-strong); background: var(--paper); color: var(--ink);
-        font: inherit; font-size: 14.5px; font-weight: 600; padding: 9px 15px; cursor: pointer;
-        transition: border-color .25s ease, background .25s ease, color .25s ease;
-      }
-      .preset-btn:hover { border-color: var(--accent); color: var(--accent); }
-      .preset-btn.on { background: var(--accent); border-color: var(--accent); color: var(--paper); }
-      .preset-note { color: var(--muted); font-size: 13.5px; margin: 12px 0 0; line-height: 1.55; max-width: 74ch; }
-      .calc-grid { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 26px; align-items: start; margin-top: 26px; }
-      @media (max-width: 960px) { .calc-grid { grid-template-columns: 1fr; } }
-      .blocks { display: flex; flex-direction: column; gap: 26px; min-width: 0; }
-      .block-head { display: flex; align-items: baseline; justify-content: space-between; gap: 14px; margin: 0 0 18px; }
-      .block-head h3 { margin: 0; }
-      .block-unit { color: var(--muted); font-size: 13.5px; font-weight: 600; letter-spacing: .03em; text-align: right; }
-      .block-fields { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
-      @media (max-width: 1100px) { .block-fields { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-      .block-fields .field { margin: 0; }
-      .block-fields .field label { font-size: 13px; line-height: 1.4; min-height: 55px; }
-      .block-fields .field input[type="number"] { padding: 9px 11px; font-size: 15.5px; }
-      .block-out { border-top: 1px solid var(--line); margin: 18px 0 0; padding-top: 13px; font-size: 15px; line-height: 1.55; color: var(--muted); font-variant-numeric: tabular-nums; }
-      .block-out b { color: var(--ink); }
-      .lose-flag { color: var(--clay); font-size: 12.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; margin-left: 8px; white-space: nowrap; }
-      .rollup-col { min-width: 0; }
-      .result-card { border: 1px solid var(--line-strong); background: var(--paper-2); padding: 24px 24px 26px; }
-      .result-card.cal { border-color: var(--accent); background: var(--accent-soft); }
-      .result-card .rlabel { font-size: 12.5px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: var(--accent); margin: 0 0 10px; }
-      .result-card .rroi { font-family: "Fraunces", Georgia, serif; font-size: clamp(38px, 4.6vw, 50px); font-weight: 600; letter-spacing: -.02em; line-height: 1; margin: 0 0 4px; }
-      .result-card .rroi.neg { color: var(--clay); }
-      .result-card .rsub { color: var(--muted); font-size: 14.5px; margin: 0 0 16px; }
-      .result-card dl { margin: 0; }
-      .result-card .rrow { display: flex; justify-content: space-between; gap: 14px; padding: 8px 0; font-size: 15px; }
-      .result-card .rrow + .rrow { border-top: 1px solid var(--line); }
-      .result-card .rrow dt { color: var(--muted); margin: 0; }
-      .result-card .rrow dd { margin: 0; font-weight: 600; font-variant-numeric: tabular-nums; white-space: nowrap; }
-      .result-card .rrow.total dd { font-weight: 700; }
-      .fte-note { color: var(--muted); font-size: 13.5px; line-height: 1.55; margin: 14px 0 0; }
-      .verdict { border: 1px solid var(--ink); padding: 22px 24px; margin-top: 26px; font-size: 16.5px; line-height: 1.6; }
-      .verdict b { font-family: "Fraunces", Georgia, serif; font-size: 19px; font-weight: 600; }
-      .bars { margin-top: 24px; }
-      .bars h4 { font-size: 13px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: var(--accent); margin: 0 0 14px; }
-      .bar-row { display: grid; grid-template-columns: 104px minmax(0, 1fr) 76px; gap: 12px; align-items: center; margin: 0 0 10px; font-size: 13.5px; }
-      .bar-row .blabel { color: var(--muted); }
-      .bar-row .bval { font-weight: 600; font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
-      .bar-track { height: 14px; background: var(--paper); border: 1px solid var(--line); position: relative; }
-      .bar-fill { position: absolute; inset: 0 auto 0 0; width: 0; background: var(--line-strong); transition: width .5s var(--ease); }
-      .bar-fill.good { background: var(--accent); }
-      .bar-fill.cost { background: var(--clay); }
-      .calc-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px; }
-      .calc-btn {
-        border: 1px solid var(--accent); background: transparent; color: var(--accent);
-        font: inherit; font-weight: 600; font-size: 15px; padding: 11px 18px; cursor: pointer;
-        transition: background .25s ease, color .25s ease;
-      }
-      .calc-btn:hover { background: var(--accent); color: var(--paper); }
-      .copy-status { color: var(--muted); font-size: 14px; margin: 12px 0 0; min-height: 1.4em; }
-      .calc-how { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px; margin-top: 8px; }
-      @media (max-width: 760px) { .calc-how { grid-template-columns: 1fr; } }
-      .how-card { border-top: 1px solid var(--ink); padding-top: 20px; }
-      .how-card h3 { font-family: "Fraunces", Georgia, serif; font-size: 24px; font-weight: 500; margin: 0 0 12px; letter-spacing: -.01em; }
-      .how-card p, .how-card li { font-size: 16px; line-height: 1.65; color: var(--ink); }
-      .how-card p { margin: 0 0 12px; }
-      .how-card ol, .how-card ul { margin: 0 0 12px; padding-left: 22px; }
-      .how-card li { margin: 0 0 8px; }
-      .how-card .formula { font-variant-numeric: tabular-nums; background: var(--paper-2); border: 1px solid var(--line); padding: 12px 14px; font-size: 15px; line-height: 1.7; margin: 0 0 12px; }
-      .sources-card { margin-top: 34px; }
-      .calc-cta { margin-top: 40px; border: 1px solid var(--line-strong); background: var(--paper-2); padding: 28px; display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; }
-      .calc-cta p { margin: 0; font-size: 17px; max-width: 52ch; }
-      .calc-cta p b { font-family: "Fraunces", Georgia, serif; font-size: 20px; font-weight: 600; display: block; margin-bottom: 4px; }
-      .calc-cta a.btn {
-        flex: none; border: 1px solid var(--accent); color: var(--accent);
-        font-weight: 600; font-size: 16px; padding: 13px 22px; transition: background .25s ease, color .25s ease;
-      }
-      .calc-cta a.btn:hover { background: var(--accent); color: var(--paper); text-decoration: none; }
-      @media (prefers-reduced-motion: reduce) {
-        .bar-fill { transition: none; }
-        .preset-btn, .calc-btn { transition: none; }
-      }
-
-      /* ---------- Savings analysis tool ---------- */
-      .step-note { color: var(--muted); font-size: 16px; line-height: 1.6; margin: -12px 0 26px; max-width: 72ch; }
-      .field select {
-        width: 100%; padding: 11px 13px; font: inherit; font-size: 16.5px;
-        color: var(--ink); background: var(--paper); border: 1px solid var(--line-strong);
-      }
-      .field select:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-color: var(--accent); }
-      .opt-label { font-size: 14px; font-weight: 600; letter-spacing: .02em; margin: 24px 0 10px; color: var(--ink); }
-      .opt-label .fhelp { color: var(--muted); font-size: 13.5px; font-weight: 400; margin: 4px 0 0; line-height: 1.5; }
-      .opt-row { display: flex; flex-wrap: wrap; gap: 8px; }
-      .opt-btn {
-        border: 1px solid var(--line-strong); background: var(--paper); color: var(--ink);
-        font: inherit; font-size: 14px; font-weight: 600; padding: 8px 14px; cursor: pointer;
-        transition: border-color .25s ease, background .25s ease, color .25s ease;
-      }
-      .opt-btn:hover { border-color: var(--accent); color: var(--accent); }
-      .opt-btn.on { background: var(--accent); border-color: var(--accent); color: var(--paper); }
-      .opt-btn.on:hover { color: var(--paper); }
-      .sum-line { font-size: clamp(18px, 2.2vw, 21px); line-height: 1.6; margin: 0 0 28px; max-width: 70ch; }
-      .sum-line b { color: var(--accent); }
-      .cap-line { font-size: 16px; line-height: 1.6; color: var(--muted); margin: -16px 0 28px; max-width: 70ch; }
-      .cap-line b { color: var(--ink); }
-      .layers { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 26px; align-items: stretch; }
-      @media (max-width: 860px) { .layers { grid-template-columns: 1fr; } }
-      .layer-card { border: 1px solid var(--line-strong); background: var(--paper-2); padding: 26px 26px 28px; display: flex; flex-direction: column; }
-      .layer-card.top { border-color: var(--accent); background: var(--accent-soft); }
-      .layer-card .llabel { font-size: 12.5px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: var(--accent); margin: 0 0 10px; }
-      .layer-card .lbig { font-family: "Fraunces", Georgia, serif; font-size: clamp(40px, 5vw, 54px); font-weight: 600; letter-spacing: -.02em; line-height: 1; margin: 0 0 6px; }
-      .layer-card .lsub { color: var(--muted); font-size: 14.5px; line-height: 1.55; margin: 0 0 16px; }
-      .layer-card dl { margin: 0; }
-      .layer-card .lrow { display: flex; justify-content: space-between; gap: 14px; padding: 8px 0; font-size: 15px; }
-      .layer-card .lrow + .lrow { border-top: 1px solid var(--line); }
-      .layer-card .lrow dt { color: var(--muted); margin: 0; }
-      .layer-card .lrow dd { margin: 0; font-weight: 600; font-variant-numeric: tabular-nums; white-space: nowrap; }
-      .layer-card .lnote { color: var(--muted); font-size: 14px; line-height: 1.6; margin: 16px 0 0; }
-      .steps-panel { margin-top: 34px; }
-      .how-expander { margin-top: 0; }
-      .how-list { margin: 0 0 8px; padding-left: 20px; max-width: 78ch; }
-      .how-list li { font-size: 15.5px; line-height: 1.6; margin: 0 0 6px; }
-      .steps-panel ol { margin: 0 0 14px; padding-left: 22px; }
-      .steps-panel li { font-size: 16px; line-height: 1.65; margin: 0 0 10px; }
-      .steps-panel .honest { color: var(--muted); font-size: 15px; line-height: 1.65; margin: 0; max-width: 76ch; }
-      .steps-panel .honest b { color: var(--ink); }
-      .rec-list { margin: 0; padding-left: 20px; max-width: 78ch; }
-      .rec-list li { font-size: 16px; line-height: 1.65; margin: 0 0 10px; }
-
-      /* ---------- ROI Calibration ---------- */
-      .calib { margin-top: 40px; }
-      .calib-results { margin-top: 26px; }
-      .calib-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 0 0 18px; }
-      @media (max-width: 480px) { .calib-compare { grid-template-columns: 1fr; } }
-      .calib-mode { border: 1px solid var(--line); background: var(--paper); padding: 14px 16px 16px; }
-      .calib-mode.headline { border-color: var(--accent); background: var(--accent-soft); }
-      .calib-mode .cm-label { display: block; font-size: 12px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: var(--accent); margin: 0 0 6px; }
-      .calib-mode .cm-val { display: block; font-family: "Fraunces", Georgia, serif; font-size: clamp(28px, 3.6vw, 36px); font-weight: 600; letter-spacing: -.02em; line-height: 1; font-variant-numeric: tabular-nums; }
-      .calib-mode .cm-val.neg { color: var(--clay); }
-      .layer-card .lrow dd.neg { color: var(--clay); }
-      .bd-label { font-size: 12.5px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: var(--accent); margin: 20px 0 4px; }
-      .calib-eng { font-size: 15px; line-height: 1.6; color: var(--muted); margin: 22px 0 0; }
-      .calib-eng b { color: var(--ink); }
-      .calib-note { font-size: 15.5px; line-height: 1.6; margin: 22px 0 0; max-width: 74ch; }
-      @media (prefers-reduced-motion: reduce) {
-        .calib-mode { transition: none; }
-      }
-      @media (prefers-reduced-motion: reduce) {
-        .opt-btn { transition: none; }
-      }
-
-      /* ---------- Footer ---------- */
-      footer { margin-top: 100px; border-top: 1px solid var(--ink); padding: 52px 0 64px; }
-      .foot-links { display: flex; flex-wrap: wrap; gap: 14px 34px; font-size: clamp(19px, 2.4vw, 23px); font-weight: 600; margin: 0 0 40px; }
-      .foot-links a { color: var(--ink); transition: color .25s ease; }
-      .foot-links a:hover { color: var(--accent); text-decoration: none; }
-      .foot-links .arr { color: var(--accent); font-size: .8em; }
-      .made { font-family: "Fraunces", Georgia, serif; font-style: italic; font-size: 19px; margin: 0 0 8px; }
-      .foot-fine { color: var(--muted); font-size: 14px; margin: 0; }
-      .visitor-count { color: var(--muted); font-size: 14px; margin: 14px 0 0; display: flex; align-items: baseline; gap: 8px; }
-      .visitor-count .vnum { font-family: "Fraunces", Georgia, serif; font-size: 21px; font-weight: 600; color: var(--accent); font-variant-numeric: tabular-nums; line-height: 1; }
-
-      /* ---------- Redesign additions (2026 review pass) ---------- */
-      .skip-link { position: absolute; left: -9999px; top: 0; background: var(--accent); color: var(--paper); padding: 12px 18px; z-index: 100; font-weight: 600; }
-      .skip-link:focus { left: 12px; top: 12px; }
-      section { padding-top: 56px; }
-      .nav-cta { border: 1px solid var(--accent); color: var(--accent) !important; padding: 9px 16px; font-weight: 600; }
-      .nav-cta:hover { background: var(--accent); color: var(--paper) !important; text-decoration: none; }
-      .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 12px 22px; font-weight: 600; font-size: 16px; border: 1px solid var(--accent); cursor: pointer; font-family: inherit; transition: background .25s ease, color .25s ease; }
-      .btn-primary { background: var(--accent); color: var(--paper); }
-      .btn-primary:hover { background: var(--ink); border-color: var(--ink); color: var(--paper); text-decoration: none; }
-      .btn-ghost { background: transparent; color: var(--accent); }
-      .btn-ghost:hover { background: var(--accent); color: var(--paper); text-decoration: none; }
-      .hero { padding-top: 64px; padding-bottom: 40px; }
-      .hero-grid { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: 34px; align-items: start; }
-      @media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; } }
-      .hero h1 { font-size: clamp(42px, 5.6vw, 68px); max-width: 15ch; margin-bottom: 22px; }
-      .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
-      .preview-panel { border: 1px solid var(--line-strong); background: var(--paper-2); padding: 20px 22px 22px; }
-      .preview-panel .pp-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin: 0 0 4px; }
-      .preview-panel h3 { font-family: "Fraunces", Georgia, serif; font-size: 20px; font-weight: 600; margin: 0; }
-      .sample-tag { font-size: 11.5px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--clay); border: 1px solid var(--clay); padding: 3px 8px; white-space: nowrap; }
-      .preview-panel .pp-sub { color: var(--muted); font-size: 14px; margin: 0 0 14px; }
-      .pp-table { width: 100%; border-collapse: collapse; font-size: 14px; }
-      .pp-table th, .pp-table td { text-align: left; padding: 7px 8px; border-top: 1px solid var(--line); vertical-align: top; }
-      .pp-table th { font-size: 12px; letter-spacing: .07em; text-transform: uppercase; color: var(--accent); border-top: 0; }
-      .pp-flag { color: var(--clay); font-weight: 700; }
-      .pp-ok { color: var(--accent); font-weight: 600; }
-      .pp-note { font-size: 13.5px; color: var(--muted); margin: 12px 0 0; line-height: 1.55; }
-      .status { display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; padding: 4px 10px; border: 1px solid var(--line-strong); background: var(--paper); color: var(--accent); white-space: nowrap; }
-      .status.delivery { background: var(--accent); border-color: var(--accent); color: var(--paper); }
-      .recog-title { font-family: "Fraunces", Georgia, serif; font-size: clamp(21px, 2.6vw, 26px); font-weight: 500; margin: 38px 0 16px; }
-      .recog-row { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; align-items: start; }
-      @media (max-width: 760px) { .recog-row { grid-template-columns: 1fr; } }
-      .recog-row figure { margin: 0; }
-      .recog-row img { display: block; width: 100%; height: auto; object-fit: contain; border: 1px solid var(--line-strong); background: var(--paper-2); }
-      .recog-row figcaption { font-size: 13.5px; color: var(--muted); padding-top: 7px; line-height: 1.45; }
-      .flagship { border: 1px solid var(--line-strong); background: var(--paper-2); margin: 0 0 30px; }
-      .flagship.feature { border-color: var(--accent); }
-      .flagship .f-cover { border-bottom: 1px solid var(--line); background: var(--paper); overflow: hidden; }
-      .flagship .f-cover svg { display: block; width: 100%; height: auto; }
-      .flagship .f-body { padding: 26px 28px 28px; }
-      @media (max-width: 640px) { .flagship .f-body { padding: 22px 20px 24px; } }
-      .f-top { display: flex; align-items: baseline; justify-content: space-between; gap: 14px; flex-wrap: wrap; margin: 0 0 8px; }
-      .f-top h3 { font-family: "Fraunces", Georgia, serif; font-size: clamp(25px, 3vw, 32px); font-weight: 500; margin: 0; }
-      .f-sum { font-size: 17px; line-height: 1.6; margin: 0 0 18px; max-width: 68ch; }
-      .f-sum b { color: var(--accent); }
-      details.expand { border-top: 1px solid var(--line); margin-top: 6px; }
-      details.expand > summary { cursor: pointer; font-weight: 600; font-size: 15.5px; color: var(--accent); padding: 14px 0; min-height: 44px; list-style-position: outside; }
-      details.expand > summary:hover { color: var(--ink); }
-      .f-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px 30px; padding-bottom: 8px; }
-      @media (max-width: 760px) { .f-grid { grid-template-columns: 1fr; } }
-      .f-grid h4 { font-size: 12.5px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: var(--accent); margin: 14px 0 5px; }
-      .f-grid p { font-size: 15.5px; line-height: 1.6; margin: 0; }
-      .arch { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 6px 0 4px; }
-      .arch span { border: 1px solid var(--line-strong); background: var(--paper); padding: 7px 12px; font-size: 13.5px; font-weight: 600; }
-      .arch i { color: var(--accent); font-style: normal; font-weight: 700; }
-      /* ---------- Proposed architecture diagrams (replacement pass) ----------
-         One style for all six: warm ivory ground, moss-green core processing,
-         burnt-orange decisions / review, thin connectors, dotted + labelled
-         connectors for supporting or proposed integrations. Static arrows:
-         the previous moving-arrow treatment does not carry over. */
-      .arch-diagram { margin: 8px 0 10px; border: 1px solid var(--line-strong); background: var(--paper); padding: 0; }
-      .arch-tools { display: flex; align-items: center; gap: 8px; padding: 8px 10px; border-bottom: 1px solid var(--line); background: var(--paper-2); }
-      .arch-zbtn { min-width: 36px; height: 36px; padding: 0 10px; border: 1px solid var(--line-strong); background: var(--paper); color: var(--ink); font: inherit; font-size: 16px; font-weight: 700; line-height: 1; cursor: pointer; }
-      .arch-zbtn:hover { border-color: var(--accent); color: var(--accent); }
-      .arch-zreset { font-size: 13px; font-weight: 600; }
-      .arch-zlevel { font-size: 13px; font-weight: 600; color: var(--muted); font-variant-numeric: tabular-nums; min-width: 44px; text-align: center; }
-      .arch-viewport { overflow: auto; max-height: 78vh; }
-      .arch-canvas { min-width: 300px; }
-      .arch-canvas svg { display: block; width: 100%; height: auto; }
-      .arch-diagram .nd rect { fill: var(--paper-2); stroke: var(--accent); stroke-width: 1.4; }
-      .arch-diagram .nd-review rect { fill: var(--paper-2); stroke: var(--clay); stroke-width: 1.6; }
-      .arch-diagram .nd-review polygon { fill: var(--paper-2); stroke: var(--clay); stroke-width: 1.6; }
-      .arch-diagram .nd-io rect { fill: var(--paper); stroke: var(--line-strong); stroke-width: 1.4; }
-      .arch-diagram .nd-prop rect { fill: var(--paper); stroke: var(--accent); stroke-width: 1.4; stroke-dasharray: 5 4; }
-      .arch-diagram .edge { fill: none; stroke: var(--accent); stroke-width: 1.3; }
-      .arch-diagram .edge.dotted { stroke-dasharray: 2.5 5; stroke-linecap: round; }
-      .arch-diagram .edge-label { font-size: 10.5px; font-weight: 600; fill: var(--clay); }
-      .arch-note { font-size: 13.5px; line-height: 1.55; color: var(--muted); padding: 10px 12px 12px; border-top: 1px solid var(--line); }
-      details.arch-notes, details.arch-prod { border-top: 1px solid var(--line); }
-      details.arch-notes > summary, details.arch-prod > summary { cursor: pointer; font-weight: 600; font-size: 15px; color: var(--accent); padding: 12px 0; min-height: 44px; }
-      details.arch-notes > summary:hover, details.arch-prod > summary:hover { color: var(--ink); }
-      .tn-table { width: 100%; border-collapse: collapse; font-size: 14.5px; margin: 0 0 8px; }
-      .tn-table th, .tn-table td { text-align: left; vertical-align: top; padding: 8px 10px 8px 0; border-top: 1px solid var(--line); line-height: 1.55; }
-      .tn-table td:first-child { font-weight: 600; width: 30%; }
-      .prod-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px 26px; margin: 0 0 8px; }
-      @media (max-width: 640px) { .prod-grid { grid-template-columns: 1fr; } }
-      .prod-grid h5 { font-size: 12px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: var(--accent); margin: 10px 0 3px; }
-      .prod-grid p { font-size: 14.5px; line-height: 1.55; margin: 0; }
-      /* Small architectural motifs on cards: miniatures of each flow */
-      .motif { margin: 0 0 16px; border: 1px solid var(--line); background: var(--paper); padding: 8px 10px; }
-      .motif svg { display: block; width: 100%; height: auto; }
-      .motif .m-nd { fill: var(--paper-2); stroke: var(--accent); stroke-width: 1.2; }
-      .motif .m-rv { fill: var(--paper-2); stroke: var(--clay); stroke-width: 1.4; }
-      .motif .m-io { fill: var(--paper); stroke: var(--line-strong); stroke-width: 1.2; }
-      .motif .m-e { fill: none; stroke: var(--accent); stroke-width: 1.2; }
-      .motif .m-ed { fill: none; stroke: var(--accent); stroke-width: 1.2; stroke-dasharray: 2.5 4; stroke-linecap: round; }
-      .motif text { font-family: "Archivo", sans-serif; font-size: 9.5px; font-weight: 600; fill: var(--ink); }
-      .f-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 18px; border-top: 1px solid var(--line); margin-top: 18px; padding-top: 18px; }
-      .f-cta p { margin: 0; font-size: 15.5px; color: var(--muted); }
-      .mini-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 26px; }
-      @media (max-width: 900px) { .mini-cards { grid-template-columns: 1fr; } }
-      .mini-card { border: 1px solid var(--line-strong); background: var(--paper-2); display: flex; flex-direction: column; }
-      .mini-card .card-art { border-bottom: 1px solid var(--line); }
-      .mini-card .card-art svg { display: block; width: 100%; height: auto; }
-      .mini-card .mc-body { padding: 20px 22px 22px; }
-      .mini-card h3 { font-family: "Fraunces", Georgia, serif; font-size: 21px; font-weight: 500; margin: 0 0 6px; }
-      .mini-card p { color: var(--muted); font-size: 15.5px; line-height: 1.6; margin: 0 0 12px; }
-      .articles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 26px; margin: 0 0 30px; }
-      @media (max-width: 900px) { .articles { grid-template-columns: 1fr; } }
-      .article-card { border-top: 1px solid var(--ink); padding-top: 16px; }
-      .article-card .a-meta { font-size: 12.5px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); margin: 0 0 8px; }
-      .article-card h3 { font-family: "Fraunces", Georgia, serif; font-size: 21px; font-weight: 500; line-height: 1.25; margin: 0 0 8px; }
-      .article-card h3 a { color: var(--ink); }
-      .article-card h3 a:hover { color: var(--accent); text-decoration: none; }
-      .article-card p { font-size: 15.5px; line-height: 1.6; color: var(--muted); margin: 0; }
-      .article-card p b { color: var(--ink); }
-      .ninterp { font-size: 15px !important; margin-top: 8px !important; }
-      .ninterp b { color: var(--accent); }
-      .nupdated { color: var(--muted); font-size: 14.5px; margin: -10px 0 22px; }
-      .about-side { display: flex; flex-direction: column; gap: 18px; }
-      .portrait { margin: 0; }
-      .portrait img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border: 1px solid var(--line-strong); background: var(--paper-2); }
-      .portrait figcaption { font-size: 13.5px; color: var(--muted); padding-top: 7px; }
-      .adv-settings { border-top: 1px solid var(--line); margin-top: 22px; padding-top: 6px; }
-      .adv-settings > summary { cursor: pointer; font-weight: 600; font-size: 15.5px; color: var(--accent); padding: 12px 0; min-height: 44px; }
-      .adv-settings .opt-label { margin-top: 18px; }
-      @media (prefers-reduced-motion: reduce) {
-        .btn, .nav-cta { transition: none; }
-      }
-
-      /* ---------- Correction pass: verified profiles + design polish ---------- */
-      :root { --s1: 8px; --s2: 16px; --s3: 24px; --s4: 32px; --s5: 48px; --s6: 64px; }
-      section { padding-top: var(--s6); }
-      .eyebrow { font-size: 12.5px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--clay); margin: 0 0 10px; }
-      .sec-head { margin-bottom: 18px; }
-      .sec-note { margin-top: 0; margin-bottom: 34px; line-height: 1.65; }
-      .flagship { margin-bottom: var(--s4); transition: border-color .3s ease, box-shadow .3s ease; }
-      .flagship:hover { border-color: var(--line-strong); box-shadow: 0 16px 32px -26px rgba(35, 40, 31, .35); }
-      .flagship .f-body { padding: 28px 30px 30px; }
-      .f-tag { font-family: "Fraunces", Georgia, serif; font-size: clamp(19px, 2.2vw, 22px); font-style: italic; line-height: 1.35; color: var(--accent); margin: 0 0 12px; max-width: 62ch; }
-      .status { max-width: 100%; white-space: normal; line-height: 1.45; text-align: left; }
-      .outcome-box { border: 1px solid var(--accent); background: var(--accent-soft); padding: 18px 20px; margin: 0 0 18px; }
-      .outcome-box .ob-label { font-size: 12px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: var(--accent); margin: 0 0 6px; }
-      .outcome-box p { font-size: 15.5px; line-height: 1.6; margin: 0; }
-      .pilot-note { border: 1px solid var(--line-strong); border-left: 3px solid var(--clay); background: var(--paper); padding: 16px 18px; font-size: 15.5px; line-height: 1.6; margin: 0 0 18px; }
-      .sub-h { font-size: 12.5px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: var(--accent); margin: 22px 0 8px; }
-      .sub-h:first-child { margin-top: 6px; }
-      .uc-table { width: 100%; border-collapse: collapse; font-size: 15px; margin: 0 0 6px; }
-      .uc-table th, .uc-table td { text-align: left; vertical-align: top; padding: 9px 12px 9px 0; border-top: 1px solid var(--line); line-height: 1.55; }
-      .uc-table thead th { border-top: 0; font-size: 12px; letter-spacing: .07em; text-transform: uppercase; color: var(--accent); }
-      .uc-table td:first-child { font-weight: 600; width: 34%; }
-      .route-table td:first-child { width: 22%; }
-      .route-table td:nth-child(2) { width: 16%; font-weight: 600; }
-      .prod-steps { margin: 0 0 6px; padding-left: 22px; }
-      .prod-steps li { font-size: 15.5px; line-height: 1.6; margin: 0 0 8px; }
-      .f-note { font-size: 15.5px; line-height: 1.65; margin: 0 0 6px; max-width: 74ch; }
-      .measure { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 6px; padding: 0; }
-      .measure li { border: 1px solid var(--line-strong); background: var(--paper); padding: 7px 12px; font-size: 13.5px; font-weight: 600; }
-      details.expand .uc-table, details.expand .arch { margin-bottom: 4px; }
-      .foundation-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
-      @media (max-width: 900px) { .foundation-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-      @media (max-width: 560px) { .foundation-grid { grid-template-columns: 1fr; } .uc-table td:first-child { width: 42%; } }
-      .fnd { border: 1px solid var(--line-strong); background: var(--paper-2); padding: 16px 18px; }
-      .fnd h4 { font-size: 12px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: var(--accent); margin: 0 0 5px; }
-      .fnd p { font-size: 15px; line-height: 1.55; margin: 0; }
-      @media (prefers-reduced-motion: reduce) { .flagship { transition: none; } }
-      /* ---------- Feedback pass: hero solutions carousel + collapsible work profiles ---------- */
-      .hero-carousel { border: 1px solid var(--line-strong); background: var(--paper-2); padding: 20px 22px 18px; min-width: 0; }
-      .hc-head { font-size: 12px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: var(--accent); margin: 0 0 12px; }
-      .hc-viewport { overflow: hidden; min-width: 0; }
-      .hc-track { display: flex; transition: transform .6s var(--ease); }
-      .hc-slide { flex: 0 0 100%; min-width: 0; display: flex; flex-direction: column; padding: 2px; }
-      .hc-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin: 0 0 10px; }
-      .hc-slide h3 { font-family: "Fraunces", Georgia, serif; font-size: clamp(23px, 2.6vw, 27px); font-weight: 600; line-height: 1.2; margin: 0; }
-      .hc-tag { font-size: 16.5px; line-height: 1.55; margin: 0 0 20px; }
-      .hc-slide .hc-view { margin-top: auto; align-self: flex-start; }
-      .hc-bar { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-top: 16px; border-top: 1px solid var(--line); padding-top: 14px; }
-      .hc-count { font-size: 13.5px; font-weight: 600; color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
-      .details-btn { min-width: 132px; }
-      .profile .f-cover { border-top: 1px solid var(--line); }
-      @media (prefers-reduced-motion: reduce) { .hc-track { transition: none; } }
-      /* ---------- Feedback pass 4: About image story cards in a carousel ---------- */
-      .about-carousel { max-width: 720px; margin: 40px auto 0; border: 1px solid var(--line-strong); background: var(--paper-2); }
-      .ac-viewport { overflow: hidden; min-width: 0; }
-      .ac-track { display: flex; transition: transform .6s var(--ease); }
-      .story-slide { flex: 0 0 100%; min-width: 0; margin: 0; display: flex; flex-direction: column; }
-      .story-stage { aspect-ratio: 4 / 3; background: var(--paper-2); display: flex; align-items: center; justify-content: center; }
-      .story-stage img { display: block; width: 100%; height: 100%; object-fit: contain; }
-      .story-slide figcaption { font-size: 15px; line-height: 1.55; color: var(--ink); padding: 13px 18px 15px; border-top: 1px solid var(--line); }
-      .ac-bar { display: flex; align-items: center; justify-content: space-between; gap: 14px; border-top: 1px solid var(--line); padding: 14px 18px; flex-wrap: wrap; }
-      .ac-count { font-size: 13.5px; font-weight: 600; color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
-      @media (prefers-reduced-motion: reduce) { .ac-track { transition: none; } }
-      /* Desktop only: smaller About carousel frame, images fully fitted.
-         Mobile presentation above is unchanged. */
-      @media (min-width: 900px) {
-        .about-carousel { max-width: 440px; margin-top: 32px; }
-        .story-stage { aspect-ratio: 16 / 10; overflow: hidden; }
-        .story-stage img { max-width: 100%; max-height: 100%; object-fit: contain; object-position: center; }
-        .story-slide figcaption { font-size: 14.5px; padding: 10px 14px 12px; }
-        .ac-bar { padding: 10px 14px; }
-      }
-      /* ---------- Restructure pass: homepage preview grid + detail pages ---------- */
-      .preview-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px; }
-      @media (max-width: 900px) { .preview-grid { grid-template-columns: 1fr; } }
-      .preview-card { margin: 0; display: flex; }
-      .preview-card .f-body { display: flex; flex-direction: column; width: 100%; }
-      .preview-card .card-view { align-self: flex-start; margin-top: auto; }
-      .p-result { margin: 0 0 18px; }
-      .p-result .ob-label { font-size: 12px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: var(--accent); margin: 0 0 6px; }
-      .p-result p { font-size: 15.5px; line-height: 1.6; margin: 0; }
-      .foundation-strip { margin-top: 26px; border: 1px solid var(--line-strong); background: var(--paper-2); padding: 16px 20px; }
-      .foundation-strip p { margin: 0; font-size: 15px; line-height: 1.6; color: var(--ink); }
-      .foundation-strip-label { font-weight: 700; color: var(--accent); }
-      #workView { padding-top: 34px; }
-      .detail-page { margin: 0 0 30px; }
-      .detail-page .f-top h2 { font-family: "Fraunces", Georgia, serif; font-size: clamp(27px, 3.4vw, 36px); font-weight: 500; margin: 0; }
-      .back-link { display: inline-block; font-weight: 600; font-size: 15.5px; margin: 4px 0 16px; }
-      .arch-diagram:fullscreen { overflow: auto; background: var(--paper); }
-      .arch-diagram:fullscreen .arch-viewport { max-height: none; height: calc(100vh - 56px); }
-      .arch-diagram:-webkit-full-screen { overflow: auto; background: var(--paper); }
-      .arch-diagram:-webkit-full-screen .arch-viewport { max-height: none; height: calc(100vh - 56px); }
-
-      /* ---------- Newsletter / divider / News (separate sections) ---------- */
+                  /* ---------- Newsletter / divider (separate sections) ---------- */
       .nl-featured { margin-top: 24px; border: 1px solid var(--line-strong); background: var(--paper); display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); overflow: hidden; }
       .nl-featured figure { margin: 0; min-height: 100%; }
       .nl-featured img { width: 100%; height: 100%; object-fit: cover; display: block; }
@@ -771,23 +293,6 @@
       .divider-band .d-btn.ghost { background: transparent; color: var(--paper); border: 1px solid var(--paper); }
       .divider-band .d-btn:hover { filter: brightness(1.08); text-decoration: none; }
       .divider-band .d-btn:focus-visible { outline: 2px solid var(--paper); outline-offset: 3px; }
-      .wk { margin-top: 30px; }
-      .wk:first-of-type { margin-top: 8px; }
-      .wk-head { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
-      .wk-head h3 { font-family: "Fraunces", Georgia, serif; font-weight: 600; font-size: 22px; margin: 0; }
-      .wk-tag { font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; background: var(--accent); color: var(--paper); padding: 3px 11px; }
-      .wk-tag.last { background: transparent; color: var(--muted); border: 1px solid var(--line-strong); }
-      .nwslist { list-style: none; margin: 14px 0 0; padding: 0; }
-      .nwslist li { border-top: 1px solid var(--line); padding: 14px 2px; display: flex; gap: 16px; align-items: baseline; }
-      .nwslist li:last-child { border-bottom: 1px solid var(--line); }
-      .nwsdate { flex: none; width: 74px; font-size: 13.5px; font-weight: 700; color: var(--muted); white-space: nowrap; }
-      .nwsbody { flex: 1; min-width: 0; }
-      .nwsbody a { font-weight: 600; font-size: 16.5px; color: var(--ink); text-decoration: none; }
-      .nwsbody a:hover { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
-      .nwsbody a .arr { color: var(--clay); font-size: .85em; margin-left: 4px; }
-      .nwsbody p { margin: 3px 0 0; color: var(--muted); font-size: 15px; }
-      .nws-foot { margin-top: 26px; text-align: center; font-size: 15px; }
-      .nws-foot a { color: var(--accent); font-weight: 600; }
       @media (max-width: 760px) {
         .nl-featured { grid-template-columns: 1fr; }
         .nl-featured figure { aspect-ratio: 3 / 2; }
@@ -795,9 +300,7 @@
         .nl-row-ed { width: auto; }
         .nl-row-title { flex-basis: 100%; order: 3; }
         .nl-row-arr { margin-left: auto; }
-        .nwslist li { flex-wrap: wrap; gap: 2px 12px; }
-        .nwsdate { width: auto; }
-      }
+                      }
     </style>
   </head>
   <body>
@@ -811,7 +314,6 @@
           <a href="#heroCarousel">Work</a>
           <a href="#/calculator">Tools</a>
           <a href="#newsletter">Newsletter</a>
-          <a href="#/news">News</a>
           <a href="#about">About</a>
           <a class="nav-cta" href="https://www.linkedin.com/in/djchanda/" target="_blank" rel="noopener">Connect on LinkedIn</a>
         </div>
@@ -970,81 +472,6 @@
           </div>
         </section>
       </div>
-
-      <!-- 6. NEWS -->
-      <section id="news" class="wrap">
-        <p class="eyebrow">News</p>
-        <div class="sec-head"><h2>AI news</h2></div>
-
-        <div class="wk">
-          <div class="wk-head">
-            <h3>Week of November 2, 2026</h3>
-            <span class="wk-tag">This week</span>
-          </div>
-          <ul class="nwslist">
-            <li>
-              <span class="nwsdate">Nov 7</span>
-              <div class="nwsbody">
-                <a href="https://reporadar.spreix.com/repos/github/spec-kit" target="_blank" rel="noopener">Spec Kit v1.3.2 ships; repo nears 149k stars<span class="arr" aria-hidden="true">↗</span></a>
-                <p>The spec becomes the oracle — but specs need testing too, not just code.</p>
-              </div>
-            </li>
-            <li>
-              <span class="nwsdate">Nov 5</span>
-              <div class="nwsbody">
-                <a href="https://go.cypress.io/e3t/Ctc/DL+113/cG0cx04/VWgtG41GVBmYW7QKNFy8KNwYhW2XSKgS5X056SM1--ks3qgz0W8wLKSR6lZ3lXW4tZXDk5fJrBrW4Ysgc41dRYMPW2GFM2L1q3sLbW99Y1y93l0nGlW3V4V_d3t0FcKW45-xPh84ZVcVW13nyl95dRr-pW8Ttg9K1NXTzXW2g-mcg6x7cpDW1s4c_n5s83SsW8bCLgJ3s6QrrVPPDLy4qF_gMN7Vmt7pZphyXVj644v4m4nNnW551w6_75F4rTW8GXmww1GXzh9W8Lt6gb7H3xb4W2zPRzw1j74fhW6ztP6Y4Hrm05W88kTNp4jbr-CW5Rb-mT3LKTH-M7N8bpPC7pNVl5B-x6Fljf6W4Ls67S4CnVpwW2mpZZB19Y2DyW6NtzM85tZ3fdV8P2101K-qnxN9dKjTtrmxfwf4NgDNq04" target="_blank" rel="noopener">Cypress asks “Is green really green?”<span class="arr" aria-hidden="true">↗</span></a>
-                <p>A green build only convinces if you can say what it validated.</p>
-              </div>
-            </li>
-            <li>
-              <span class="nwsdate">Nov 5</span>
-              <div class="nwsbody">
-                <a href="https://developers.openai.com/api/docs/changelog" target="_blank" rel="noopener">OpenAI launches GPT-6 Cyber<span class="arr" aria-hidden="true">↗</span></a>
-                <p>Security testing just changed: find, reproduce, exploit and verify fixes, automated.</p>
-              </div>
-            </li>
-            <li>
-              <span class="nwsdate">Nov 4</span>
-              <div class="nwsbody">
-                <a href="https://techfeatured.com/20688/moonshot-kimi-k3-1-pro-open-weights-download" target="_blank" rel="noopener">Moonshot open-weights Kimi K3.1 Pro<span class="arr" aria-hidden="true">↗</span></a>
-                <p>A near-frontier coding model you can download and run inside your own walls.</p>
-              </div>
-            </li>
-            <li>
-              <span class="nwsdate">Nov 4</span>
-              <div class="nwsbody">
-                <a href="https://diginomica.com/were-road-roi-mckinseys-verdict-ai-2026" target="_blank" rel="noopener">McKinsey State of AI 2026: 40% of large enterprises scaling AI agents<span class="arr" aria-hidden="true">↗</span></a>
-                <p>40% of large enterprises now scaling AI agents — and a third skipped buying software to build it in-house.</p>
-              </div>
-            </li>
-            <li>
-              <span class="nwsdate">Nov 4</span>
-              <div class="nwsbody">
-                <a href="https://www.globenewswire.com/news-release/2026/11/04/3395404/0/en/testgrid-launches-testgrid-one-the-ai-operating-system-that-runs-quality-engineering.html" target="_blank" rel="noopener">TestGrid launches TestGrid ONE<span class="arr" aria-hidden="true">↗</span></a>
-                <p>Keep your tests, add agents — no conversion to a proprietary format.</p>
-              </div>
-            </li>
-            <li>
-              <span class="nwsdate">Nov 4</span>
-              <div class="nwsbody">
-                <a href="https://www.globenewswire.com/news-release/2026/11/04/3395406/0/en/komodor-survey-finds-more-than-50-of-engineering-organizations-face-control-and-governance-issues-as-they-scale-agentic-operations.html" target="_blank" rel="noopener">Komodor: guardrails are the top blocker as agent fleets scale<span class="arr" aria-hidden="true">↗</span></a>
-                <p>Guardrails are the top blocker as agent fleets scale.</p>
-              </div>
-            </li>
-            <li>
-              <span class="nwsdate">Nov 3</span>
-              <div class="nwsbody">
-                <a href="https://www.globenewswire.com/news-release/2026/11/03/3394279/0/en/menlo-ventures-2026-state-of-enterprise-ai-report-enterprise-ai-spending-hits-177b-up-5-4x-in-one-year-as-agents-take-over.html" target="_blank" rel="noopener">Menlo Ventures: enterprise AI spend hit $176.8B, up 5.4x in a year<span class="arr" aria-hidden="true">↗</span></a>
-                <p>Enterprise AI spend hit $176.8B, up 5.4x in a year — agents are now the primary consumers of models.</p>
-              </div>
-            </li>
-          </ul>
-        </div>
-
-
-        <p class="nws-foot"><a href="#/news">All news from the last two weeks →</a></p>
-      </section>
-
 
       <!-- 6. ABOUT & SPEAKING -->
       <section id="about" class="wrap">
@@ -1977,146 +1404,7 @@
       </section>
     </main>
 
-    <!-- AI NEWS PAGE (own view: #/news), holds the last two weeks, newest first -->
-    <main id="newsView" hidden>
-      <div class="wrap calc-head">
-        <a class="calc-back" href="#top">← Back to the site</a>
-        <div class="hero-rule" aria-hidden="true"></div>
-        <h2 class="calc-title">AI news, <em>week by week</em></h2>
-        <p class="calc-lede">
-          <span>The AI stories that matter for quality engineering, one line each, source linked.</span><br />
-          <span class="l2">The last two weeks, newest first. A new week lands every Friday; the oldest rolls off.</span>
-        </p>
-      </div>
-
-      <section class="wrap" style="padding-top:8px">
-        <p class="nupdated">Last updated November 13, 2026.</p>
-        <div class="nweek-head">
-          <h3 class="nweek">Week of November 2, 2026</h3>
-          <span class="npill">Latest</span>
-        </div>
-        <ul class="nlist">
-          <li class="nitem">
-            <span class="ndate">Nov 7</span>
-            <div class="nbody">
-              <h3><a href="https://reporadar.spreix.com/repos/github/spec-kit" target="_blank" rel="noopener">Spec Kit v1.3.2 ships; repo nears 149k stars<span class="arr" aria-hidden="true">↗</span></a></h3>
-              <p>GitHub's spec-driven toolkit shipped v1.3.2 (v1.2.6 on Nov 2); the repo gained ~3,419 stars in a week. Hands-on tests this week report a full pre-code flow costs ~$1.10 and 5 minutes — but mostly catches gaps in its own documents. <a class="nsrc" href="https://reporadar.spreix.com/repos/github/spec-kit" target="_blank" rel="noopener">Reporadar ↗</a> <a class="nsrc" href="https://aiparabellum.com/spec-kit-claude-code-tested/" target="_blank" rel="noopener">AI Parabellum ↗</a></p>
-              <p class="ninterp"><b>Why this matters for QE:</b> the spec becomes the oracle, but specs need testing too, not just code.</p>
-            </div>
-          </li>
-          <li class="nitem">
-            <span class="ndate">Nov 5</span>
-            <div class="nbody">
-              <h3><a href="https://go.cypress.io/e3t/Ctc/DL+113/cG0cx04/VWgtG41GVBmYW7QKNFy8KNwYhW2XSKgS5X056SM1--ks3qgz0W8wLKSR6lZ3lXW4tZXDk5fJrBrW4Ysgc41dRYMPW2GFM2L1q3sLbW99Y1y93l0nGlW3V4V_d3t0FcKW45-xPh84ZVcVW13nyl95dRr-pW8Ttg9K1NXTzXW2g-mcg6x7cpDW1s4c_n5s83SsW8bCLgJ3s6QrrVPPDLy4qF_gMN7Vmt7pZphyXVj644v4m4nNnW551w6_75F4rTW8GXmww1GXzh9W8Lt6gb7H3xb4W2zPRzw1j74fhW6ztP6Y4Hrm05W88kTNp4jbr-CW5Rb-mT3LKTH-M7N8bpPC7pNVl5B-x6Fljf6W4Ls67S4CnVpwW2mpZZB19Y2DyW6NtzM85tZ3fdV8P2101K-qnxN9dKjTtrmxfwf4NgDNq04" target="_blank" rel="noopener">Cypress asks “Is green really green?”<span class="arr" aria-hidden="true">↗</span></a></h3>
-              <p>CypressConf 2026&rsquo;s recap theme is &ldquo;The Signal Is Up&rdquo;: three days on what it takes to trust a green build — tests that catch real bugs, reviewing agent-written tests, debugging faster — plus a founders session on Cypress Tap and Cloud MCP. Run Checks, now in early access, lets teams set their own pass/fail bar for every Cypress Cloud run: thresholds for failed and flaky tests, accessibility and coverage scores, scoped by tags, branches, pages, or tests. <a class="nsrc" href="https://go.cypress.io/e3t/Ctc/DL+113/cG0cx04/VWgtG41GVBmYW7QKNFy8KNwYhW2XSKgS5X056SM1--ks3qgz0W8wLKSR6lZ3lXW4tZXDk5fJrBrW4Ysgc41dRYMPW2GFM2L1q3sLbW99Y1y93l0nGlW3V4V_d3t0FcKW45-xPh84ZVcVW13nyl95dRr-pW8Ttg9K1NXTzXW2g-mcg6x7cpDW1s4c_n5s83SsW8bCLgJ3s6QrrVPPDLy4qF_gMN7Vmt7pZphyXVj644v4m4nNnW551w6_75F4rTW8GXmww1GXzh9W8Lt6gb7H3xb4W2zPRzw1j74fhW6ztP6Y4Hrm05W88kTNp4jbr-CW5Rb-mT3LKTH-M7N8bpPC7pNVl5B-x6Fljf6W4Ls67S4CnVpwW2mpZZB19Y2DyW6NtzM85tZ3fdV8P2101K-qnxN9dKjTtrmxfwf4NgDNq04" target="_blank" rel="noopener">CypressConf 2026 ↗</a> <a class="nsrc" href="https://go.cypress.io/e3t/Ctc/DL+113/cG0cx04/VWgtG41GVBmYW7QKNFy8KNwYhW2XSKgS5X056SM1--k83qgz0W7Y8-PT6lZ3mxW2gQH3f1GxfhhVxSwzV2dMnDtW2N_tZb8-BzKvVVgyzl7XVnlMMJfdsJlGGk6W5-4KJx1WJr52W6gd4Yv8m1tFCW8lffg7365lFcW8ZYQbV1b38lKW1fzNcS3s_hBxW7vcJxL5cb0vfW7lGHg030SG9MVvfC5M3M7rQJN8MPztp4kMBfN95CC10BnCsMW4PBvxF4g5HKfW7pqrGK6W4C9tW5cynLl4JNCnjW90g0Ln4ZHqB1N2dCsmC91nLpVbssSV7L6lbjW5bkZ619dK1xdW3f1V9X13B1SlW8MVLtX1qrP2SW1wQFsb19c4sGW95-3-b4ypHhVf7G7TB604" target="_blank" rel="noopener">Run Checks ↗</a></p>
-              <p class="ninterp"><b>Why this matters for QE:</b> the industry is now asking the same question Edition 5 answers — a green build is only convincing if you can explain what it actually validated.</p>
-            </div>
-          </li>
-          <li class="nitem">
-            <span class="ndate">Nov 5</span>
-            <div class="nbody">
-              <h3><a href="https://developers.openai.com/api/docs/changelog" target="_blank" rel="noopener">OpenAI launches GPT-6 Cyber<span class="arr" aria-hidden="true">↗</span></a></h3>
-              <p>A cyber-specialised model for authorised vulnerability discovery: OpenAI says it reproduced 1,724 Linux kernel vulnerabilities and built working exploits for 948 of them, and found 81 previously unknown high-severity Firefox flaws. Access is limited to vetted Daybreak Red customers. <a class="nsrc" href="https://developers.openai.com/api/docs/changelog" target="_blank" rel="noopener">OpenAI changelog ↗</a> <a class="nsrc" href="https://mlq.ai/news/openai-releases-gpt-6-cyber-after-model-finds-948-linux-kernel-exploits/" target="_blank" rel="noopener">MLQ ↗</a></p>
-              <p class="ninterp"><b>Why this matters for QE:</b> automated security validation now spans find, reproduce, exploit and verify fixes — and QE teams must also test against AI-driven attack, not only with AI.</p>
-            </div>
-          </li>
-          <li class="nitem">
-            <span class="ndate">Nov 4</span>
-            <div class="nbody">
-              <h3><a href="https://techfeatured.com/20688/moonshot-kimi-k3-1-pro-open-weights-download" target="_blank" rel="noopener">Moonshot open-weights Kimi K3.1 Pro<span class="arr" aria-hidden="true">↗</span></a></h3>
-              <p>A 2.8T-parameter coding model (104B active, 1M-token context) published on Hugging Face, a ~1.56TB download; vendor-reported 65.7% on Terminal-Bench 4.0, near Claude Opus 5.5's 66.4%. Moonshot says it removed cyber content from training data before opening the weights. <a class="nsrc" href="https://techfeatured.com/20688/moonshot-kimi-k3-1-pro-open-weights-download" target="_blank" rel="noopener">TechFeatured ↗</a></p>
-              <p class="ninterp"><b>Why this matters for QE:</b> a near-frontier coding and test-generation model teams can run inside their own infrastructure, with no data leaving the building.</p>
-            </div>
-          </li>
-          <li class="nitem">
-            <span class="ndate">Nov 4</span>
-            <div class="nbody">
-              <h3><a href="https://diginomica.com/were-road-roi-mckinseys-verdict-ai-2026" target="_blank" rel="noopener">McKinsey State of AI 2026: 40% of large enterprises scaling AI agents<span class="arr" aria-hidden="true">↗</span></a></h3>
-              <p>Up from 27% last year; coding agents scaling at 20% of companies. Nearly a third of respondents say their organisation skipped buying software because it could be built in-house with agentic coding tools. <a class="nsrc" href="https://diginomica.com/were-road-roi-mckinseys-verdict-ai-2026" target="_blank" rel="noopener">Diginomica ↗</a></p>
-              <p class="ninterp"><b>Why this matters for QE:</b> the volume of AI-written code hitting test pipelines keeps rising, and teams now need to prove the return on software they build themselves — the exact question Edition 4 answers.</p>
-            </div>
-          </li>
-          <li class="nitem">
-            <span class="ndate">Nov 4</span>
-            <div class="nbody">
-              <h3><a href="https://www.globenewswire.com/news-release/2026/11/04/3395404/0/en/testgrid-launches-testgrid-one-the-ai-operating-system-that-runs-quality-engineering.html" target="_blank" rel="noopener">TestGrid launches TestGrid ONE<span class="arr" aria-hidden="true">↗</span></a></h3>
-              <p>An “AI operating system” for QE: CoTester and AgentRx agents on top of existing Selenium, Playwright, Appium and Cypress suites, which run as written with no conversion to a proprietary format. <a class="nsrc" href="https://www.globenewswire.com/news-release/2026/11/04/3395404/0/en/testgrid-launches-testgrid-one-the-ai-operating-system-that-runs-quality-engineering.html" target="_blank" rel="noopener">GlobeNewswire ↗</a></p>
-              <p class="ninterp"><b>Why this matters for QE:</b> the platform pitch is now “keep your tests, add agents” — the no-conversion claim, if it holds, lowers the switching cost that has blocked platform adoption.</p>
-            </div>
-          </li>
-          <li class="nitem">
-            <span class="ndate">Nov 4</span>
-            <div class="nbody">
-              <h3><a href="https://www.globenewswire.com/news-release/2026/11/04/3395406/0/en/komodor-survey-finds-more-than-50-of-engineering-organizations-face-control-and-governance-issues-as-they-scale-agentic-operations.html" target="_blank" rel="noopener">Komodor: guardrails are the top blocker as agent fleets scale<span class="arr" aria-hidden="true">↗</span></a></h3>
-              <p>In a survey of 1,000+ engineering leaders, 53.6% cite building safe guardrails as the top challenge; 84% run fleets of 10+ agents, and 75.7% still restrict autonomous operations. <a class="nsrc" href="https://www.globenewswire.com/news-release/2026/11/04/3395406/0/en/komodor-survey-finds-more-than-50-of-engineering-organizations-face-control-and-governance-issues-as-they-scale-agentic-operations.html" target="_blank" rel="noopener">GlobeNewswire ↗</a></p>
-              <p class="ninterp"><b>Why this matters for QE:</b> guardrails are a testing and validation problem, and agents that fix production need the same evidence discipline as agents that write code.</p>
-            </div>
-          </li>
-          <li class="nitem">
-            <span class="ndate">Nov 3</span>
-            <div class="nbody">
-              <h3><a href="https://www.globenewswire.com/news-release/2026/11/03/3394279/0/en/menlo-ventures-2026-state-of-enterprise-ai-report-enterprise-ai-spending-hits-177b-up-5-4x-in-one-year-as-agents-take-over.html" target="_blank" rel="noopener">Menlo Ventures: enterprise AI spend hit $176.8B, up 5.4x in a year<span class="arr" aria-hidden="true">↗</span></a></h3>
-              <p>Coding is the largest application spend at $34B; agents generate 80% of tokens on OpenRouter. <a class="nsrc" href="https://www.globenewswire.com/news-release/2026/11/03/3394279/0/en/menlo-ventures-2026-state-of-enterprise-ai-report-enterprise-ai-spending-hits-177b-up-5-4x-in-one-year-as-agents-take-over.html" target="_blank" rel="noopener">GlobeNewswire ↗</a></p>
-              <p class="ninterp"><b>Why this matters for QE:</b> the code volume QE must validate is being funded at unprecedented scale, and agents, not humans, are now the primary consumers of models — testing agent output is the core QE job.</p>
-            </div>
-          </li>
-        </ul>
-        <div class="nweek-head">
-          <h3 class="nweek">Week of October 26, 2026</h3>
-        </div>
-        <ul class="nlist">
-          <li class="nitem">
-            <span class="ndate">Nov 2</span>
-            <div class="nbody">
-              <h3><a href="https://www.newswire.co.kr/newsRead.php?no=1046100" target="_blank" rel="noopener">TestMu AI launches Kane CLI Exploration<span class="arr" aria-hidden="true">↗</span></a></h3>
-              <p>An autonomous agent maps an entire web app from a single URL — pages, flows, controls, screen states — then writes use cases and acceptance criteria from that map and runs them in real browsers. <a class="nsrc" href="https://www.newswire.co.kr/newsRead.php?no=1046100" target="_blank" rel="noopener">Newswire ↗</a></p>
-              <p class="ninterp"><b>Why this matters for QE:</b> it attacks the &ldquo;no spec&rdquo; problem directly — the map is what the agent gets instead of a requirements document.</p>
-            </div>
-          </li>
-          <li class="nitem">
-            <span class="ndate">Nov 1</span>
-            <div class="nbody">
-              <h3><a href="https://news-officina.github.io/dexter/2026/11/commission-opens-consultation-on-draft-rule-for-ai-act/" target="_blank" rel="noopener">EU AI Act: penalty consultation closes Nov 9; watermarking deadline Dec 2<span class="arr" aria-hidden="true">↗</span></a></h3>
-              <p>The Commission&rsquo;s draft penalty regulation (fines up to €35M or 7% of worldwide turnover) closes for comment Nov 9, and the grace period for machine-readable marking of synthetic content ends Dec 2. <a class="nsrc" href="https://news-officina.github.io/dexter/2026/11/commission-opens-consultation-on-draft-rule-for-ai-act/" target="_blank" rel="noopener">Dexter ↗</a> <a class="nsrc" href="https://siliconvalleysjournal.com/2026/11/01/your-website-bot-has-a-disclosure-deadline-the-eu-ai-act-rules-for-chatbots/" target="_blank" rel="noopener">Silicon Valley Journal ↗</a></p>
-              <p class="ninterp"><b>Why this matters for QE:</b> chatbot disclosure and watermark-detectability are testable requirements with hard dates — put them on release checklists now.</p>
-            </div>
-          </li>
-          <li class="nitem">
-            <span class="ndate">Oct 29</span>
-            <div class="nbody">
-              <h3><a href="https://www.llms.blog/posts/mistral-large-4-open-weights-hugging-face" target="_blank" rel="noopener">Mistral opens the weights of Large 4<span class="arr" aria-hidden="true">↗</span></a></h3>
-              <p>A ~1T-parameter open-weights coding model (1M-token context) published on Hugging Face; vendor-reported 41% on Terminal-Bench 4.0 and 51% on the AI Cyber Index (detect/reproduce/patch vulnerabilities). <a class="nsrc" href="https://www.llms.blog/posts/mistral-large-4-open-weights-hugging-face" target="_blank" rel="noopener">llms.blog ↗</a></p>
-              <p class="ninterp"><b>Why this matters for QE:</b> a download-and-run frontier model is a cheap, private engine for agentic testing and vulnerability-detection harnesses.</p>
-            </div>
-          </li>
-          <li class="nitem">
-            <span class="ndate">Oct 28</span>
-            <div class="nbody">
-              <h3><a href="https://www.newswire.co.kr/newsRead.php?no=1045731" target="_blank" rel="noopener">TestMu AI&rsquo;s Agent Assurance goes GA<span class="arr" aria-hidden="true">↗</span></a></h3>
-              <p>Self-serve testing for AI agents that take actions: it checks what a run actually changed, not what the final reply said — verdicts are Pass / Fail / Unable to Verify, and &ldquo;unable to verify is never counted as a pass.&rdquo; <a class="nsrc" href="https://www.newswire.co.kr/newsRead.php?no=1045731" target="_blank" rel="noopener">Newswire ↗</a></p>
-              <p class="ninterp"><b>Why this matters for QE:</b> the don&rsquo;t-trust-the-reply thesis, productized; the verdict design is a gate pattern worth borrowing.</p>
-            </div>
-          </li>
-          <li class="nitem">
-            <span class="ndate">Oct 27–28</span>
-            <div class="nbody">
-              <h3><a href="https://newreleases.io/project/github/github/spec-kit/release/v1.2.5" target="_blank" rel="noopener">Spec Kit v1.2.4 and v1.2.5: the enforcement layer gets versioned<span class="arr" aria-hidden="true">↗</span></a></h3>
-              <p>GitHub&rsquo;s spec-driven development toolkit shipped twice in two days; v1.2.5 updates the &ldquo;Quality Gates (Enforcement Layer)&rdquo; extension to v0.5.0. <a class="nsrc" href="https://newreleases.io/project/github/github/spec-kit/release/v1.2.4" target="_blank" rel="noopener">Spec Kit v1.2.4 ↗</a> <a class="nsrc" href="https://newreleases.io/project/github/github/spec-kit/release/v1.2.5" target="_blank" rel="noopener">Spec Kit v1.2.5 ↗</a></p>
-              <p class="ninterp"><b>Why this matters for QE:</b> the most-watched SDD tool is now building specs that execute as quality gates, not passive documents — the spec becomes the contract, the enforcement layer the gate.</p>
-            </div>
-          </li>
-          <li class="nitem">
-            <span class="ndate">Oct 26</span>
-            <div class="nbody">
-              <h3><a href="https://aiweekly.co/editors-blog/found-first-top-coding-agent-passes-69-9-of-criteria-but-completes-only-26-4-of" target="_blank" rel="noopener">Co-Design Bench: 69.9% of criteria, 26.4% of tasks<span class="arr" aria-hidden="true">↗</span></a></h3>
-              <p>A new coding-agent benchmark (273 tasks drawn from real user sessions, 2,331 expert acceptance criteria) finds the strongest agent satisfies most criteria per task but fully completes only about a quarter of tasks. <a class="nsrc" href="https://aiweekly.co/editors-blog/found-first-top-coding-agent-passes-69-9-of-criteria-but-completes-only-26-4-of" target="_blank" rel="noopener">AI Weekly ↗</a></p>
-              <p class="ninterp"><b>Why this matters for QE:</b> evaluate agents on full-task completion, not averaged criteria — the metric-design lesson, and more evidence for gate-based verification of agent-written code.</p>
-            </div>
-          </li>
-        </ul>
-      </section>
-    </main>
-
+    
     <!-- FOOTER -->
     <footer>
       <div class="wrap">
@@ -2188,23 +1476,18 @@
 
     <script>
       (function () {
-        /* ---------- Page routing: home <-> calculator (#/calculator) <-> news (#/news) ---------- */
+        /* ---------- Page routing: home <-> calculator (#/calculator) ---------- */
         var homeView = document.getElementById('top');
         var calcView = document.getElementById('calcView');
-        var newsView = document.getElementById('newsView');
-        var HOME_TITLE = document.title;
+                var HOME_TITLE = document.title;
         var CALC_TITLE = 'The AI in QE Savings Analysis: AI × QE | DJ Chanda';
-        var NEWS_TITLE = 'AI News: AI × QE | DJ Chanda';
-        function isCalc() { return location.hash.indexOf('#/calculator') === 0; }
-        function isNews() { return location.hash.indexOf('#/news') === 0; }
-        function route() {
+                function isCalc() { return location.hash.indexOf('#/calculator') === 0; }
+                function route() {
           var calc = isCalc();
-          var news = isNews();
-          if (calcView) calcView.hidden = !calc;
-          if (newsView) newsView.hidden = !news;
-          if (homeView) homeView.hidden = calc || news;
-          document.title = calc ? CALC_TITLE : (news ? NEWS_TITLE : HOME_TITLE);
-          if (calc || news) {
+                    if (calcView) calcView.hidden = !calc;
+                    if (homeView) homeView.hidden = calc;
+          document.title = calc ? CALC_TITLE : HOME_TITLE;
+          if (calc) {
             window.scrollTo(0, 0);
           } else if (location.hash && location.hash.charAt(1) !== '/') {
             var target = document.querySelector(location.hash);
@@ -2744,7 +2027,7 @@
     </script>
 
     <!-- Follow-ups deferred from this redesign pass, per the brief:
-         - Solution detail pages use real path-style routes (/work/fast, /work/spec-driven, /work/press-n-go, /work/jitana, /work/peerai, /work/ari) via the History API in this single-document build. A GitHub Pages deployment needs each route as a real file (work/<slug>/index.html) or a 404.html fallback serving this document, with asset paths made root-absolute. The calculator and news remain hash routes (#/calculator, #/news) in this pass.
+         - Solution detail pages use real path-style routes (/work/fast, /work/spec-driven, /work/press-n-go, /work/jitana, /work/peerai, /work/ari) via the History API in this single-document build. A GitHub Pages deployment needs each route as a real file (work/<slug>/index.html) or a 404.html fallback serving this document, with asset paths made root-absolute. The calculator remains a hash route (#/calculator) in this pass.
          - Measured performance against the targets (LCP 2.5s, INP 200ms, CLS 0.1) and full WCAG 2.2 AA testing.
          - Mobile behaviour testing.
          - Project maturity status labels are provisional, pending DJ's confirmation. -->
@@ -2918,8 +2201,7 @@
         var workView = document.getElementById('workView');
         var homeView = document.getElementById('top');
         var calcView = document.getElementById('calcView');
-        var newsView = document.getElementById('newsView');
-        if (!workView) return;
+                if (!workView) return;
         var pages = Array.prototype.slice.call(workView.querySelectorAll('.detail-page'));
         var p = location.pathname;
         var wi = p.indexOf('/work/');
@@ -2936,14 +2218,13 @@
           workView.hidden = false;
           if (homeView) homeView.hidden = true;
           if (calcView) calcView.hidden = true;
-          if (newsView) newsView.hidden = true;
-          if (TITLES[slug]) document.title = TITLES[slug];
+                    if (TITLES[slug]) document.title = TITLES[slug];
           window.scrollTo(0, 0);
         }
         function showHome() {
           workView.hidden = true;
           pages.forEach(function (pg) { pg.hidden = true; });
-          /* The existing hash router restores home / calculator / news + title. */
+          /* The existing hash router restores home / calculator + title. */
           window.dispatchEvent(new window.HashChangeEvent('hashchange'));
         }
         document.addEventListener('click', function (e) {
