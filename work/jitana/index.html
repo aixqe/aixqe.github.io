@@ -65,7 +65,7 @@
         overflow-x: hidden;
       }
       .serif { font-family: "Fraunces", Georgia, "Times New Roman", serif; }
-      .wrap { max-width: 1120px; margin: 0 auto; padding-left: 28px; padding-right: 28px; }
+      .wrap { width: 100%; max-width: 1120px; margin: 0 auto; padding-left: 28px; padding-right: 28px; } /* Mobile layout: keep the page centred and inside the viewport. */ html, body { overflow-x: clip; } .hero-grid > * { min-width: 0; } img, svg { max-width: 100%; }
       a { color: var(--accent); text-decoration: none; }
       a:hover { text-decoration: underline; text-underline-offset: 3px; }
       :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
@@ -127,7 +127,7 @@
 
       /* ---------- Hero ---------- */
       .hero { padding-top: 96px; padding-bottom: 88px; }
-      @media (max-width: 640px) { .hero { padding-top: 60px; padding-bottom: 56px; } }
+      @media (max-width: 640px) { .hero { padding-top: 60px; padding-bottom: 56px; } .hero h1 { max-width: 13ch; } }
       h1 {
         font-family: "Fraunces", Georgia, serif;
         font-size: clamp(58px, 10.5vw, 144px);
