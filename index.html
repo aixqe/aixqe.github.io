@@ -141,7 +141,7 @@
       .hero-lines .l2 { color: var(--muted); }
       .hero-rule { height: 1px; background: var(--ink); margin: 0 0 36px; transform-origin: left; animation: growline 1.1s var(--ease) both .2s; }
 
-      /* ---------- Sections ---------- */
+      /* ---------- Hero solutions carousel ---------- */ .hc-viewport { overflow: hidden; touch-action: pan-y; } .hc-track { display: flex; align-items: flex-start; transition: transform .6s var(--ease); will-change: transform; } .hc-slide { flex: 0 0 100%; min-width: 0; } .hero-carousel.hc-js .hc-slide.hc-hidden { visibility: hidden; } #hcDots .dot { position: relative; } #hcDots .dot::after { content: ""; position: absolute; top: 50%; left: 50%; width: 25px; height: 25px; transform: translate(-50%, -50%); background: transparent; } /* ---------- Sections ---------- */
       section { padding-top: 72px; }
       .sec-head { display: flex; align-items: baseline; gap: 16px; margin: 0 0 30px; }
       h2 {
@@ -2057,9 +2057,9 @@
             dotsWrap.appendChild(d);
             dots.push(d);
           });
-          function go(n) {
+          var viewport = root.querySelector('.hc-viewport'); var hideTimer = null; function fitHeight() { try { if (viewport && slides[cur]) viewport.style.height = slides[cur].offsetHeight + 'px'; } catch (e) {} } root.classList.add('hc-js'); function go(n) {
             cur = ((n % slides.length) + slides.length) % slides.length;
-            track.style.transform = 'translateX(' + (-100 * cur) + '%)';
+            track.style.transform = 'translateX(' + (-100 * cur) + '%'); if (hideTimer) clearTimeout(hideTimer); slides.forEach(function(s) { s.classList.remove('hc-hidden'); }); hideTimer = setTimeout(function() { slides.forEach(function(s, j) { if (j !== cur) s.classList.add('hc-hidden'); }); fitHeight(); }, 650); fitHeight(); track.style.transform = 'translateX(' + (-100 * cur) + '%)';
             slides.forEach(function (s, j) {
               var on = j === cur;
               s.setAttribute('aria-hidden', on ? 'false' : 'true');
@@ -2086,7 +2086,7 @@
               go(cur + (e.key === 'ArrowRight' ? 1 : -1));
             }
           });
-          /* "View details" entries are route links to /work/<slug>, handled by the path router. */
+          /* "View details" entries are route links to /work/<slug>, handled by the path router. */ window.addEventListener('resize', fitHeight); window.addEventListener('load', fitHeight); if (document.fonts && document.fonts.ready) { document.fonts.ready.then(function() { fitHeight(); }).catch(function() {}); } var swipeStartX = 0; var swipeStartY = 0; var swipePointerId = null; var swiped = false; if (viewport) { viewport.addEventListener('pointerdown', function(e) { swipePointerId = e.pointerId; swipeStartX = e.clientX; swipeStartY = e.clientY; swiped = false; }); viewport.addEventListener('pointerup', function(e) { if (swipePointerId === null || e.pointerId !== swipePointerId) return; var dx = e.clientX - swipeStartX; var dy = e.clientY - swipeStartY; swipePointerId = null; if (Math.abs(dx) >= 42 && Math.abs(dx) > Math.abs(dy)) { swiped = true; go(cur + (dx < 0 ? 1 : -1)); setTimeout(function() { swiped = false; }, 500); } }); viewport.addEventListener('pointercancel', function() { swipePointerId = null; }); viewport.addEventListener('click', function(e) { if (swiped) { e.preventDefault(); e.stopPropagation(); swiped = false; } }, true); }
           go(0);
         }
 
