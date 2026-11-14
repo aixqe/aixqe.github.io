@@ -52,7 +52,7 @@
           .arch-diagram .arch-canvas .nd-io rect, .arch-diagram .arch-canvas .nd-prop rect { fill: #6D675A; }
       }
       * { box-sizing: border-box; }
-      html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+      /* ---------- Savings Analysis calculator: Sage & Stone. Plain hex first, then var(), so the look survives if a variable is unsupported. ---------- */ .calc-title{font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:clamp(26px,3.4vw,36px);margin:0 0 8px;} .calc-lede{color:#646A58;color:var(--muted);font-size:17px;max-width:62ch;margin:0 0 18px;} .calc-panel{background:#ECE8DB;background:var(--paper-2);border:1px solid #B7B29B;border:1px solid var(--line-strong);padding:clamp(18px,3vw,28px);margin:18px 0;} .calc-panel h3{font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:20px;margin:0 0 4px;} .calc-note{color:#646A58;color:var(--muted);font-size:15px;margin:0 0 16px;} .prog-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 20px;} .field label{display:block;font-weight:600;font-size:15px;margin-bottom:6px;} .calc-input{width:100%;box-sizing:border-box;background:#F5F2EA;background:var(--paper);color:#23281F;color:var(--ink);border:1px solid #B7B29B;border:1px solid var(--line-strong);padding:10px 12px;font:inherit;font-size:16px;min-height:44px;} .calc-input:focus{outline:2px solid #46543C;outline:2px solid var(--accent);outline-offset:2px;} .field-error{display:block;color:#AC5F36;color:var(--clay);font-size:14px;font-weight:600;margin-top:6px;} .field-help{color:#646A58;color:var(--muted);font-size:14px;margin:6px 0 0;} .opt-row{display:flex;flex-wrap:wrap;gap:8px;} .opt-btn{background:#F5F2EA;background:var(--paper);color:#23281F;color:var(--ink);border:1px solid #B7B29B;border:1px solid var(--line-strong);padding:9px 14px;font:inherit;font-size:15px;font-weight:600;cursor:pointer;min-height:44px;} .opt-btn[aria-pressed="true"]{background:#46543C;background:var(--accent);border-color:#46543C;border-color:var(--accent);color:#F5F2EA;color:var(--paper);} .layers{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:16px 0;} .layer-card{background:#F5F2EA;background:var(--paper);border:1px solid #B7B29B;border:1px solid var(--line-strong);padding:20px;} .layer-card h4{font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:19px;margin:0 0 6px;} .lbig{font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:clamp(24px,3vw,30px);margin:6px 0;} .lsub{color:#646A58;color:var(--muted);font-size:14.5px;margin:0 0 10px;} .lrow{display:flex;justify-content:space-between;gap:12px;padding:7px 0;border-top:1px solid #DDD8C6;border-top:1px solid var(--line);font-size:15px;} .lrow dt{color:#646A58;color:var(--muted);} .lrow dd{margin:0;font-weight:600;text-align:right;} .lrow.total dd{font-weight:700;} .layer-card .neg,.calib .neg{color:#AC5F36;color:var(--clay);} .sum-line{font-weight:600;font-size:17px;margin:12px 0;} .calc-actions{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0 6px;} .calc-btn{background:#46543C;background:var(--accent);color:#F5F2EA;color:var(--paper);border:1px solid #46543C;border:1px solid var(--accent);padding:11px 18px;font:inherit;font-size:15.5px;font-weight:600;cursor:pointer;min-height:44px;} .calc-btn:hover{filter:brightness(1.08);} .copy-status{color:#646A58;color:var(--muted);font-size:14.5px;margin:8px 0 0;} .calc-invalid{display:block;background:#FBEFE6;border:1px solid #AC5F36;border:1px solid var(--clay);color:#23281F;color:var(--ink);font-weight:700;padding:12px 16px;margin:0 0 14px;} .calc-invalid[hidden]{display:none;} .adv-toggle{background:transparent;border:0;color:#46543C;color:var(--accent);font:inherit;font-size:16px;font-weight:700;cursor:pointer;padding:6px 0;text-align:left;} .adv-settings{margin-top:14px;} .calib{margin-top:26px;} .rec-list{list-style:none;margin:0;padding:0;} .rec-list li{border-top:1px solid #DDD8C6;border-top:1px solid var(--line);padding:12px 0;} .rec-list li:last-child{border-bottom:1px solid #DDD8C6;border-bottom:1px solid var(--line);} .rec-list b{display:block;font-size:16px;} .rec-list span{color:#646A58;color:var(--muted);font-size:14.5px;} .how-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;} .how-card{background:#F5F2EA;background:var(--paper);border:1px solid #B7B29B;border:1px solid var(--line-strong);padding:18px;} .how-card h4{font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:17px;margin:0 0 6px;} .how-card p{margin:0;color:#646A58;color:var(--muted);font-size:15px;} @media (max-width:640px){.prog-fields,.layers,.how-grid{grid-template-columns:1fr;}.calc-panel{padding:18px;}} /* ---------- Buttons: Sage & Stone. Plain hex first, then var(), so buttons keep their look if a variable is unsupported. ---------- */.btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:12px 22px;font-weight:600;font-size:16px;border:1px solid #46543C;border:1px solid var(--accent);cursor:pointer;font-family:inherit;transition:background .25s ease,color .25s ease;}.btn-primary{background:#46543C;background:var(--accent);color:#F5F2EA;color:var(--paper);}.btn-ghost{background:transparent;color:#46543C;color:var(--accent);}.nav-cta{border:1px solid #46543C;border:1px solid var(--accent);color:#46543C!important;color:var(--accent)!important;padding:9px 16px;font-weight:600;}.f-cta{display:flex;justify-content:center;margin:38px 0 8px;}.calc-cta{margin-top:40px;border:1px solid #B7B29B;border:1px solid var(--line-strong);background:#ECE8DB;background:var(--paper-2);padding:28px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;}.calc-cta p{margin:0;max-width:620px;}.calc-cta a.btn:hover{background:#46543C;background:var(--accent);color:#F5F2EA;color:var(--paper);text-decoration:none;}html { scroll-behavior: smooth; scroll-padding-top: 88px;}
       body {
         margin: 0;
         background: var(--paper);
@@ -827,7 +827,7 @@
                   <path d="M46 148h6M46 100h6M46 60h6M100 196v6M196 196v6M292 196v6M388 196v6"/>
                 </g>
                 <path d="M52 84h376" stroke="var(--accent)" stroke-width="1.5" stroke-dasharray="6 5"/>
-                <text x="392" y="76" text-anchor="end" font-family="Archivo, sans-serif" font-size="10.5" fill="var(--accent)" letter-spacing="1.5">THRESHOLD</text>
+                <text x="428" y="76" text-anchor="end" font-family="Archivo, sans-serif" font-size="10.5" fill="var(--accent)" letter-spacing="1.5">THRESHOLD</text>
                 <path d="M52 168 C 96 166, 120 160, 152 150 S 216 128, 240 96 S 300 62, 330 74 S 392 128, 428 142" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round"/>
                 <path d="M52 182 C 110 180, 150 176, 200 170 S 300 158, 428 158" fill="none" stroke="var(--ink)" stroke-width="1.5"/>
                 <g fill="var(--paper)" stroke="var(--accent)" stroke-width="1.8">
@@ -1082,7 +1082,7 @@
       <section class="wrap" style="padding-top:0">
         <div class="sec-head"><h2>How your testing runs today</h2></div>
         <p class="step-note">Five answers and both layers recompute instantly. Tools, pyramid, testing types, and lifecycle phases sit under Advanced settings, pre-set to sensible defaults.</p>
-        <form class="calc-panel" id="qForm" aria-label="Your testing program today">
+        <form class="calc-panel" id="qForm" style="background:#ECE8DB;border:1px solid #B7B29B;padding:28px 28px 30px;" aria-label="Your testing program today">
           <h3>Your program</h3>
           <p class="panel-note">Starting answers describe a mid-size enterprise program: 30,000 QE hours a year across 10 releases, mixed manual/automated. Change any number; results update as you type.</p>
           <div class="prog-fields">
@@ -1186,9 +1186,9 @@
 
       <section class="wrap">
         <div class="sec-head"><h2>Two layers, two different answers</h2></div>
-        <p class="sum-line" id="sumLine">-</p>
+        <p class="calc-invalid" id="calcInvalid" role="alert" hidden>Fix the highlighted field to see your results</p><p class="sum-line" id="sumLine">-</p>
         <div class="layers">
-          <div class="layer-card">
+          <div class="layer-card" style="background:#F5F2EA;border:1px solid #B7B29B;padding:22px 22px 20px;">
             <p class="llabel">Layer 1: Cherry-picked AI use cases</p>
             <p class="lbig" id="aBig">-</p>
             <p class="lsub"><span id="aPct">-</span> of your <span id="aBench">-</span>-hour benchmark</p>
@@ -1225,7 +1225,7 @@
         <div class="calib" id="roiCalibration">
           <div class="sec-head"><h2>ROI Calibration</h2></div>
           <p class="step-note">The cards above price the hours AI gives back. This section asks what survives verification, and what verification costs. The <b>calibrated</b> ROI is the headline financial answer; the optimistic ROI is the same math with acceptance, review, and evaluation switched off.</p>
-          <form class="calc-panel" id="calForm" aria-label="ROI calibration inputs">
+          <form class="calc-panel" id="calForm" style="background:#ECE8DB;border:1px solid #B7B29B;padding:28px 28px 30px;" aria-label="ROI calibration inputs">
             <h3>Calibration inputs</h3>
             <p class="panel-note">Every input is editable. Implementation cost is taken from your program answers above, so it is counted once, in both modes.</p>
             <div class="prog-fields">
@@ -1274,7 +1274,7 @@
           </form>
 
           <div class="layers calib-results">
-            <div class="layer-card">
+            <div class="layer-card" style="background:#F5F2EA;border:1px solid #B7B29B;padding:22px 22px 20px;">
               <p class="llabel">Layer 1: Cherry-picked AI use cases</p>
               <div class="calib-compare">
                 <div class="calib-mode">
@@ -1627,8 +1627,8 @@
         window.__isCalcValid = function () { return validateAll(); };
         window.__calcValidationStatus = VALIDATION_STATUS;
 
-        function compute() {
-          if (!validateAll()) return;
+        function clearResults(){var inv=document.getElementById('calcInvalid');if(inv)inv.hidden=false;function dash(id){var el=document.getElementById(id);if(el)el.textContent='—';}['sumLine','aPct','aBig','aBench','aHrs','aMoney','aCap','aCost','aNet','aRoi','aRange','bPct','bBig','bBench','bHrs','bMoney','bCap','bCost','bNet','bRoi','bRange','calEng','calOptA','calOptB','calRoiA','calRoiB','calGrossA','calGrossB','calVerA','calVerB','calRealA','calRealB','calNetA','calNetB','calBeA','calBeB','calLicA','calLicB','calRevA','calRevB','calEvalA','calEvalB','calInfraA','calInfraB','calImplA','calImplB','calInvA','calInvB'].forEach(dash);var aR=document.getElementById('aRoiRow');if(aR)aR.hidden=true;var bR=document.getElementById('bRoiRow');if(bR)bR.hidden=true;var rec=document.getElementById('recList');if(rec)rec.innerHTML='';document.querySelectorAll('.layer-card.neg,.calib.neg').forEach(function(el){el.classList.remove('neg');});}function compute() {
+          var inv=document.getElementById('calcInvalid');if(inv)inv.hidden=true;if(!validateAll()){clearResults();return;}
           var releases = num('qReleases');
           var autoShare = clamp(num('qMix'), 0, 100);
           var mixMult = autoShare <= 25 ? 0.9 : autoShare <= 50 ? 1 : autoShare <= 75 ? 1.05 : 1.1;
@@ -2221,7 +2221,7 @@
           workView.hidden = false;
           if (homeView) homeView.hidden = true;
           if (calcView) calcView.hidden = true;
-                    if (TITLES[slug]) document.title = TITLES[slug];
+                    if (TITLES[slug]) document.title = TITLES[slug]; var _fitBtn = document.querySelector('#work-' + slug + ' [data-zfit]'); if (_fitBtn) _fitBtn.click();
           window.scrollTo(0, 0);
         }
         function showHome() {
