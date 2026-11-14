@@ -52,7 +52,7 @@
           .arch-diagram .arch-canvas .nd-io rect, .arch-diagram .arch-canvas .nd-prop rect { fill: #6D675A; }
       }
       * { box-sizing: border-box; }
-      html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+      .calc-invalid{background:#FBEFE6;border:1px solid #AC5F36;color:#23281F;padding:12px 16px;margin:0 0 16px;font-weight:600;line-height:1.5;}.calc-invalid[hidden]{display:none;}html { scroll-behavior: smooth; scroll-padding-top: 88px; }
       body {
         margin: 0;
         background: var(--paper);
@@ -1225,7 +1225,7 @@
                   <path d="M46 148h6M46 100h6M46 60h6M100 196v6M196 196v6M292 196v6M388 196v6"/>
                 </g>
                 <path d="M52 84h376" stroke="var(--accent)" stroke-width="1.5" stroke-dasharray="6 5"/>
-                <text x="392" y="76" text-anchor="end" font-family="Archivo, sans-serif" font-size="10.5" fill="var(--accent)" letter-spacing="1.5">THRESHOLD</text>
+                <text x="428" y="76" text-anchor="end" font-family="Archivo, sans-serif" font-size="10.5" fill="var(--accent)" letter-spacing="1.5">THRESHOLD</text>
                 <path d="M52 168 C 96 166, 120 160, 152 150 S 216 128, 240 96 S 300 62, 330 74 S 392 128, 428 142" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round"/>
                 <path d="M52 182 C 110 180, 150 176, 200 170 S 300 158, 428 158" fill="none" stroke="var(--ink)" stroke-width="1.5"/>
                 <g fill="var(--paper)" stroke="var(--accent)" stroke-width="1.8">
@@ -1583,7 +1583,7 @@
 
       <section class="wrap">
         <div class="sec-head"><h2>Two layers, two different answers</h2></div>
-        <p class="sum-line" id="sumLine">-</p>
+        <p class="calc-invalid" id="calcInvalid" role="alert" hidden>Fix the highlighted field to see your results</p><p class="sum-line" id="sumLine">-</p>
         <div class="layers">
           <div class="layer-card">
             <p class="llabel">Layer 1: Cherry-picked AI use cases</p>
@@ -2009,8 +2009,8 @@
         window.__isCalcValid = function () { return validateAll(); };
         window.__calcValidationStatus = VALIDATION_STATUS;
 
-        function compute() {
-          if (!validateAll()) return;
+        function clearResults(){var inv=document.getElementById('calcInvalid');if(inv)inv.hidden=false;var ids=['sumLine','aPct','aBig','aBench','aHrs','aMoney','aCap','aCost','aNet','aRoi','aRange','aSpeed','aCov','aReg','bPct','bBig','bBench','bHrs','bMoney','bCap','bCost','bNet','bRoi','bRange','bSpeed','bCov','bReg','casDesign','casExec','casDefect','calEng','calOptA','calOptB','calRoiA','calRoiB','calGrossA','calGrossB','calVerA','calVerB','calRealA','calRealB','calNetA','calNetB','calBeA','calBeB','calLicA','calLicB','calRevA','calRevB','calEvalA','calEvalB','calInfraA','calInfraB','calImplA','calImplB','calInvA','calInvB'];ids.forEach(function(id){var el=document.getElementById(id);if(el)el.textContent='—';});var aR=document.getElementById('aRoiRow');if(aR)aR.hidden=true;var bR=document.getElementById('bRoiRow');if(bR)bR.hidden=true;var rl=document.getElementById('recList');if(rl)rl.innerHTML='';var negs=document.querySelectorAll('.layer-card.neg,.calib.neg');for(var i=0;i<negs.length;i++){negs[i].classList.remove('neg');}} function compute() {
+          var inv=document.getElementById('calcInvalid');if(inv)inv.hidden=true;if(!validateAll()){clearResults();return;}
           var releases = num('qReleases');
           var team = num('qTeam');
           var autoShare = clamp(num('qMix'), 0, 100);
@@ -2546,7 +2546,7 @@
           if (homeView) homeView.hidden = true;
           if (calcView) calcView.hidden = true;
           if (newsView) newsView.hidden = true;
-          if (TITLES[slug]) document.title = TITLES[slug];
+          if (TITLES[slug]) document.title = TITLES[slug]; var _fitBtn = document.querySelector('#work-' + slug + ' [data-zfit]'); if (_fitBtn) _fitBtn.click();
           window.scrollTo(0, 0);
         }
         function showHome() {
